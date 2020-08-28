@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Abel&family=Comfortaa&family=Kelly+Slab& family=PT+Serif&family=Stardos+Stencil& family=Yantramanav:wght@300;400&display=swap');
+
+$fontfamily--logo: 'Stardos Stencil', cursive;
+$fontfamily--default: Yantramanav, Inter, Roboto, Ubuntu, sans-serif;
+$fontfamily--sans-serif: 'PT Serif', serif;
+$fontfamily--condensed: Abel, "Roboto Condensed", sans-serif;
+$fontfamily--round: 'Comfortaa', cursive;
+$fontfamily--handwriting: 'Kelly Slab', cursive;
+
+$fontsize--logo: 45px;
+$fontsize--button-simple: 21px;
+
+$fontsize--nav__items: 30px;
+$fontsize--nav__user__auth: 30px;
+$fontsize--nav__user__name: 24px;
+$fontsize--nav__user__dropdown: 19px;
+
+$fontsize--help__title: 40px;
+$fontsize--help__question: 24px;
+$fontsize--help__answer: 21px;
+$fontsize--help__box__title: 36px;
+$fontsize--help__box__question: 20px;
+
+$fontsize--my-cart__card__title: 18px;
+$fontsize--my-cart__card__cost: 36px;
+$fontsize--my-cart__card__count: 34px;
+$fontsize--my-cart__side-card__title: 30px;
+$fontsize--my-cart__side-card__cost: 30px;
+$fontsize--my-cart__side-card__note: 20px;
+$fontsize--my-cart__side-card__list: 20px;
+
+$fontsize--catalog__card__title: 18px;
+$fontsize--catalog__card__cost: 18px;
+
+$fontsize--order__pic__title: 26px;
+$fontsize--order__title: 32px;
+$fontsize--order__nav__title: 24px;
+$fontsize--order__text_default: 22px;
+$fontsize--order__care__title: 20px;
+$fontsize--order__care__text: 20px;
+$fontsize--order__product__reviews: 24px;
+$fontsize--order__product__spec: 28px;
+$fontsize--order__product__cons: 22px;
+
+$fontsize--auth__input: 20px;
+$fontsize--auth__button: 36px;
+$fontsize--auth__link: 30px;
+$fontsize--auth__back: 24px;

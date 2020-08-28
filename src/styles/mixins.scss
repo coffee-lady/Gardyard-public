@@ -1,0 +1,21 @@
+@mixin highlighted-word($bg-color, $text-color) {
+    position: relative;
+    display: block;
+    height: 100%;
+    width: 100%;
+    color: $text-color;
+    background: $bg-color;
+}
+
+%card-shadow {
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+%back-arrow-bg {
+    background: linear-gradient(90deg, rgba(196, 196, 196, 0.35) 0%, rgba(196, 196, 196, 0.175) 50.52%, rgba(196, 196, 196, 0) 100%);
+}
+
+%highlighted-container {
+    display: block;
+    box-sizing: border-box;
+}
