@@ -1,0 +1,86 @@
+@import '../../assets/styles/utils.scss';
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 239px;
+    padding-top: 66px;
+    box-sizing: border-box;
+}
+
+.list {
+    display: flex;
+    justify-content: space-between;
+    width: 585px;
+    margin-top: 30px;
+
+    div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+.link {
+    @extend %hover-container;
+    padding: 20px;
+    box-sizing: content-box;
+    color: #000000;
+    font-family: $fontfamily--condensed;
+    font-size: $fontsize--nav__items;
+
+    &:before {
+        @extend %hover-before;
+        background: $color--default;
+    }
+
+    &:hover {
+        color: #ffffff;
+
+        &:before {
+            @extend %hover-container-before;
+        }
+
+        &~hr {
+            opacity: 0;
+        }
+    }
+}
+
+.link-to-auth {
+    @extend %hover-container;
+    position: absolute;
+    top: 53px;
+    right: 53px;
+    padding: 15px;
+    box-sizing: content-box;
+    color: #000000;
+    font-family: $fontfamily--condensed;
+    font-size: $fontsize--nav__user__auth;
+
+    &:before {
+        @extend %hover-before;
+        background: $color--default;
+    }
+
+    &:hover {
+        color: #ffffff;
+
+        &:before {
+            @extend %hover-container-before;
+        }
+    }
+}
+
+hr {
+    margin: 0;
+    opacity: 0;
+    transition: all 300ms ease;
+}
+
+.router-link-active {
+    &~hr {
+        opacity: 1;
+    }
+}

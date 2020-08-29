@@ -50,6 +50,7 @@ form {
 }
 
 .submit {
+    @extend %hover-container;
     @extend %shadow;
     width: 321px;
     height: 64px;
@@ -58,35 +59,40 @@ form {
     font-family: $fontfamily--condensed;
     font-size: $fontsize--auth__button;
     background: $color--default;
+
+    &:before {
+        @extend %hover-before;
+        background: $color--blue;
+    }
+
+    &:hover {
+        &:before {
+            @extend %hover-container-before;
+        }
+    }
 }
 
 .link {
-    margin-top: 25px;
+    @extend %hover-container;
+    margin-top: 15px;
+    padding: 10px 3px 8px;
     color: $color--default;
     font-family: $fontfamily--condensed;
     font-size: $fontsize--auth__link;
-    z-index: 5;
 }
 
-.link:before{
-    position: absolute;
-    content: '';
-    width: 0%; height: 100%;
-    background: $color--blue; 
-    top: 0;  left: auto; right: 0;
-    z-index: -1;
-    transition: all 300ms ease;
+.link:before {
+    @extend %hover-before;
+    background: $color--default;
 }
 
 .link:hover {
-    &:before{
-    position: absolute;
-    content: '';
-    width: 100%; height: 100%;
-    background: $color--blue;
-    top: 0; left: 0; right: 0;
-    z-index: -1;
-}}
+    color: #ffffff;
+
+    &:before {
+        @extend %hover-container-before;
+    }
+}
 
 .back {
     position: absolute;
@@ -94,6 +100,7 @@ form {
     right: 68px;
 
     a {
+        @extend %hover-container;
         display: block;
         padding: 0.2em;
         text-align: center;
@@ -101,4 +108,22 @@ form {
         font-family: $fontfamily--condensed;
         font-size: $fontsize--auth__back;
     }
+
+    a:before {
+        @extend %hover-before;
+        background: $color--default;
+    }
+
+    a:hover {
+        color: #ffffff;
+
+        &:before {
+            @extend %hover-container-before;
+        }
+    }
+}
+
+hr {
+    margin: 0;
+    transition: all 100ms ease;
 }
