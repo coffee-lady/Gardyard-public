@@ -1,1 +1,20 @@
-<p>register works!</p>
+<div class="container">
+    <div class="back">
+        <a routerLink="">BACK TO HOME</a>
+        <hr width="160" size="2" align="center" color="#000000">
+    </div>
+    <div class="header">
+        <img class="icon" src="/assets/images/logo_pink.png">
+        <app-logo></app-logo>
+    </div>
+    <form>
+        <div class="input-container">
+            <input type="text" class="form__field" placeholder="name">
+            <input type="text" class="form__field" placeholder="email">
+            <input type="password" class="form__field" placeholder="password">
+        </div>
+        <button class="submit" type="submit">SIGN UP</button>
+        <a class="link" routerLink="/auth/login">or sign in</a>
+        <hr width="107" size="2" align="center" color="#000000">
+    </form>
+</div>

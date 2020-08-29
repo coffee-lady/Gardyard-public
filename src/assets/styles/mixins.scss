@@ -7,7 +7,7 @@
     background: $bg-color;
 }
 
-%card-shadow {
+%shadow {
     box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
@@ -18,4 +18,10 @@
 %highlighted-container {
     display: block;
     box-sizing: border-box;
+}
+
+%container {
+    display: block;
+    height: 100vh;
+    width: 100vw;
 }

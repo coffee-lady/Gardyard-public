@@ -1,0 +1,15 @@
+@import '../../assets/styles/utils';
+
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logo__title {
+    padding: 0 84px;
+    font-family: $fontfamily--logo;
+    font-size: $fontsize--logo;
+    text-align: center;
+    letter-spacing: 0.4em;
+}
