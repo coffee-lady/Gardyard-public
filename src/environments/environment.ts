@@ -3,7 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+    production: false,
+    jwtSecret: '56DFG48-fg54df-DF8DS5G667FD8',
 };
 
 /*

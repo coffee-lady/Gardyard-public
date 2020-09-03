@@ -7,10 +7,10 @@
         <img class="icon" src="/assets/images/logo_gold.png">
         <app-logo></app-logo>
     </div>
-    <form>
+    <form [formGroup]="form" novalidate method="post" (ngSubmit)="submit()">
         <div class="input-container">
-            <input type="text" class="form__field" placeholder="email">
-            <input type="password" class="form__field" placeholder="password">
+            <input class="form__field" formControlName="email" type="text" placeholder="email">
+            <input class="form__field" formControlName="password" type="password" placeholder="password">
         </div>
         <button class="submit" type="submit">SIGN IN</button>
         <a class="link" routerLink="/auth/register">or sign up</a>

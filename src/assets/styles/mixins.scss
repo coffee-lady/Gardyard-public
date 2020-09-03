@@ -1,10 +1,71 @@
-@mixin highlighted-word($bg-color, $text-color) {
-    position: relative;
-    display: block;
-    height: 100%;
-    width: 100%;
-    color: $text-color;
-    background: $bg-color;
+@mixin placeholder($ff, $fs, $fw) {
+    ::-webkit-input-placeholder {
+        font-size: $fs;
+        font-family: $ff;
+        font-weight: $fw;
+        color: $color--input__hint;
+    }
+
+    ::-moz-placeholder {
+        font-size: $fs;
+        font-family: $ff;
+        font-weight: $fw;
+        color: $color--input__hint;
+    }
+
+    :-ms-input-placeholder {
+        font-size: $fs;
+        font-family: $ff;
+        font-weight: $fw;
+        color: $color--input__hint;
+    }
+
+    ::-ms-input-placeholder {
+        font-size: $fs;
+        font-family: $ff;
+        font-weight: $fw;
+        color: $color--input__hint;
+    }
+
+    ::placeholder {
+        font-size: $fs;
+        font-family: $ff;
+        font-weight: $fw;
+        color: $color--input__hint;
+    }
+}
+
+@mixin scrollbar($color, $bg-color) {
+    ::-webkit-scrollbar-button {
+        background-repeat: no-repeat;
+        width: 6px;
+        height: 0px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: $color;
+        border-radius: 100px;
+        box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.25);
+    }
+
+    ::-webkit-scrollbar-thumb {
+        border-radius: 5px;
+        background-color: $bg-color;
+        background-image: url('https://yraaa.ru/_pu/24/59610063.png');
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    ::-webkit-resizer {
+        background-repeat: no-repeat;
+        width: 7px;
+        height: 0px;
+    }
+
+    ::-webkit-scrollbar {
+        width: 11px;
+    }
+
 }
 
 %hover-container {

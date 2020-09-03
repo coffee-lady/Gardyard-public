@@ -12,5 +12,5 @@ module.exports.generateToken = function(user) {
 module.exports.register = async function(user) {
     user.hashedPassword = bcrypt.hashSync(user.password, 10);
     delete user.password;
-    return await new User(user).save();
+    return await new User(user).save().catch(err => console.error(err));
 }

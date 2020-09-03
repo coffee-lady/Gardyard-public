@@ -11,12 +11,18 @@ a {
     }
 }
 
-input {
+input, textarea {
     resize: none;
 }
 
 input,
 input:focus {
+    border: none;
+    outline: none;
+}
+
+textarea,
+textarea:focus {
     border: none;
     outline: none;
 }

@@ -14,6 +14,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    color: $color--on-base;
 }
 
 .icon {
@@ -39,14 +40,20 @@ form {
     height: 45px;
     padding: 0 18px;
     box-sizing: border-box;
+    color: $color--on-base;
     font-family: $fontfamily--sans-serif;
     font-size: $fontsize--auth__input;
-    border: 2px solid $color--auth__border
-}
+    border: 2px solid $color--input__border;
 
-.form__field::placeholder {
-    font-family: $fontfamily--sans-serif;
-    font-size: $fontsize--auth__input;
+    &:focus {
+        border: 2px solid $color--primary;
+    }
+
+    @include placeholder($fontfamily--sans-serif, $fontsize--auth__input, 400);
+
+    &.ng-dirty.ng-invalid {
+        border-color: $color--invalid
+    }
 }
 
 .submit {
@@ -55,10 +62,14 @@ form {
     width: 321px;
     height: 64px;
     margin-top: 53px;
-    color: #ffffff;
+    color: $color--base;
     font-family: $fontfamily--condensed;
     font-size: $fontsize--auth__button;
     background: $color--default;
+
+    &:disabled {
+        opacity: 0.5;
+    }
 
     &:before {
         @extend %hover-before;
@@ -76,7 +87,7 @@ form {
     @extend %hover-container;
     margin-top: 15px;
     padding: 10px 3px 8px;
-    color: $color--default;
+    color: $color--on-base;
     font-family: $fontfamily--condensed;
     font-size: $fontsize--auth__link;
 }
@@ -87,10 +98,14 @@ form {
 }
 
 .link:hover {
-    color: #ffffff;
+    color: $color--base;
 
     &:before {
         @extend %hover-container-before;
+    }
+
+    &~hr {
+        opacity: 0;
     }
 }
 
@@ -104,7 +119,7 @@ form {
         display: block;
         padding: 0.2em;
         text-align: center;
-        color: $color--default;
+        color: $color--on-base;
         font-family: $fontfamily--condensed;
         font-size: $fontsize--auth__back;
     }
@@ -115,15 +130,20 @@ form {
     }
 
     a:hover {
-        color: #ffffff;
+        color: $color--base;
 
         &:before {
             @extend %hover-container-before;
+        }
+
+        &~hr {
+            opacity: 0;
         }
     }
 }
 
 hr {
     margin: 0;
-    transition: all 100ms ease;
+    opacity: 1;
+    transition: all 300ms ease;
 }

@@ -1,6 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Abel&family=Comfortaa&family=Kelly+Slab& family=PT+Serif&family=Yantramanav:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Yantramanav&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Yantramanav:wght@300&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Stardos+Stencil&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Abel&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kelly+Slab&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=PT+Serif&display=swap');
 
 $fontfamily--logo: 'Stardos Stencil', cursive;
 $fontfamily--default: Yantramanav, Inter, Roboto, Ubuntu, sans-serif;
@@ -10,7 +14,7 @@ $fontfamily--round: 'Comfortaa', cursive;
 $fontfamily--handwriting: 'Kelly Slab', cursive;
 
 $fontsize--logo: 45px;
-$fontsize--button-simple: 21px;
+$fontsize--button: 21px;
 
 $fontsize--nav__items: 30px;
 $fontsize--nav__user__auth: 30px;

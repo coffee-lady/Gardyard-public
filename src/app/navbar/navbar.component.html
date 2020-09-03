@@ -1,6 +1,17 @@
 <div class="container">
     <app-logo></app-logo>
-    <a class="link-to-auth" routerLink="auth/register">SIGN IN | JOIN</a>
+    <a class="link-to-auth" routerLink="auth/register" *ngIf="!user">SIGN IN | JOIN</a>
+    <div class="user" *ngIf="user">
+        <div class="user__header">
+            <img src="/assets/images/avatar.png" alt="">
+            <a class="user__name">{{ user.fullname | uppercase }}</a>
+        </div>
+
+        <div class="user__dropdown">
+            <a class="user__dropdown__link" routerLink="orders">My Orders</a>
+            <a class="user__dropdown__link" (click)="logout()">Sign Out</a>
+        </div>
+    </div>
     <div class="list">
         <div>
             <a class="link" routerLink="catalog" routerLinkActive="router-link-active">CATALOG</a>

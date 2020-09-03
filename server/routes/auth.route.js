@@ -6,8 +6,8 @@ const authCtrl = require('../controllers/auth.controller');
 const router = express.Router();
 
 router.post('/register', asyncHandler(register), login);
-router.post('/login', passport.authenticate('local', { session: false }, login));
-router.get('/me', passport.authenticate('jwt', { session: false }, login));
+router.post('/login', passport.authenticate('local', { session: false }), login);
+router.get('/me', passport.authenticate('jwt', { session: false }), login);
 
 module.exports = router;
 
