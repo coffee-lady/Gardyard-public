@@ -10,7 +10,7 @@ export class AuthInterceptor implements HttpInterceptor {
 
     intercept(request: HttpRequest < unknown > , next: HttpHandler): Observable < HttpEvent < unknown >> {
         request = request.clone({
-            setHeaders: this.authService.getAuthorizationHeaders(),
+            headers: request.headers.set('Authorization', this.authService.getAuthorizationHeaders()),
         });
         return next.handle(request);
     }

@@ -65,4 +65,8 @@ export class RegisterComponent implements OnInit {
             });
     }
 
+    toggle(): void {
+        document.querySelector('.back').classList.toggle('back_hidden');
+    }
+
 }

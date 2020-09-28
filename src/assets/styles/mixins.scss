@@ -65,7 +65,31 @@
     ::-webkit-scrollbar {
         width: 11px;
     }
+}
 
+@mixin button ($bg-color, $hover-color) {
+    @extend %hover-container;
+    @extend %shadow;
+    width: 224px;
+    height: 46px;
+    margin-top: 54px;
+    color: $color--base;
+    font-family: $fontfamily--condensed;
+    font-size: $fontsize--button;
+    background: $bg-color;
+    border-radius: 3px;
+
+    &:before {
+        @extend %hover-before;
+        border-radius: 3px;
+        background: $hover-color;
+    }
+
+    &:hover {
+        &:before {
+            @extend %hover-container-before;
+        }
+    }
 }
 
 %hover-container {

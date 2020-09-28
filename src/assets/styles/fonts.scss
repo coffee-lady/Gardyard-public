@@ -5,6 +5,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Comfortaa&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Kelly+Slab&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=PT+Serif&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
 
 $fontfamily--logo: 'Stardos Stencil', cursive;
 $fontfamily--default: Yantramanav, Inter, Roboto, Ubuntu, sans-serif;
@@ -12,16 +13,18 @@ $fontfamily--sans-serif: 'PT Serif', serif;
 $fontfamily--condensed: Abel, sans-serif;
 $fontfamily--round: 'Comfortaa', cursive;
 $fontfamily--handwriting: 'Kelly Slab', cursive;
+$fontfamily--alert: 'Roboto Condensed', sans-serif;
 
 $fontsize--logo: 45px;
 $fontsize--button: 21px;
+
+$fontsize--page__title: 40px;
 
 $fontsize--nav__items: 30px;
 $fontsize--nav__user__auth: 30px;
 $fontsize--nav__user__name: 24px;
 $fontsize--nav__user__dropdown: 19px;
 
-$fontsize--help__title: 40px;
 $fontsize--help__question: 24px;
 $fontsize--help__answer: 21px;
 $fontsize--help__box__title: 36px;
@@ -51,4 +54,19 @@ $fontsize--order__product__cons: 22px;
 $fontsize--auth__input: 20px;
 $fontsize--auth__button: 36px;
 $fontsize--auth__link: 30px;
-$fontsize--auth__back: 24px;
+$fontsize--auth__back: 30px;
+
+$fontsize--new-product__label: 26px;
+$fontsize--new-product__input: 26px;
+$fontsize--new-product__plant-care__title: 26px;
+
+$fontsize--logo_mobile: 30px;
+$fontsize--nav__items_mobile: 23px;
+$fontsize--help__title_mobile: 30px;
+$fontsize--help__question_mobile: 20px;
+$fontsize--help__answer_mobile: 18px;
+$fontsize--help__box__title_mobile: 30px;
+$fontsize--auth__back_mobile: 20px;
+
+$fontsize--alert__title: 24px;
+$fontsize--alert__message: 18px;

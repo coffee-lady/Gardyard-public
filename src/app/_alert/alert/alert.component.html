@@ -1,0 +1,11 @@
+<div class="container">
+    <div *ngFor="let alert of alerts" class="alert" @appearDisappear>
+        <div class="content">
+            <button class="close" (click)="removeAlert(alert)">
+                <img src="/assets/images/cross.png">
+            </button>
+            <div class="title">{{ alert.title }}</div>
+            <div class="message">{{ alert.message }}</div>
+        </div>
+    </div>
+</div>

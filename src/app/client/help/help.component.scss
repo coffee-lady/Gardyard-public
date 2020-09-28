@@ -1,11 +1,10 @@
-@import '../../assets/styles/utils.scss';
+@import '../../../assets/styles/utils.scss';
 
 .container {
     position: relative;
     display: grid;
     height: calc(100vh - 239px);
 }
-
 
 .decor-pic {
     position: absolute;
@@ -16,7 +15,7 @@
 
 .title {
     font-family: $fontfamily--condensed;
-    font-size: $fontsize--help__title;
+    font-size: $fontsize--page__title;
 }
 
 .title_marked {
@@ -118,28 +117,93 @@
 }
 
 .box__button {
-    @extend %hover-container;
-    @extend %shadow;
-    width: 224px;
-    height: 46px;
-    margin-top: 54px;
-    color: $color--base;
-    font-family: $fontfamily--condensed;
-    font-size: $fontsize--button;
-    background: $color--primary;
-    border-radius: 3px;
-
-    &:before {
-        @extend %hover-before;
-        border-radius: 3px;
-        background: $color--secondary;
-    }
-
-    &:hover {
-        &:before {
-            @extend %hover-container-before;
-        }
-    }
+    @include button($color--primary, $color--secondary);
 }
 
 @include scrollbar($color--base, $color--default);
+
+@media (max-width: $size--width_mobile) {
+    .title {
+        padding: 10px;
+        font-size: $fontsize--help__title_mobile;
+    }
+
+    .title_marked {
+        padding: 0;
+        color: $color--base;
+        background: $color--default;
+    }
+
+    .decor-pic {
+        display: none;
+    }
+
+    .questions {
+        margin-left: 0;
+        margin: 20px 0;
+        width: 100vw;
+        height: fit-content;
+    }
+
+    .question__title {
+        font-size: $fontsize--help__question_mobile;
+    }
+
+    .question__answer {
+        font-size: $fontsize--help__answer_mobile;
+    }
+
+    .question__button {
+        display: flex;
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    .box {
+        position: relative;
+        right: 0;
+        bottom: 0;
+        width: 100vw;
+        height: auto;
+        padding: 50px 30px;
+        border-radius: 0;
+    }
+
+    .box__title {
+        font-size: $fontsize--help__box__title_mobile;
+    }
+
+    .box__answer {
+        margin-top: 30px;
+        padding: 18px;
+        width: 100%;
+    }
+
+    .box__button {
+        width: 224px;
+        height: 46px;
+        margin-top: 54px;
+    }
+}
+
+@media (max-width: $size--width_tablet) {
+    .title {
+        padding: 10px;
+        margin-top: 2em;
+    }
+
+    .decor-pic {
+        display: none;
+    }
+
+    .questions {
+        margin-top: 2em;
+        margin-bottom: 2em;
+    }
+
+    .box {
+        position: relative;
+        left: 0;
+        margin-top: 100px;
+    }
+}

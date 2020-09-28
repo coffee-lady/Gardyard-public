@@ -10,13 +10,22 @@ const UserSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
+    phone: {
+        type: Number,
+        required: false
+    },
+    city: {
+        type: String,
+        required: false
+    },
     hashedPassword: {
         type: String,
         required: true
     },
     role: {
         type: String,
-        required: true
+        required: true,
+        enum: ['user', 'manager', 'admin']
     },
 }, {
     versionKey: false

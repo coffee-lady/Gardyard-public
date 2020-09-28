@@ -1,29 +1,39 @@
 <div class="container">
-    <app-logo></app-logo>
-    <a class="link-to-auth" routerLink="auth/register" *ngIf="!user">SIGN IN | JOIN</a>
-    <div class="user" *ngIf="user">
-        <div class="user__header">
-            <img src="/assets/images/avatar.png" alt="">
-            <a class="user__name">{{ user.fullname | uppercase }}</a>
-        </div>
+    <app-logo (toggle)="toggleMobileMenu()" [navHumHidden]="false"></app-logo>
 
-        <div class="user__dropdown">
-            <a class="user__dropdown__link" routerLink="orders">My Orders</a>
-            <a class="user__dropdown__link" (click)="logout()">Sign Out</a>
+    <div class="nav nav_cycled">
+        <a class="link-to-auth" routerLink="auth/register" *ngIf="!user">SIGN IN | JOIN</a>
+        <div class="user" *ngIf="user">
+            <div class="user__header">
+                <img src="/assets/images/avatar.png" alt="">
+                <a class="user__name">{{ user.fullname | uppercase }}</a>
+            </div>
+
+            <div class="user__dropdown">
+                <a class="user__dropdown__link" routerLink="orders">My Orders</a>
+                <a class="user__dropdown__link" (click)="logout()">Sign Out</a>
+            </div>
+        </div>
+        <div class="list" *ngIf="user && user.role === 'admin' else userTemplate">
+            <app-nav-link href="admin/new-product" text="NEW PRODUCT"></app-nav-link>
+            <app-nav-link href="admin/products" text="PRODUCTS"></app-nav-link>
+            <app-nav-link href="admin/orders" text="ORDERS"></app-nav-link>
+            <app-nav-link href="admin/edit-help" text="EDIT HELP (E.)"></app-nav-link>
+            <app-nav-link href="admin/edit-contacts" text="CONTACTS (E.)"></app-nav-link>
         </div>
     </div>
-    <div class="list">
-        <div>
-            <a class="link" routerLink="catalog" routerLinkActive="router-link-active">CATALOG</a>
-            <hr width="107" size="2" align="center" color="#000000">
-        </div>
-        <div>
-            <a class="link" routerLink="help" routerLinkActive="router-link-active">HELP</a>
-            <hr width="107" size="2" align="center" color="#000000">
-        </div>
-        <div>
-            <a class="link" routerLink="cart" routerLinkActive="router-link-active">MY CART</a>
-            <hr width="107" size="2" align="center" color="#000000">
-        </div>
-    </div>
+
 </div>
+
+<ng-template #userTemplate>
+    <div class="list">
+        <app-nav-link href="catalog" text="CATALOG"></app-nav-link>
+        <app-nav-link href="help" text="HELP"></app-nav-link>
+        <app-nav-link href="cart" text="MY CART"></app-nav-link>
+        <app-nav-link href="contacts" text="CONTACTS"></app-nav-link>
+
+        <div *ngIf="user && user.role === 'manager'">
+            <app-nav-link href="admin/orders" text="ORDERS"></app-nav-link>
+        </div>
+    </div>
+</ng-template>

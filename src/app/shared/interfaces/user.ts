@@ -3,4 +3,6 @@ export interface User {
     email: string;
     hashedPassword: string;
     role: string;
+    city ? : string;
+    phone ? : number;
 }

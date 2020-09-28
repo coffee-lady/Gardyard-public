@@ -34,3 +34,4 @@ process.on('SIGTERM', () => {
 });
 
 require('../models/user.model');
+require('../models/plant.model');

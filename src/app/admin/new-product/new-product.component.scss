@@ -1,0 +1,164 @@
+@import '../../../assets/styles/utils.scss';
+
+input, textarea {
+    border: 2px solid #000000;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+
+#inputFile {
+    display: block;
+    visibility: hidden;
+    width: 0;
+    height: 0;
+}
+
+.container {
+    position: relative;
+    height: calc(100vh - 239px);
+    display: grid;
+    grid-template-rows: auto 1fr;
+}
+
+.title {
+    padding-top: 40px;
+    font-family: $fontfamily--condensed;
+    font-size: $fontsize--page__title;
+}
+
+.blocks {
+    display: grid;
+    grid-template-columns: 1fr 142px 1fr 402px;
+    grid-template-areas: "spec . descr .";
+    align-items: center;
+}
+
+.title_marked {
+    padding: 15px 15px 15px 70px;
+    color: $color--base;
+    background: $color--default;
+}
+
+.block_spec {
+    grid-area: spec;
+    display: grid;
+    max-width: 574px;
+    align-items: center;
+    padding: 33px 0 0 76px;
+}
+
+.block_description {
+    grid-area: descr;
+    height: 574px;
+    overflow: auto;
+}
+
+.block_long {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.button-save {
+    @include button($color--primary, $color--secondary);
+}
+
+.field {
+    display: flex;
+    align-items: center;
+    padding: 15px 0;
+    box-sizing: border-box;
+}
+
+.field__label {
+    width: 274px;
+    box-sizing: border-box;
+    font-family: $fontfamily--default;
+    font-weight: 300;
+    font-size: $fontsize--new-product__label;
+}
+
+.field__input {
+    padding: 12px;
+    height: 44px;
+    width: 300px;
+    box-sizing: border-box;
+    font-weight: 300;
+    font-family: $fontfamily--default;
+    font-size: $fontsize--new-product__input;
+
+    ::placeholder {
+        font-weight: 300;
+        font-family: $fontfamily--default;
+        font-size: $fontsize--new-product__input;
+    }
+}
+
+.field__input_short {
+    width: 131px;
+}
+
+.field__input_picture {
+    display: flex;
+    align-items: center;
+    border: 2px solid #000000;
+    box-sizing: border-box;
+    border-radius: 4px;
+
+    span {
+        margin-left: 20px;
+        color: $color--new-product__browse-input;
+    }
+}
+
+.dobule-field {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.field__input_big {
+    width: 488px;
+    height: 150px;
+}
+
+.decor-pic {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 1000;
+}
+
+.care {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 387px;
+}
+
+.care__field {
+    display: grid;
+    grid-template-columns: 208px 1fr;
+    grid-column-gap: 30px;
+    width: 100%;
+}
+
+.care__title {
+    padding: 8px 23px;
+    color: $color--base;
+    background: $color--default;
+    font-family: $fontfamily--default;
+    font-weight: 300;
+    font-size: $fontsize--new-product__plant-care__title;
+}
+
+.field__input_long-param {
+    width: auto;
+}
+
+.field__input_long-val {
+    width: auto;
+}
+
+@include scrollbar($color--base, $color--base);

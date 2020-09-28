@@ -13,8 +13,7 @@ import { passwordValidator } from 'src/app/shared/validators/password.validator'
 export class LoginComponent implements OnInit {
 
     constructor(private router: Router,
-        private authService: AuthService,
-        private userValidator: UserValidator) {}
+        private authService: AuthService) {}
 
     form: FormGroup = new FormGroup({
         email: new FormControl('', [Validators.required, Validators.email]),
@@ -49,7 +48,7 @@ export class LoginComponent implements OnInit {
 
                 this.router.navigateByUrl('/');
             },
-            error => this.form.controls.password.setErrors({ invalidPassword: true })
+            () => this.form.controls.password.setErrors({ invalidPassword: true })
         );
     }
 

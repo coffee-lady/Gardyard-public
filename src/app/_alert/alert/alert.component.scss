@@ -1,0 +1,34 @@
+@import '../../../assets/styles/utils.scss';
+
+.alert {
+    width: 366px;
+    padding: 34px 38px;
+    background: $color--alert__background;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 200ms ease;
+
+    &:not(:last-child) {
+        margin-bottom: 20px;
+    }
+}
+
+.content {
+    position: relative;
+    font-family: $fontfamily--alert;
+}
+
+.title {
+    color: $color--alert__title;
+    font-size: $fontsize--alert__title;
+}
+
+.message {
+    color: $color--alert__message;
+    font-size: $fontsize--alert__message;
+}
+
+.close {
+    position: absolute;
+    top: 0;
+    right: 0;
+}

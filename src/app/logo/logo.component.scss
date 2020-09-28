@@ -13,3 +13,104 @@
     text-align: center;
     letter-spacing: 0.4em;
 }
+
+.nav__ham-icon {
+    display: none;
+    margin-right: 20px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform 400ms;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    .ham-icon__line_top {
+        stroke-dasharray: 40 139;
+    }
+
+    .ham-icon__line_bottom {
+        stroke-dasharray: 40 180;
+    }
+
+    &.hav-icon_active {
+        transform: rotate(45deg);
+        transform: rotate(180deg);
+
+        .ham-icon__line_top {
+            stroke-dashoffset: -98px;
+        }
+
+        .ham-icon__line_bottom {
+            stroke-dashoffset: -138px;
+        }
+    }
+}
+
+.ham-icon__line {
+    fill: none;
+    transition: stroke-dasharray 400ms, stroke-dashoffset 400ms;
+    stroke: $color--default;
+    stroke-width: 4;
+    stroke-linecap: round;
+}
+
+@media (max-width: $size--width_mobile) {
+    .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0 1.5em;
+        width: 100vw;
+        box-sizing: border-box;
+    }
+
+    .nav__ham-icon {
+        display: block;
+    }
+
+    .logo {
+        display: inline;
+    }
+
+    .logo__title {
+        display: inline;
+        padding: 0;
+        font-size: $fontsize--logo_mobile;
+        text-align: center;
+    }
+
+    hr {
+        display: none;
+    }
+}
+
+@media (max-width: $size--width_tablet) {
+    // .container {
+    //     display: flex;
+    //     justify-content: center;
+    //     align-items: center;
+    //     padding: 0 1.5em;
+    //     width: 100vw;
+    //     box-sizing: border-box;
+    // }
+
+    // .nav__ham-icon {
+    //     display: block;
+    // }
+
+    // .logo {
+    //     display: inline;
+    // }
+
+    // .logo__title {
+    //     display: inline;
+    //     padding: 0;
+    //     font-size: $fontsize--logo_mobile;
+    //     text-align: center;
+    // }
+
+    hr {
+        display: none;
+    }
+}
