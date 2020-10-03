@@ -1,9 +1,9 @@
-@import './utils';
+@import 'style.scss';
 
 .container {
-    @extend %container;
-
     display: flex;
+    width: 100vw;
+    height: 100vh;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -27,6 +27,8 @@ form {
     justify-content: center;
     align-items: center;
     margin-top: 53px;
+    box-sizing: border-box;
+
 }
 
 .input-container {
@@ -57,58 +59,25 @@ form {
 }
 
 .submit {
-    @extend %hover-container;
-    @extend %shadow;
-    width: 321px;
-    height: 64px;
     margin-top: 53px;
-    color: $color--base;
     font-family: $fontfamily--condensed;
     font-size: $fontsize--auth__button;
-    background: $color--default;
-
-    &:disabled {
-        opacity: 0.5;
-    }
-
-    &:before {
-        @extend %hover-before;
-        background: $color--blue;
-    }
-
-    &:hover {
-        &:before {
-            @extend %hover-container-before;
-        }
-    }
-}
-
-.container-link {
-    margin-top: 20px;
+    width: 321px;
+    height: 64px;
+    @include g-btn ($color--default, $color--primary);
 }
 
 .link {
-    @extend %hover-container;
-    padding: 10px 3px 8px;
-    color: $color--on-base;
-    font-family: $fontfamily--condensed;
-    font-size: $fontsize--auth__link;
-}
+    position: relative;
+    margin-top: 20px;
+    padding: 8px 10px;
+    box-sizing: border-box;
+    @include g-link ($color--default);
+    @extend %underline;
 
-.link:before {
-    @extend %hover-before;
-    background: $color--default;
-}
-
-.link:hover {
-    color: $color--base;
-
-    &:before {
-        @extend %hover-container-before;
-    }
-
-    &~hr {
-        opacity: 0;
+    a {
+        font-family: $fontfamily--condensed;
+        font-size: $fontsize--auth__link;
     }
 }
 
@@ -116,32 +85,18 @@ form {
     position: absolute;
     top: 68px;
     right: 68px;
+    padding: 1em;
+    box-sizing: border-box;
+    @include g-link ($color--default);
+    @extend %underline;
 
     a {
-        @extend %hover-container;
-        display: block;
-        padding: 0.2em;
-        text-align: center;
-        color: $color--on-base;
         font-family: $fontfamily--condensed;
         font-size: $fontsize--auth__back;
     }
 
-    a:before {
-        @extend %hover-before;
-        background: $color--default;
-    }
-
-    a:hover {
-        color: $color--base;
-
-        &:before {
-            @extend %hover-container-before;
-        }
-
-        &~hr {
-            opacity: 0;
-        }
+    a:hover &~hr {
+        opacity: 0;
     }
 }
 
@@ -154,23 +109,7 @@ hr {
 }
 
 @media (max-width: $size--width_mobile) {
-    .container {
+    .g-content-container {
         background: none;
-    }
-
-    .back {
-        top: 20px;
-        right: 20px;
-
-        a {
-            @extend %hover-container;
-            display: block;
-            padding: 0.1em;
-            font-size: $fontsize--auth__back_mobile;
-
-            &~hr {
-                opacity: 1;
-            }
-        }
     }
 }

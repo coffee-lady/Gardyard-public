@@ -1,0 +1,33 @@
+@import '../../assets/styles/style.scss';
+
+input, textarea {
+    border: 2px solid #000000;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+
+#inputFile {
+    display: block;
+    visibility: hidden;
+    width: 0;
+    height: 0;
+}
+
+.field__input {
+    &.ng-dirty.ng-invalid {
+        border-color: $color--invalid
+    }
+}
+
+.field__input_picture {
+    display: flex;
+    align-items: center;
+    border: 2px solid #000000;
+    box-sizing: border-box;
+    border-radius: 4px;
+
+    span {
+        margin-left: 20px;
+        color: $color--new-product__browse-input;
+    }
+}

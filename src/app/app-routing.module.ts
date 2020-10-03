@@ -8,15 +8,15 @@ import { RegisterComponent } from './auth/register/register.component';
 
 import { MainComponent } from './main/main.component';
 
-import { HelpComponent } from './client/help/help.component';
-import { CatalogComponent } from './client/catalog/catalog.component';
-import { CartComponent } from './client/cart/cart.component';
-import { ContactsComponent } from './client/contacts/contacts.component';
+import { ProductComponent } from './user/product/product/product.component';
+import { ProductSpecComponent } from './user/product/product-spec/product-spec.component';
+import { ProductCultivationComponent } from './user/product/product-cultivation/product-cultivation.component';
+import { ProductCareComponent } from './user/product/product-care/product-care.component';
 
-import { ProductCareComponent } from './client/product/product-care/product-care.component';
-import { ProductCultivationComponent } from './client/product/product-cultivation/product-cultivation.component';
-import { ProductSpecComponent } from './client/product/product-spec/product-spec.component';
-import { ProductComponent } from './client/product/product/product.component';
+import { ContactsComponent } from './user/contacts/contacts.component';
+import { CartComponent } from './user/cart/cart.component';
+import { CatalogComponent } from './user/catalog/catalog.component';
+import { HelpComponent } from './user/help/help.component';
 
 import { NewProductComponent } from './admin/new-product/new-product.component';
 import { ManageProductsComponent } from './admin/manage-products/manage-products.component';

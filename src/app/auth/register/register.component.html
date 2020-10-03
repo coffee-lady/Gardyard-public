@@ -3,9 +3,8 @@
         <img class="icon" src="/assets/images/logo_pink.png">
         <app-logo [navHumHidden]="true"></app-logo>
     </div>
-    <div class="back">
+    <div class="g-link back">
         <a routerLink="">BACK TO HOME</a>
-        <hr size="2" align="center" color="#000000">
     </div>
     <form [formGroup]="form" novalidate method="post" (ngSubmit)="submit()">
         <div class="input-container">
@@ -13,11 +12,9 @@
             <input class="form__field" formControlName="email" type="text" placeholder="email">
             <input class="form__field" formControlName="password" type="password" placeholder="password">
         </div>
-        <button class="submit" [disabled]="form.invalid" type="submit">SIGN UP</button>
-        <div class="container-link">
-            <a class="link" routerLink="/auth/login">or sign in</a>
-            <hr width="107" size="2" align="center" color="#000000">
+        <button class="g-btn submit" [disabled]="form.invalid" type="submit">SIGN UP</button>
+        <div class="g-link link">
+            <a class="g-link" routerLink="/auth/login">or sign in</a>
         </div>
-
     </form>
 </div>

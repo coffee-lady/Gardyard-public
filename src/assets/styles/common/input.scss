@@ -1,0 +1,70 @@
+@import '../vars/vars.scss';
+
+input, textarea {
+    border: 2px solid #000000;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+
+input:focus,
+textarea:focus {
+    border: 2px solid $color--primary;
+}
+
+.g-field {
+    display: flex;
+    align-items: center;
+    padding: 15px 0;
+    box-sizing: border-box;
+}
+
+.g-field__label {
+    width: 274px;
+    box-sizing: border-box;
+    font-family: $fontfamily--default;
+    font-weight: 300;
+    font-size: $fontsize--new-product__label;
+}
+
+.g-field__input {
+    padding: 12px;
+    height: 44px;
+    width: 300px;
+    box-sizing: border-box;
+    font-weight: 300;
+    font-family: $fontfamily--default;
+    font-size: $fontsize--new-product__input;
+
+    ::placeholder {
+        font-weight: 300;
+        font-family: $fontfamily--default;
+        font-size: $fontsize--new-product__input;
+    }
+
+    &.ng-dirty.ng-invalid {
+        border-color: $color--invalid
+    }
+}
+
+.g-field__input_short {
+    width: 131px;
+}
+
+.g-dobule-field {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.g-field__input_big {
+    width: 488px;
+    height: 150px;
+}
+
+.g-field__input_long-param {
+    width: auto;
+}
+
+.g-field__input_long-val {
+    width: auto;
+}

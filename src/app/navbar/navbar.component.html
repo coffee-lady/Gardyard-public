@@ -1,20 +1,25 @@
-<div class="container">
+<div class="nav-container">
     <app-logo (toggle)="toggleMobileMenu()" [navHumHidden]="false"></app-logo>
 
-    <div class="nav nav_cycled">
-        <a class="link-to-auth" routerLink="auth/register" *ngIf="!user">SIGN IN | JOIN</a>
-        <div class="user" *ngIf="user">
+    <div class="g-block nav nav_cycled">
+        <div class="link-to-auth" *ngIf="!user">
+            <a routerLink="auth/register">SIGN IN | JOIN</a>
+        </div>
+        <div class="user" *ngIf="user"
+             (mouseenter)="dropdownMenuState = true"
+             (mouseleave)="dropdownMenuState = false">
             <div class="user__header">
                 <img src="/assets/images/avatar.png" alt="">
                 <a class="user__name">{{ user.fullname | uppercase }}</a>
             </div>
 
-            <div class="user__dropdown">
+            <div class="g-block user__dropdown"
+                 [@appearDisappear]="dropdownMenuState ? 'active' : 'inactive'">
                 <a class="user__dropdown__link" routerLink="orders">My Orders</a>
                 <a class="user__dropdown__link" (click)="logout()">Sign Out</a>
             </div>
         </div>
-        <div class="list" *ngIf="user && user.role === 'admin' else userTemplate">
+        <div class="g-block list" *ngIf="user && user.role === 'admin' else userTemplate">
             <app-nav-link href="admin/new-product" text="NEW PRODUCT"></app-nav-link>
             <app-nav-link href="admin/products" text="PRODUCTS"></app-nav-link>
             <app-nav-link href="admin/orders" text="ORDERS"></app-nav-link>

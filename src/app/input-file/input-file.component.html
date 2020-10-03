@@ -1,0 +1,10 @@
+<button id="uploadFile" (click)="clickFileButton()" class="g-field__input field__input_picture">
+    <img src="/assets/images/browse-pic.png" alt="">
+    <span id="filename">
+        {{
+            (fileNameSpanText.length > 15) ? 
+            (fileNameSpanText | slice:0:15)+'...' : fileNameSpanText
+        }}
+    </span>
+</button>
+<input type="file" #inputFile id="inputFile" (change)="uploadFile($event.target.files)" accept="image/png, image/jpeg">

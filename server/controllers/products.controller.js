@@ -1,16 +1,21 @@
+const { Binary } = require("mongodb")
 const Plant = require("./../models/plant.model");
 
 function handleError(err, res) {
-    res.json({
+    res.status(400).json({
         message: err.message
     });
-    return console.error(err);
+    console.error(err);
 }
 
 module.exports.create = async function(req, res) {
-    const plantDoc = new Plant(req.body);
-    await plantDoc.save().catch((err) => { return handleError(err, res) });
-    return res.status(201);
+    let data = Object.assign(req.body);
+    const plantDoc = new Plant(data);
+    plantDoc.save()
+        .then(() => {
+            res.status(201).end();
+        })
+        .catch((err) => { handleError(err, res); return; });
 };
 
 module.exports.update = async function(req, res) {
@@ -21,7 +26,7 @@ module.exports.update = async function(req, res) {
 
     console.log('update ' + req.params.id);
 
-    return res.status(201);
+    res.status(201).end();
 };
 
 module.exports.delete = function(req, res) {
@@ -30,7 +35,7 @@ module.exports.delete = function(req, res) {
 
         console.log('delete ' + req.params.id);
 
-        return res.status(201);
+        res.status(201).end();
     });
 };
 
@@ -49,9 +54,8 @@ module.exports.getAll = async function(req, res) {
     for (let doc of docs) {
         doc.toObject();
     }
-
-    console.log('get all\n');
-    console.log(docs);
+    // console.log('get all\n');
+    // console.log(docs);
 
     res.status(200).json(docs);
 };

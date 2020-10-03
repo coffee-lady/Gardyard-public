@@ -1,8 +1,6 @@
-<div class="container">
-    <div class="title">
-        <span class="title_marked">Frequently Asked</span> Questions
-    </div>
-    <div class="questions">
+<div class="g-content-container">
+    <app-page-title title="Frequently Asked Questions" left="70"></app-page-title>
+    <div class="g-block questions">
         <div class="question" *ngFor="let item of questions">
             <button class="question__button">
                 <img class="question__icon" src="/assets/images/triangle.png">
@@ -12,7 +10,7 @@
         </div>
     </div>
 
-    <div class="box">
+    <div class="g-block box">
         <div class="box__title">
             Have <span class="box__marked">another </span><br>question?
         </div>
@@ -20,6 +18,5 @@
         <button class="box__button" type="submit">Ask our managers</button>
     </div>
 
-    <img class="decor-pic" src="/assets/images/help-img.png" alt="">
-
+    <img class="g-page-picture" src="/assets/images/help-img.png" alt="">
 </div>

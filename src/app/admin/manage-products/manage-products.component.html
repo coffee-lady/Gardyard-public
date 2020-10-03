@@ -1,1 +1,57 @@
-<p>manage-products works!</p>
+<div class="g-content-container">
+    <!-- todo: search -->
+    <app-page-title title="Products" left="295"></app-page-title>
+    <form class="edit" [formGroup]="form">
+        <div class="g-field">
+            <div class="g-field__label">Title</div>
+            <input formControlName="vendorCode" type="text" class="g-field__input">
+        </div>
+        <div class="g-field">
+            <div class="g-field__label">Picture</div>
+            <app-input-file [form]="form"></app-input-file>
+        </div>
+        <div class="g-field">
+            <div class="g-field__label">Vendor Code</div>
+            <input formControlName="vendorCode" type="text" class="g-field__input">
+        </div>
+        <div class="g-field">
+            <div class="g-field__label">Cost</div>
+            <input formControlName="cost" type="text" class="g-field__input g-field__input_short">
+        </div>
+        <div class="g-field">
+            <div class="g-field__label">Number of seeds</div>
+            <input formControlName="numberOfSeeds" type="text" class="g-field__input g-field__input_short">
+        </div>
+        <div class="g-field">
+            <div class="g-field__label">In stock</div>
+            <input formControlName="inStock" type="text" class="g-field__input g-field__input_short">
+        </div>
+
+        <div class="buttons">
+            <button class="button_del" type="submit">Delete</button>
+            <button class="button_edit" type="submit">Edit in Full Mode</button>
+        </div>
+    </form>
+
+    <div class="catalog">
+        <div class="line"></div>
+        <div class="not-found" *ngIf="!products.length">
+            <div class="not-found__text">
+                Nothing is found.
+            </div>
+            <div>Create some products!</div>
+            <div class="not-found__link">
+                <img src="/assets/images/nothing-link.png">
+                <a routerLink="/admin/new-product">Go to product creation</a>
+            </div>
+        </div>
+        <div class="catalog__item" *ngFor="let item of products">
+            <span class="item__text">{{ item.title }}</span>
+            <img [src]="item.picture" class="item__pic g-box">
+            <span class="item__text"> {{ item.cost }}</span>
+            <span class="item__text"> {{ item.inStock }} in stock</span>
+            <span class="item__not-available">• not available</span>
+        </div>
+    </div>
+</div>
+<img class="g-page-picture" src="/assets/images/products.png">

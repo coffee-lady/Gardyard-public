@@ -1,16 +1,61 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../shared/services';
 import { User } from '../shared/interfaces';
-import { AlertService } from '../_alert';
+import { trigger, transition, animate, keyframes, style, state } from '@angular/animations';
 
 @Component({
     selector: 'app-navbar',
     templateUrl: './navbar.component.html',
     styleUrls: ['./navbar.component.scss'],
+    animations: [
+        trigger('appearDisappear', [
+            state('active', style({
+                visibility: 'visible',
+                opacity: '1',
+            })),
+            state('inactive', style({
+                visibility: 'hidden',
+                opacity: '0',
+            })),
+            transition('inactive => active', [
+                animate('200ms ease-in', keyframes([
+                    style({
+                        visibility: 'hidden',
+                        opacity: '0',
+                        transform: 'translateX(100%)',
+                        offset: 0
+                    }),
+                    style({
+                        visibility: 'visible',
+                        opacity: '1',
+                        transform: 'translateX(0%)',
+                        offset: 1
+                    })
+                ]))
+            ]),
 
+            transition('active => inactive', [
+                animate('200ms ease-in', keyframes([
+                    style({
+                        visibility: 'visible',
+                        opacity: '1',
+                        transform: 'translateX(0%)',
+                        offset: 0
+                    }),
+                    style({
+                        visibility: 'hidden',
+                        opacity: '0',
+                        transform: 'translateX(-100%)',
+                        offset: 1
+                    })
+                ]))
+            ])
+        ]),
+    ]
 })
 export class NavbarComponent implements OnInit {
     user: User | null;
+    dropdownMenuState = false;
 
     constructor(private authService: AuthService) {}
 

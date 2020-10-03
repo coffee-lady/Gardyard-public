@@ -1,31 +1,16 @@
-@import '../../../assets/styles/utils.scss';
+@import '../../../assets/styles/style.scss';
 
-.container {
-    position: relative;
+.g-content-container {
     display: grid;
-    height: calc(100vh - 239px);
-}
-
-.decor-pic {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    z-index: 1000;
-}
-
-.title {
-    font-family: $fontfamily--condensed;
-    font-size: $fontsize--page__title;
-}
-
-.title_marked {
-    padding: 15px 15px 15px 70px;
-    color: $color--base;
-    background: $color--default;
+    grid-template-rows: 136px auto;
+    grid-template-columns: auto 1fr;
+    grid-template-areas: "title title"
+        "questions box";
 }
 
 .questions {
-    margin-left: 165px;
+    grid-area: questions;
+    padding-left: 165px;
     width: 710px;
     height: 510px;
     overflow: auto;
@@ -73,6 +58,7 @@
 }
 
 .box {
+    grid-area: box;
     position: absolute;
     right: 197px;
     bottom: 87px;
@@ -89,7 +75,6 @@
     font-family: $fontfamily--default;
     font-size: $fontsize--help__box__title;
     font-weight: 400;
-
 }
 
 .box__marked {
@@ -117,32 +102,14 @@
 }
 
 .box__button {
-    @include button($color--primary, $color--secondary);
+    width: 224px;
+    height: 46px;
+    @include g-btn($color--primary, $color--secondary);
 }
 
-@include scrollbar($color--base, $color--default);
-
 @media (max-width: $size--width_mobile) {
-    .title {
-        padding: 10px;
-        font-size: $fontsize--help__title_mobile;
-    }
-
-    .title_marked {
-        padding: 0;
-        color: $color--base;
-        background: $color--default;
-    }
-
-    .decor-pic {
-        display: none;
-    }
-
     .questions {
-        margin-left: 0;
         margin: 20px 0;
-        width: 100vw;
-        height: fit-content;
     }
 
     .question__title {
@@ -154,19 +121,11 @@
     }
 
     .question__button {
-        display: flex;
-        align-items: flex-start;
         text-align: left;
     }
 
     .box {
-        position: relative;
-        right: 0;
-        bottom: 0;
-        width: 100vw;
-        height: auto;
         padding: 50px 30px;
-        border-radius: 0;
     }
 
     .box__title {
@@ -187,23 +146,18 @@
 }
 
 @media (max-width: $size--width_tablet) {
-    .title {
-        padding: 10px;
-        margin-top: 2em;
-    }
-
-    .decor-pic {
-        display: none;
-    }
-
     .questions {
-        margin-top: 2em;
-        margin-bottom: 2em;
+        margin: 2em 0;
     }
 
     .box {
-        position: relative;
-        left: 0;
         margin-top: 100px;
     }
+}
+
+@include scrollbar($color--base, $color--default);
+
+.g-page-picture {
+    right: 0;
+    bottom: 0;
 }

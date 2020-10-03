@@ -1,3 +1,4 @@
+import { Binary } from '@angular/compiler';
 import { Currency } from './currency';
 
 interface CareItem {

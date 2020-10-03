@@ -12,21 +12,22 @@ import { AppComponent } from './app.component';
 import { MainComponent } from './main/main.component';
 import { LogoComponent } from './logo/logo.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { NavLinkComponent } from './navbar/nav-link/nav-link.component';
 
 import { LoginComponent } from './auth/login/login.component';
 import { RegisterComponent } from './auth/register/register.component';
 
-import { ProductComponent } from './client/product/product/product.component';
-import { ProductSpecComponent } from './client/product/product-spec/product-spec.component';
-import { ProductDescriptionComponent } from './client/product/product-description/product-description.component';
-import { ProductCultivationComponent } from './client/product/product-cultivation/product-cultivation.component';
-import { ProductCareComponent } from './client/product/product-care/product-care.component';
+import { ProductComponent } from './user/product/product/product.component';
+import { ProductSpecComponent } from './user/product/product-spec/product-spec.component';
+import { ProductDescriptionComponent } from './user/product/product-description/product-description.component';
+import { ProductCultivationComponent } from './user/product/product-cultivation/product-cultivation.component';
+import { ProductCareComponent } from './user/product/product-care/product-care.component';
 
-import { ContactsComponent } from './client/contacts/contacts.component';
-import { CartComponent } from './client/cart/cart.component';
-import { CatalogComponent } from './client/catalog/catalog.component';
-import { HelpComponent } from './client/help/help.component';
-import { OrdersComponent } from './client/orders/orders.component';
+import { ContactsComponent } from './user/contacts/contacts.component';
+import { CartComponent } from './user/cart/cart.component';
+import { CatalogComponent } from './user/catalog/catalog.component';
+import { HelpComponent } from './user/help/help.component';
+import { OrdersComponent } from './user/orders/orders.component';
 
 import { NewProductComponent } from './admin/new-product/new-product.component';
 import { EditContactsComponent } from './admin/edit-contacts/edit-contacts.component';
@@ -34,9 +35,10 @@ import { EditHelpComponent } from './admin/edit-help/edit-help.component';
 import { ManageOrdersComponent } from './admin/manage-orders/manage-orders.component';
 import { ManageProductsComponent } from './admin/manage-products/manage-products.component';
 import { EditProductComponent } from './admin/edit-product/edit-product.component';
-import { NavLinkComponent } from './navbar/nav-link/nav-link.component';
 
 import { AlertModule } from './_alert';
+import { InputFileComponent } from './input-file/input-file.component';
+import { PageTitleComponent } from './page-title/page-title.component';
 
 @NgModule({
     declarations: [
@@ -62,7 +64,9 @@ import { AlertModule } from './_alert';
         ManageOrdersComponent,
         ManageProductsComponent,
         EditProductComponent,
-        NavLinkComponent
+        NavLinkComponent,
+        InputFileComponent,
+        PageTitleComponent,
     ],
     imports: [
         BrowserModule,

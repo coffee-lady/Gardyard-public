@@ -1,0 +1,122 @@
+@import '../../../assets/styles/style.scss';
+
+@include scrollbar($color--base, $color--base);
+
+.g-page-picture {
+    grid-area: picture;
+    left: 31px;
+    bottom: 0;
+}
+
+.g-content-container {
+    display: grid;
+    grid-template-rows: 136px auto;
+    grid-template-columns: auto 1fr 1fr;
+    grid-template-areas:
+        "title search catalog"
+        "picture edit catalog";
+}
+
+.edit {
+    grid-area: edit;
+}
+
+.button_del {
+    width: 146px;
+    height: 46px;
+    font-size: $fontsize--button;
+    @include g-btn($color--button_delete, $color--primary);
+}
+
+.button_edit {
+    width: 183px;
+    height: 46px;
+    margin-left: 103px;
+    font-size: $fontsize--button;
+    @include g-btn($color--button_edit, $color--primary);
+}
+
+.buttons {
+    display: flex;
+    align-items: center;
+    margin-top: 58px;
+}
+
+.catalog {
+    grid-area: catalog;
+    position: relative;
+    padding: 20px 0;
+}
+
+.line {
+    position: absolute;
+    border-left: 2px solid #393E46;
+    left: 0;
+    top: 0;
+    height: 100%;
+}
+
+.catalog__item {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1.5fr 2fr;
+    grid-gap: 1em;
+    align-items: center;
+    padding: 0 2em;
+    width: 100%;
+    font-family: $fontfamily--default;
+    font-size: $fontsize--products__list;
+}
+
+.item__pic {
+    width: 46px;
+    height: 46px;
+}
+
+.item__not-available {
+    color: #E99A23;
+}
+
+.not-found {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6em;
+    position: absolute;
+    padding: 3em;
+    font-family: $fontfamily--condensed;
+    font-size: $fontsize--products__nothing-is-found;
+}
+
+.not-found__link {
+    position: relative;
+    display: flex;
+    align-items: center;
+    left: 0.6em;
+    height: 43px;
+    padding: 0 1em;
+    font-size: $fontsize--products__nothing-is-found_link;
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.094) 0%, rgba(0, 0, 0, 0) 100%);
+
+    &:hover {
+        animation: blinkLink .5s linear;
+
+    }
+
+    img {
+        position: absolute;
+        left: -0.6em;
+    }
+}
+
+@keyframes blinkLink {
+    0% {
+        background-position: 100% 0
+    }
+
+    50% {
+        background-position: 40% 0
+    }
+
+    100% {
+        background-position: 0% 0
+    }
+}

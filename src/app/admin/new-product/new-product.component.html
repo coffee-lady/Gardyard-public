@@ -1,71 +1,60 @@
-<form [formGroup]="form" class="container" (ngSubmit)="submit()">
-    <div class="title">
-        <span class="title_marked">New Product</span>
-    </div>
+<form [formGroup]="form" class="g-content-container" (ngSubmit)="submit()" novalidate>
+    <app-page-title title="New Product" left="70"></app-page-title>
     <div class="blocks">
-        <div class="block block_spec">
-            <div class="field">
-                <div class="field__label">Title</div>
-                <input formControlName="title" type="text" class="field__input">
+        <div class="g-block block_spec">
+            <div class="g-field">
+                <div class="g-field__label">Title</div>
+                <input formControlName="title" class="g-field__input">
             </div>
-            <div class="field">
-                <div class="field__label">Picture</div>
-                <button id="uploadFile" (click)="clickFileButton()" class="field__input field__input_picture">
-                    <img src="/assets/images/browse-pic.png" alt="">
-                    <span id="filename">
-                        {{
-                            (fileNameSpanText.length > 15) ? 
-                            (fileNameSpanText | slice:0:15)+'...' : fileNameSpanText
-                        }}
-                    </span>
-                </button>
-                <input type="file" id="inputFile" (change)="uploadFile($event.target.files)" accept="image/png, image/jpeg">
+            <div class="g-field">
+                <div class="g-field__label">Picture</div>
+                <app-input-file [form]="form"></app-input-file>
             </div>
-            <div class="field">
-                <div class="field__label">Vendor code</div>
-                <input formControlName="vendorCode" type="text" class="field__input">
+            <div class="g-field">
+                <div class="g-field__label">Vendor code</div>
+                <input formControlName="vendorCode" class="g-field__input">
             </div>
 
-            <div class="field">
-                <div class="field__label">Cost</div>
-                <input formControlName="cost" type="text" class="field__input field__input_short">
+            <div class="g-field">
+                <div class="g-field__label">Cost</div>
+                <input formControlName="cost" class="g-field__input g-field__input_short">
             </div>
-            <div class="field">
-                <div class="field__label">In stock</div>
-                <input formControlName="inStock" type="text" class="field__input field__input_short">
+            <div class="g-field">
+                <div class="g-field__label">In stock</div>
+                <input formControlName="inStock" class="g-field__input g-field__input_short">
             </div>
 
-            <div class="field">
-                <div class="field__label">Number of seeds</div>
-                <input formControlName="numberOfSeeds" type="text" class="field__input field__input_short">
+            <div class="g-field">
+                <div class="g-field__label">Number of seeds</div>
+                <input formControlName="numberOfSeeds" class="g-field__input g-field__input_short">
             </div>
-            <button class="button-save" type="submit">Create Product</button>
+            <button [disabled]="form.invalid" class="g-btn button-save" type="submit">Create Product</button>
         </div>
-        <div class="block block_description">
+        <div class="g-block block_description">
             <div class="care" formArrayName="care">
                 <div class="care__title">Plant Care</div>
                 <div class="care__field" *ngFor="let obj of form.controls['care']['controls']; let i = index" [formGroupName]="i">
-                    <input formControlName="param" type="text"
-                           class="field__input field__input_long-param"
+                    <input formControlName="param"
+                           class="g-field__input g-field__input_long-param"
                            placeholder="Parameter">
 
-                    <input formControlName="value" type="text"
-                           class="field__input field__input_long-val"
+                    <input formControlName="value"
+                           class="g-field__input g-field__input_long-val"
                            placeholder="Parameter">
                 </div>
             </div>
 
-            <div class="description">
-                <div class="field field_long">
-                    <div class="field__label">Description</div>
-                    <textarea formControlName="description" type="text" class="field__input field__input_big"></textarea>
+            <div class="g-block description">
+                <div class="g-field g-field_long">
+                    <div class="g-field__label">Description</div>
+                    <textarea formControlName="description" class="g-field__input g-field__input_big"></textarea>
                 </div>
-                <div class="field field_long">
-                    <div class="field__label">Cultivation</div>
-                    <textarea formControlName="cultivation" type="text" class="field__input field__input_big"></textarea>
+                <div class="g-field g-field_long">
+                    <div class="g-field__label">Cultivation</div>
+                    <textarea formControlName="cultivation" class="g-field__input g-field__input_big"></textarea>
                 </div>
             </div>
         </div>
     </div>
-    <img class="decor-pic" src="/assets/images/new-product.png">
+    <img class="g-page-picture" src="/assets/images/new-product.png">
 </form>

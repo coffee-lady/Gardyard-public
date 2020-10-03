@@ -1,0 +1,24 @@
+%shadow {
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+%highlighted-container {
+    display: block;
+    box-sizing: border-box;
+}
+
+%width--max-content {
+    width: -webkit-max-content;
+    width: -moz-max-content;
+    width: max-content;
+}
+
+%height--fit-content {
+    height: -webkit-fit-content;
+    height: -moz-fit-content;
+    height: fit-content;
+}
+
+%underline {
+    border-bottom: 2px solid $color--default;
+}

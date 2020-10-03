@@ -1,61 +1,15 @@
-@import '../../../assets/styles/utils.scss';
+@import '../../../assets/styles/style.scss';
 
-div {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+.router-link-active {
+    @extend %underline;
 }
 
-.link {
-    @extend %hover-container;
-    padding: 20px;
-    box-sizing: content-box;
+div {
+    position: relative;
+    padding: 1em;
+    box-sizing: border-box;
     color: $color--on-base;
     font-family: $fontfamily--condensed;
     font-size: $fontsize--nav__items;
-
-    &:before {
-        @extend %hover-before;
-        background: $color--default;
-    }
-
-    &:hover {
-        color: $color--base;
-
-        &:before {
-            @extend %hover-container-before;
-        }
-
-        &~hr {
-            opacity: 0;
-        }
-    }
+    @include g-link ($color--default);
 }
-
-hr {
-    margin: 0;
-    opacity: 0;
-    width: 100%;
-    transition: all 300ms ease;
-}
-
-.router-link-active {
-    &~hr {
-        opacity: 1;
-    }
-}
-
-@media (max-width: $size--width_mobile) {
-    .link {
-        padding: 10px;
-        font-size: $fontsize--nav__items_mobile;
-    }
-
-    .router-link-active {
-        &~hr {
-            opacity: 0;
-        }
-    }
-}
-
-@media (max-width: $size--width_tablet) {}

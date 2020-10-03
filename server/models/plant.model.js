@@ -17,10 +17,7 @@ const PlantSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    picture: {
-        data: Buffer,
-        contentType: String,
-    },
+    picture: String,
     description: {
         type: String,
         required: true
