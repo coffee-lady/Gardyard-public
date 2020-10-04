@@ -11,3 +11,14 @@
         background: $color--default;
     }
 }
+
+@media (max-width: $size--width_tablet) {
+    .title-box {
+        width: 100vw;
+
+        span {
+            padding: 0.5em;
+            display: block;
+        }
+    }
+}

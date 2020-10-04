@@ -1,5 +1,7 @@
+import { animate, keyframes, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
+import { LoaderService } from 'src/app/loader/loader.service';
 import { Plant } from 'src/app/shared/interfaces';
 import { ProductsService } from 'src/app/shared/services';
 import { AlertService } from 'src/app/_alert';
@@ -7,13 +9,15 @@ import { AlertService } from 'src/app/_alert';
 @Component({
     selector: 'app-manage-products',
     templateUrl: './manage-products.component.html',
-    styleUrls: ['./manage-products.component.scss']
+    styleUrls: ['./manage-products.component.scss'],
 })
 export class ManageProductsComponent implements OnInit {
-
+    loading = true;
     products: Plant[] = [];
 
-    constructor(private productsService: ProductsService, private alertService: AlertService) {}
+    constructor(private productsService: ProductsService,
+        private alertService: AlertService,
+        private loaderService: LoaderService) {}
 
     form: FormGroup = new FormGroup({
         title: new FormControl('', [
@@ -46,6 +50,10 @@ export class ManageProductsComponent implements OnInit {
         }, () => {
             this.alertService.fire('Error', 'Something went wrong.', false);
         });
-    }
 
+        this.loaderService.httpProgress().subscribe((status: boolean) => {
+            this.loading = status;
+            if (status) {} else {}
+        });
+    }
 }

@@ -4,7 +4,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { AuthInterceptor } from './shared/interceptors';
+import { AuthInterceptor, LoaderInterceptor } from './shared/interceptors';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -39,6 +39,7 @@ import { EditProductComponent } from './admin/edit-product/edit-product.componen
 import { AlertModule } from './_alert';
 import { InputFileComponent } from './input-file/input-file.component';
 import { PageTitleComponent } from './page-title/page-title.component';
+import { LoaderComponent } from './loader/loader/loader.component';
 
 @NgModule({
     declarations: [
@@ -67,6 +68,7 @@ import { PageTitleComponent } from './page-title/page-title.component';
         NavLinkComponent,
         InputFileComponent,
         PageTitleComponent,
+        LoaderComponent,
     ],
     imports: [
         BrowserModule,
@@ -81,7 +83,11 @@ import { PageTitleComponent } from './page-title/page-title.component';
         provide: HTTP_INTERCEPTORS,
         useClass: AuthInterceptor,
         multi: true
-    }, ],
+    }, {
+        provide: HTTP_INTERCEPTORS,
+        useClass: LoaderInterceptor,
+        multi: true
+    }],
     bootstrap: [AppComponent]
 })
 export class AppModule {}

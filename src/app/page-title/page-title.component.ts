@@ -15,6 +15,8 @@ export class PageTitleComponent implements AfterViewInit {
     constructor(private renderer: Renderer2) {}
 
     ngAfterViewInit(): void {
-        this.renderer.setStyle(this.span.nativeElement, 'padding-left', this.left + 'px');
+        if (document.documentElement.clientWidth >= 1024) {
+            this.renderer.setStyle(this.span.nativeElement, 'padding-left', this.left + 'px');
+        }
     }
 }

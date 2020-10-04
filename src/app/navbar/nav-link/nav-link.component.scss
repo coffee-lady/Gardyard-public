@@ -13,3 +13,9 @@ div {
     font-size: $fontsize--nav__items;
     @include g-link ($color--default);
 }
+
+@media (max-width: $size--width_tablet) {
+    div {
+        padding: 0.5em 1.5em;
+    }
+}

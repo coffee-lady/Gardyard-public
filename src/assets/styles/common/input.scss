@@ -68,3 +68,41 @@ textarea:focus {
 .g-field__input_long-val {
     width: auto;
 }
+
+@media (max-width: $size--width_tablet) {
+    .g-field {
+        flex-direction: column;
+        width: 100vw;
+        align-items: flex-start;
+        justify-content: flex-start;
+        padding: 1em;
+
+        &:nth-child(2n) {
+            background: #f1f1f1;
+        }
+    }
+
+    .g-field__label {
+        width: 100%;
+        padding: 0.5em 0;
+    }
+
+    .g-dobule-field {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+
+    .g-field__input_big {
+        width: 100%;
+    }
+
+    .g-field__input_long-param {
+        width: auto;
+    }
+
+    .g-field__input_long-val {
+        width: auto;
+    }
+}

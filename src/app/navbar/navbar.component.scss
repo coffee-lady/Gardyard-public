@@ -33,7 +33,6 @@
         font-family: $fontfamily--condensed;
         font-size: $fontsize--nav__user__auth;
     }
-
 }
 
 .user {
@@ -44,6 +43,10 @@
     box-sizing: content-box;
     color: $color--on-base;
     font-family: $fontfamily--condensed;
+}
+
+.user_tablet {
+    display: none;
 }
 
 .user__header {
@@ -58,8 +61,6 @@
 
 .user__dropdown {
     display: flex;
-    // visibility: hidden;
-    // opacity: 0;
     margin-top: 15px;
     flex-direction: column;
     justify-content: center;
@@ -99,88 +100,36 @@
     font-size: $fontsize--nav__user__dropdown;
 }
 
-@media (max-width: $size--width_mobile) {
-    .nav {
-        align-items: center;
-        padding-bottom: 20px;
-    }
-
-    .nav-container {
-        padding-top: 20px;
-        box-sizing: border-box;
-    }
-
-    .link-to-auth {
-        position: relative;
-        top: 0;
-        right: 0;
-    }
-
-    .user {
-        position: relative;
-        top: 0;
-        right: 0;
-        padding: 15px;
-        font-size: $fontsize--nav__items_mobile;
-
-        &:hover .user__dropdown {
-            display: flex;
-        }
-
-    }
-
-    .user__header {
-        display: flex;
-        align-items: center;
-    }
-
-    .user__name {
-        font-size: $fontsize--nav__items_mobile;
-    }
-
-    .user__dropdown {
-        margin-top: 15px;
-        justify-content: center;
-    }
-
-    .user__dropdown__link {
-        margin-left: 23.7px+45.53px;
-    }
-}
-
 @media (max-width: $size--width_tablet) {
-    .link-to-auth {
-        top: 60px;
-        right: 20px;
+    .nav-container {
+        position: static;
+        height: fit-content;
+    }
+
+    .nav.nav_cycled {
+        display: none;
+    }
+
+    .nav {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .list {
+        display: flex;
+        flex-direction: column;
+        min-width: 100vw;
+        margin-top: 0;
+        height: fit-content;
     }
 
     .user {
-        position: relative;
-        top: 0;
-        right: 0;
-        padding: 15px;
-        font-size: $fontsize--nav__items_mobile;
-
-        &:hover .user__dropdown {
-            display: flex;
-        }
+        display: none;
     }
 
-    .user__header {
-        display: flex;
-        align-items: center;
-    }
-
-    .user__name {
-        font-size: $fontsize--nav__items_mobile;
-    }
-
-    .user__dropdown {
-        margin-top: 15px;
-        justify-content: center;
-    }
-
-    .user__dropdown__link {
-        margin-left: 23.7px+45.53px;
+    .user_tablet {
+        display: block;
     }
 }
+
+@media (max-width: $size--width_mobile) {}

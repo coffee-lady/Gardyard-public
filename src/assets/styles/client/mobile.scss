@@ -1,28 +1,3 @@
 @import 'sizes.scss';
 
-@media (max-width: $size--width_mobile) {
-    .g-content-container {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .g-block {
-        display: block;
-        bottom: 0;
-        right: 0;
-        left: 0;
-        margin: 0;
-        width: 100vw;
-        max-width: 0;
-        min-width: 100vw;
-        border-radius: 0;
-    }
-
-    .g-block_scroll {
-        height: fit-content;
-    }
-
-    .g-page-picture {
-        display: none;
-    }
-}
+@media (max-width: $size--width_mobile) {}

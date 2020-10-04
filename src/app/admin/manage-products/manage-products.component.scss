@@ -1,6 +1,6 @@
 @import '../../../assets/styles/style.scss';
 
-@include scrollbar($color--base, $color--base);
+@include scrollbar($color--base, $color--primary);
 
 .g-page-picture {
     grid-area: picture;
@@ -11,7 +11,7 @@
 .g-content-container {
     display: grid;
     grid-template-rows: 136px auto;
-    grid-template-columns: auto 1fr 1fr;
+    grid-template-columns: auto 4fr 5fr;
     grid-template-areas:
         "title search catalog"
         "picture edit catalog";
@@ -45,7 +45,28 @@
 .catalog {
     grid-area: catalog;
     position: relative;
-    padding: 20px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: content-box;
+}
+
+.catalog__inner {
+    position: absolute;
+    left: 2em;
+    top: 2em;
+    display: grid;
+    width: 100%;
+    height: calc(100% - 4em);
+    grid-gap: 30px;
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+.catalog_loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .line {
@@ -54,15 +75,17 @@
     left: 0;
     top: 0;
     height: 100%;
+    border-radius: 10px;
 }
 
 .catalog__item {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1.5fr 2fr;
+    grid-template-columns: 2.5fr 1fr 1fr 2fr 2fr;
     grid-gap: 1em;
     align-items: center;
     padding: 0 2em;
     width: 100%;
+    box-sizing: border-box;
     font-family: $fontfamily--default;
     font-size: $fontsize--products__list;
 }
@@ -77,10 +100,10 @@
 }
 
 .not-found {
+    position: absolute;
     display: flex;
     flex-direction: column;
     gap: 0.6em;
-    position: absolute;
     padding: 3em;
     font-family: $fontfamily--condensed;
     font-size: $fontsize--products__nothing-is-found;
@@ -95,28 +118,69 @@
     padding: 0 1em;
     font-size: $fontsize--products__nothing-is-found_link;
     background: linear-gradient(90deg, rgba(0, 0, 0, 0.094) 0%, rgba(0, 0, 0, 0) 100%);
-
-    &:hover {
-        animation: blinkLink .5s linear;
-
-    }
+    transition: all 200ms linear;
 
     img {
         position: absolute;
         left: -0.6em;
+        transition: left 200ms linear;
+    }
+
+    &:before {
+        position: absolute;
+        content: '';
+        width: 0%;
+        height: 100%;
+        top: 0;
+        left: auto;
+        right: 0;
+        z-index: -1;
+        transition: all 500ms ease;
+    }
+
+    &:hover {
+        background: none;
+
+        &:before {
+            position: absolute;
+            content: '';
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: -1;
+            background: linear-gradient(90deg, #e2eefc, rgba(0, 0, 0, 0));
+        }
+
+        img {
+            position: absolute;
+            left: -0.3em;
+        }
     }
 }
 
-@keyframes blinkLink {
-    0% {
-        background-position: 100% 0
+@media (max-width: $size--width_tablet) {
+    .g-content-container {
+        @include tablet_content-container;
     }
 
-    50% {
-        background-position: 40% 0
+    .edit {
+        @include tablet__block;
     }
 
-    100% {
-        background-position: 0% 0
+    .buttons {
+        display: flex;
+        align-items: center;
+        margin-top: 58px;
+    }
+
+    .line {
+        display: none;
+    }
+
+    .catalog {
+        padding-top: 3em;
+        @include tablet_content-container;
     }
 }

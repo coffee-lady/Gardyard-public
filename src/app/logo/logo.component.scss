@@ -55,12 +55,12 @@
     stroke-linecap: round;
 }
 
-@media (max-width: $size--width_mobile) {
+@media (max-width: $size--width_tablet) {
     .container {
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 0 1.5em;
+        padding: 0;
         width: 100vw;
         box-sizing: border-box;
     }
@@ -74,41 +74,11 @@
     }
 
     .logo__title {
-        display: inline;
+        display: block;
         padding: 0;
         font-size: $fontsize--logo_mobile;
         text-align: center;
     }
-
-    hr {
-        display: none;
-    }
-}
-
-@media (max-width: $size--width_tablet) {
-    // .container {
-    //     display: flex;
-    //     justify-content: center;
-    //     align-items: center;
-    //     padding: 0 1.5em;
-    //     width: 100vw;
-    //     box-sizing: border-box;
-    // }
-
-    // .nav__ham-icon {
-    //     display: block;
-    // }
-
-    // .logo {
-    //     display: inline;
-    // }
-
-    // .logo__title {
-    //     display: inline;
-    //     padding: 0;
-    //     font-size: $fontsize--logo_mobile;
-    //     text-align: center;
-    // }
 
     hr {
         display: none;

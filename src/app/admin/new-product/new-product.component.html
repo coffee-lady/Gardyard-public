@@ -1,4 +1,4 @@
-<form [formGroup]="form" class="g-content-container" (ngSubmit)="submit()" novalidate>
+<form [formGroup]="form" class="g-content-container" novalidate>
     <app-page-title title="New Product" left="70"></app-page-title>
     <div class="blocks">
         <div class="g-block block_spec">
@@ -28,7 +28,7 @@
                 <div class="g-field__label">Number of seeds</div>
                 <input formControlName="numberOfSeeds" class="g-field__input g-field__input_short">
             </div>
-            <button [disabled]="form.invalid" class="g-btn button-save" type="submit">Create Product</button>
+            <button [disabled]="form.invalid" class="g-btn button-save" type="submit" (click)="submit()">Create Product</button>
         </div>
         <div class="g-block block_description">
             <div class="care" formArrayName="care">
@@ -40,7 +40,7 @@
 
                     <input formControlName="value"
                            class="g-field__input g-field__input_long-val"
-                           placeholder="Parameter">
+                           placeholder="Value">
                 </div>
             </div>
 

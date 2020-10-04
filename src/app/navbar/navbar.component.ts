@@ -63,6 +63,9 @@ export class NavbarComponent implements OnInit {
         this.authService.getUser().subscribe((user: User | null) => {
             this.user = user;
         });
+        if (document.documentElement.clientWidth <= 1024) {
+            this.dropdownMenuState = true;
+        }
     }
 
     logout(): void {
@@ -72,5 +75,10 @@ export class NavbarComponent implements OnInit {
 
     toggleMobileMenu(): void {
         document.querySelector('.nav').classList.toggle('nav_cycled');
+    }
+    toggleDropdownState(): void {
+        if (document.documentElement.clientWidth >= 1024) {
+            this.dropdownMenuState = !this.dropdownMenuState;
+        }
     }
 }

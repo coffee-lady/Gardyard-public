@@ -1,5 +1,6 @@
-const { Binary } = require("mongodb")
 const Plant = require("./../models/plant.model");
+const JSONStreamStringify = require('json-stream-stringify');
+const { createReadStream } = require("fs")
 
 function handleError(err, res) {
     res.status(400).json({
@@ -50,12 +51,11 @@ module.exports.get = async function(req, res) {
 };
 
 module.exports.getAll = async function(req, res) {
-    let docs = await Plant.find({});
-    for (let doc of docs) {
-        doc.toObject();
-    }
-    // console.log('get all\n');
-    // console.log(docs);
-
-    res.status(200).json(docs);
+    const stream = new JSONStreamStringify(await Plant.find());
+    res.type('json');
+    stream.pipe(res);
+    stream.once('error', () => console.log('Error'));
+    stream.on('end', function() {
+        res.status(200).end();
+    });
 };
