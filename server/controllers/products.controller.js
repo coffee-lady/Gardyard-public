@@ -1,6 +1,5 @@
 const Plant = require("./../models/plant.model");
 const JSONStreamStringify = require('json-stream-stringify');
-const { createReadStream } = require("fs")
 
 function handleError(err, res) {
     res.status(400).json({
@@ -10,9 +9,8 @@ function handleError(err, res) {
 }
 
 module.exports.create = async function(req, res) {
-    let data = Object.assign(req.body);
-    const plantDoc = new Plant(data);
-    plantDoc.save()
+    const doc = new Plant(req.body);
+    doc.save()
         .then(() => {
             res.status(201).end();
         })
@@ -20,33 +18,26 @@ module.exports.create = async function(req, res) {
 };
 
 module.exports.update = async function(req, res) {
-    delete req.body.id;
+    delete req.body._id;
 
-    const plantDoc = Plant.findOneAndUpdate(req.params.id, req.body);
-    await (plantDoc.save());
+    Plant.findOneAndUpdate(req.params.id, { $set: req.body })
+        .then(() => {
+            res.status(201).end();
+        })
+        .catch((err) => { handleError(err, res); return; });
 
-    console.log('update ' + req.params.id);
-
-    res.status(201).end();
 };
 
 module.exports.delete = function(req, res) {
     Plant.findByIdAndDelete(req.params.id, function(err) {
         if (err) { return handleError(err, res); }
-
-        console.log('delete ' + req.params.id);
-
         res.status(201).end();
     });
 };
 
 module.exports.get = async function(req, res) {
-    const doc = await Plant.findOne(req.params.id);
+    const doc = await Plant.findById(req.params.id);
     doc.toObject();
-
-    console.log('get ' + req.params.id + '\n');
-    console.log(doc);
-
     res.status(200).json(doc);
 };
 

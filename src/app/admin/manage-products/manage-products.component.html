@@ -1,10 +1,12 @@
 <div class="g-content-container">
-    <!-- todo: search -->
+    <div class="search">
+        <input #search class="g-field__input" [(ngModel)]="searchString" type="text" placeholder="Search products...">
+    </div>
     <app-page-title title="Products" left="295"></app-page-title>
     <form class="edit g-block" [formGroup]="form">
         <div class="g-field">
             <div class="g-field__label">Title</div>
-            <input formControlName="vendorCode" type="text" class="g-field__input">
+            <input formControlName="title" type="text" class="g-field__input">
         </div>
         <div class="g-field">
             <div class="g-field__label">Picture</div>
@@ -28,34 +30,31 @@
         </div>
 
         <div class="buttons">
-            <button class="button_del" type="submit">Delete</button>
-            <button class="button_edit" type="submit">Edit in Full Mode</button>
+            <button (click)="delete()" [disabled]="form.invalid" class="button_del" type="button">Delete</button>
+            <button (click)="update()" [disabled]="form.invalid" class="button_update" type="button">Update</button>
+            <button (click)="editInFullMode()" [disabled]="form.invalid" class="button_edit" type="button">Edit in Full Mode</button>
         </div>
     </form>
 
-    <div class="catalog g-block" [ngClass]="loading ? 'catalog_loading' : ''">
+    <section class="catalog g-block" [ngClass]="!loading && products.length && isCatalogScrollable() ? 'catalog_scroll' : ''">
         <div class="line"></div>
-        <div class="not-found" *ngIf="!products.length && !loading">
-            <div class="not-found__text">
-                Nothing is found.
-            </div>
-            <div>Create some products!</div>
-            <div class="not-found__link">
-                <img src="/assets/images/nothing-link.png">
-                <a routerLink="/admin/new-product">Go to product creation</a>
-            </div>
-        </div>
-        <div class="catalog__inner" *ngIf="products.length && !loading">
-            <div class="catalog__item" *ngFor="let item of products">
+
+        <app-not-found *ngIf="!products.length || loading"
+                       title="Create some products!"
+                       text="Go to product creation"></app-not-found>
+
+        <section class="catalog__inner" *ngIf="products.length && !loading">
+            <div class="catalog__item" *ngFor="let item of products | filterProducts: searchString" (click)="chooseItem(item._id)">
+                <img class="item__triangle" src="/assets/images/manage-products__triangle.png">
                 <span class="item__text">{{ item.title }}</span>
-                <img [src]="item.picture" class="item__pic g-box">
+                <div class="item__pic g-box">
+                    <img [src]="item.picture">
+                </div>
                 <span class="item__text"> {{ item.cost }}</span>
                 <span class="item__text"> {{ item.inStock }} in stock</span>
-                <span class="item__not-available">• not available</span>
+                <span class="item__not-available" *ngIf="!item.inStock">• not available</span>
             </div>
-        </div>
-
-        <app-loader *ngIf="loading"></app-loader>
-    </div>
+        </section>
+    </section>
 </div>
 <img class="g-page-picture" src="/assets/images/products.png">

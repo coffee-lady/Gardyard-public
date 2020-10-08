@@ -4,6 +4,7 @@ import { AuthService } from 'src/app/shared/services';
 import { UserValidator } from 'src/app/shared/validators/user-uniqueness.validator';
 import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { passwordValidator } from 'src/app/shared/validators/password.validator';
+import { take } from 'rxjs/operators';
 
 @Component({
     selector: 'app-login',
@@ -40,16 +41,19 @@ export class LoginComponent implements OnInit {
         }
 
         const { email, password } = this.form.getRawValue();
-        this.authService.login(email, password).subscribe(response => {
-                if (response.status !== 200) {
-                    this.form.controls.password.setErrors({ required: true });
-                    return;
-                }
+        this.authService
+            .login(email, password)
+            .pipe(take(1))
+            .subscribe(response => {
+                    if (response.status !== 200) {
+                        this.form.controls.password.setErrors({ required: true });
+                        return;
+                    }
 
-                this.router.navigateByUrl('/');
-            },
-            () => this.form.controls.password.setErrors({ invalidPassword: true })
-        );
+                    this.router.navigateByUrl('/');
+                },
+                () => this.form.controls.password.setErrors({ invalidPassword: true })
+            );
     }
 
 }

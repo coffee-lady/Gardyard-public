@@ -33,7 +33,9 @@
         <div class="g-block block_description">
             <div class="care" formArrayName="care">
                 <div class="care__title">Plant Care</div>
-                <div class="care__field" *ngFor="let obj of form.controls['care']['controls']; let i = index" [formGroupName]="i">
+                <div class="care__field"
+                     *ngFor="let _ of form.controls['care']['controls']; let i = index"
+                     [formGroupName]="i">
                     <input formControlName="param"
                            class="g-field__input g-field__input_long-param"
                            placeholder="Parameter">

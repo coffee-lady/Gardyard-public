@@ -1,33 +1,33 @@
 @mixin placeholder($ff, $fs, $fw) {
-    ::-webkit-input-placeholder {
+    &::-webkit-input-placeholder {
         font-size: $fs;
         font-family: $ff;
         font-weight: $fw;
         color: $color--input__hint;
     }
 
-    ::-moz-placeholder {
+    &::-moz-placeholder {
         font-size: $fs;
         font-family: $ff;
         font-weight: $fw;
         color: $color--input__hint;
     }
 
-    :-ms-input-placeholder {
+    &:-ms-input-placeholder {
         font-size: $fs;
         font-family: $ff;
         font-weight: $fw;
         color: $color--input__hint;
     }
 
-    ::-ms-input-placeholder {
+    &::-ms-input-placeholder {
         font-size: $fs;
         font-family: $ff;
         font-weight: $fw;
         color: $color--input__hint;
     }
 
-    ::placeholder {
+    &::placeholder {
         font-size: $fs;
         font-family: $ff;
         font-weight: $fw;

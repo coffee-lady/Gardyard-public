@@ -1,4 +1,5 @@
 @import '../vars/vars.scss';
+@import './placeholder.scss';
 
 input, textarea {
     border: 2px solid #000000;
@@ -35,11 +36,7 @@ textarea:focus {
     font-family: $fontfamily--default;
     font-size: $fontsize--new-product__input;
 
-    ::placeholder {
-        font-weight: 300;
-        font-family: $fontfamily--default;
-        font-size: $fontsize--new-product__input;
-    }
+    @include placeholder($fontfamily--default, $fontsize--new-product__input, 300);
 
     &.ng-dirty.ng-invalid {
         border-color: $color--invalid

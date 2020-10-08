@@ -1,6 +1,8 @@
 import { HttpResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
+import { Subject } from 'rxjs';
+import { take } from 'rxjs/operators';
 import { ProductsService } from 'src/app/shared/services';
 import { AlertService } from 'src/app/_alert';
 
@@ -9,7 +11,7 @@ import { AlertService } from 'src/app/_alert';
     templateUrl: './new-product.component.html',
     styleUrls: ['./new-product.component.scss']
 })
-export class NewProductComponent implements OnInit {
+export class NewProductComponent {
     constructor(
         private productsService: ProductsService,
         private alert: AlertService) {}
@@ -65,16 +67,14 @@ export class NewProductComponent implements OnInit {
         ])
     });
 
-    ngOnInit(): void {}
-
     submit(): void {
         if (this.form.invalid) {
-            console.log('invalid');
             return;
         }
 
         this.productsService
             .create(this.form.value)
+            .pipe(take(1))
             .subscribe((res) => {
                     this.alert.fire(
                         'Success',

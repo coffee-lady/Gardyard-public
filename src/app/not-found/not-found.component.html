@@ -1,0 +1,11 @@
+<div class="not-found" *ngIf="!loading">
+    <div class="not-found__text">
+        Nothing is found.
+    </div>
+    <div>{{ title }}</div>
+    <div #link *ngIf="text" class="not-found__link">
+        <img src="/assets/images/nothing-link.png">
+        <a routerLink="/admin/new-product">{{ text }}</a>
+    </div>
+</div>
+<app-loader *ngIf="loading"></app-loader>

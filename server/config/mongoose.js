@@ -35,3 +35,6 @@ process.on('SIGTERM', () => {
 
 require('../models/user.model');
 require('../models/plant.model');
+require('../models/order.model');
+require('../models/question.model');
+require('../models/contacts.model');

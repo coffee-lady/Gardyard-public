@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../shared/services';
 import { User } from '../shared/interfaces';
 import { trigger, transition, animate, keyframes, style, state } from '@angular/animations';
+import { take } from 'rxjs/operators';
 
 @Component({
     selector: 'app-navbar',
@@ -60,9 +61,12 @@ export class NavbarComponent implements OnInit {
     constructor(private authService: AuthService) {}
 
     ngOnInit(): void {
-        this.authService.getUser().subscribe((user: User | null) => {
-            this.user = user;
-        });
+        this.authService
+            .getUser()
+            .pipe(take(1))
+            .subscribe((user: User | null) => {
+                this.user = user;
+            });
         if (document.documentElement.clientWidth <= 1024) {
             this.dropdownMenuState = true;
         }

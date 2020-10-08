@@ -18,6 +18,7 @@
     grid-area: descr;
     height: 574px;
     overflow: auto;
+    @extend %scroll-box-shadow;
 }
 
 .button-save {

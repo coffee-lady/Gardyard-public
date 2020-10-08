@@ -1,1 +1,55 @@
-<p>edit-product works!</p>
+<form [formGroup]="form" class="g-content-container" novalidate>
+    <app-page-title title="Edit Product" [add]="title" left="70"></app-page-title>
+    <div class="blocks">
+        <div class="g-block block_spec">
+            <div class="g-field">
+                <div class="g-field__label">Picture</div>
+                <app-input-file [form]="form"></app-input-file>
+            </div>
+            <div class="g-field">
+                <div class="g-field__label">Cost</div>
+                <input formControlName="cost" class="g-field__input g-field__input_short">
+            </div>
+            <div class="g-field">
+                <div class="g-field__label">In stock</div>
+                <input formControlName="inStock" class="g-field__input g-field__input_short">
+            </div>
+
+            <div class="g-field">
+                <div class="g-field__label">Number of seeds</div>
+                <input formControlName="numberOfSeeds" class="g-field__input g-field__input_short">
+            </div>
+            <div class="buttons">
+                <button (click)="delete()" [disabled]="form.invalid" class="button_del" type="button">Delete</button>
+                <button (click)="update()" [disabled]="form.invalid" class="button_update" type="button">Update</button>
+            </div>
+        </div>
+        <div class="g-block block_description">
+            <div class="care" formArrayName="care">
+                <div class="care__title">Plant Care</div>
+                <div class="care__field"
+                     *ngFor="let _ of form.controls['care']['controls']; let i = index"
+                     [formGroupName]="i">
+                    <input formControlName="param"
+                           class="g-field__input g-field__input_long-param"
+                           placeholder="Parameter">
+
+                    <input formControlName="value"
+                           class="g-field__input g-field__input_long-val"
+                           placeholder="Value">
+                </div>
+            </div>
+            <div class="g-block description">
+                <div class="g-field g-field_long">
+                    <div class="g-field__label">Description</div>
+                    <textarea formControlName="description" class="g-field__input g-field__input_big"></textarea>
+                </div>
+                <div class="g-field g-field_long">
+                    <div class="g-field__label">Cultivation</div>
+                    <textarea formControlName="cultivation" class="g-field__input g-field__input_big"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+    <img class="g-page-picture" src="/assets/images/new-product.png">
+</form>

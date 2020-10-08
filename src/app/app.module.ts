@@ -41,6 +41,9 @@ import { InputFileComponent } from './input-file/input-file.component';
 import { PageTitleComponent } from './page-title/page-title.component';
 import { LoaderComponent } from './loader/loader/loader.component';
 
+import { FilterPipe } from './shared/pipes/filterProducts.pipe';
+import { NotFoundComponent } from './not-found/not-found.component';
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -69,6 +72,8 @@ import { LoaderComponent } from './loader/loader/loader.component';
         InputFileComponent,
         PageTitleComponent,
         LoaderComponent,
+        FilterPipe,
+        NotFoundComponent,
     ],
     imports: [
         BrowserModule,

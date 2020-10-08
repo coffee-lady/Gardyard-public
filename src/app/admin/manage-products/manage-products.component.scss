@@ -1,6 +1,6 @@
 @import '../../../assets/styles/style.scss';
 
-@include scrollbar($color--base, $color--primary);
+@include scrollbar($color--base, $color--default);
 
 .g-page-picture {
     grid-area: picture;
@@ -17,29 +17,40 @@
         "picture edit catalog";
 }
 
+.search {
+    @extend %search;
+}
+
 .edit {
     grid-area: edit;
 }
 
 .button_del {
     width: 146px;
-    height: 46px;
-    font-size: $fontsize--button;
     @include g-btn($color--button_delete, $color--primary);
 }
 
 .button_edit {
     width: 183px;
-    height: 46px;
-    margin-left: 103px;
-    font-size: $fontsize--button;
     @include g-btn($color--button_edit, $color--primary);
+}
+
+.button_update {
+    width: 158px;
+    @include g-btn($color--button_update, $color--primary);
 }
 
 .buttons {
     display: flex;
     align-items: center;
+    gap: 2em;
     margin-top: 58px;
+
+    button {
+        height: 46px;
+        font-size: $fontsize--button;
+        box-sizing: border-box;
+    }
 }
 
 .catalog {
@@ -53,20 +64,17 @@
 
 .catalog__inner {
     position: absolute;
-    left: 2em;
     top: 2em;
     display: grid;
+    grid-auto-rows: min-content;
     width: 100%;
     height: calc(100% - 4em);
-    grid-gap: 30px;
     overflow-y: auto;
     box-sizing: border-box;
 }
 
-.catalog_loading {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.catalog_scroll {
+    @extend %scroll-box-shadow;
 }
 
 .line {
@@ -79,85 +87,50 @@
 }
 
 .catalog__item {
+    position: relative;
     display: grid;
     grid-template-columns: 2.5fr 1fr 1fr 2fr 2fr;
     grid-gap: 1em;
     align-items: center;
-    padding: 0 2em;
+    padding: 1em 2em;
     width: 100%;
     box-sizing: border-box;
     font-family: $fontfamily--default;
     font-size: $fontsize--products__list;
+    transition: all 200ms linear;
+
+    &:hover {
+        cursor: pointer;
+        background: rgba(106, 120, 124, 0.1);
+
+        .item__triangle {
+            opacity: 1;
+        }
+    }
+}
+
+.item__triangle {
+    position: absolute;
+    opacity: 0;
+    left: 0;
+    transition: all 200ms linear;
 }
 
 .item__pic {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 46px;
     height: 46px;
+    background: $color--white;
+
+    img {
+        height: 100%;
+    }
 }
 
 .item__not-available {
     color: #E99A23;
-}
-
-.not-found {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    gap: 0.6em;
-    padding: 3em;
-    font-family: $fontfamily--condensed;
-    font-size: $fontsize--products__nothing-is-found;
-}
-
-.not-found__link {
-    position: relative;
-    display: flex;
-    align-items: center;
-    left: 0.6em;
-    height: 43px;
-    padding: 0 1em;
-    font-size: $fontsize--products__nothing-is-found_link;
-    background: linear-gradient(90deg, rgba(0, 0, 0, 0.094) 0%, rgba(0, 0, 0, 0) 100%);
-    transition: all 200ms linear;
-
-    img {
-        position: absolute;
-        left: -0.6em;
-        transition: left 200ms linear;
-    }
-
-    &:before {
-        position: absolute;
-        content: '';
-        width: 0%;
-        height: 100%;
-        top: 0;
-        left: auto;
-        right: 0;
-        z-index: -1;
-        transition: all 500ms ease;
-    }
-
-    &:hover {
-        background: none;
-
-        &:before {
-            position: absolute;
-            content: '';
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: -1;
-            background: linear-gradient(90deg, #e2eefc, rgba(0, 0, 0, 0));
-        }
-
-        img {
-            position: absolute;
-            left: -0.3em;
-        }
-    }
 }
 
 @media (max-width: $size--width_tablet) {
@@ -170,9 +143,13 @@
     }
 
     .buttons {
-        display: flex;
-        align-items: center;
+        flex-direction: column;
+        gap: 1em;
         margin-top: 58px;
+
+        button {
+            width: 100%;
+        }
     }
 
     .line {
@@ -180,7 +157,38 @@
     }
 
     .catalog {
-        padding-top: 3em;
+        margin-top: 3em;
+        padding: 1em 0;
         @include tablet_content-container;
+    }
+
+    .catalog__inner {
+        @include tablet_content-container;
+    }
+
+    .catalog__item {
+        @include tablet_content-container;
+        display: grid;
+        grid-template-columns: 3fr 5fr;
+        grid-template-areas: "picture title"
+            "picture cost"
+            "picture inStock"
+            "picture availible";
+        padding: 0.5em;
+        text-align: left;
+
+        &:nth-child(2n) {
+            background: #f1f1f1;
+        }
+    }
+
+    .catalog_scroll {
+        box-shadow: none;
+    }
+
+    .item__pic {
+        grid-area: picture;
+        height: 200px;
+        width: 200px;
     }
 }

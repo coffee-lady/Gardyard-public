@@ -8,6 +8,7 @@ import { Component, ElementRef, Input, AfterViewInit, Renderer2, ViewChild } fro
 export class PageTitleComponent implements AfterViewInit {
     @Input() left: string;
     @Input() title: string;
+    @Input() add: string = null;
 
     @ViewChild('tspan')
     span: ElementRef;

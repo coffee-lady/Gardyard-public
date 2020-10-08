@@ -1,30 +1,35 @@
 <div class="g-content-container">
     <app-page-title title="Edit Help" left="183"></app-page-title>
+
     <div class="g-block questions">
+        <app-not-found *ngIf="!questions.length" title="Create FAQ for users!"></app-not-found>
         <div class="question" *ngFor="let item of questions">
-            <div class="question__button">
+            <div class="question__header">
                 <img class="question__icon" src="/assets/images/triangle.png">
-                <span class="question__title">{{ item.question }}</span>
+                <div class="question__title">{{ item.question }}</div>
+                <button (click)="delete(item._id)" class="question__delete" type="button">
+                    <img src="/assets/images/delete.png">
+                </button>
             </div>
             <div class="question__answer">{{ item.answer }}</div>
         </div>
     </div>
 
-    <div class="box">
+    <form [formGroup]="form" class="box" novalidate>
         <div class="box__title">
             New Question
         </div>
         <div class="field">
             <div class="field__label">Question</div>
-            <input type="text" class="field__input">
+            <input formControlName="question" type="text" class="field__input">
         </div>
         <div class="field">
             <div class="field__label">Answer</div>
-            <textarea type="text" class="field__input field__input_big"></textarea>
+            <textarea formControlName="answer" type="text" class="field__input field__input_big"></textarea>
         </div>
 
-        <button class="box__button" type="submit">Add New Question</button>
-    </div>
+        <button [disabled]="form.invalid" (click)="create()" class="box__button" type="submit">Add New Question</button>
+    </form>
 
     <img class="g-page-picture" src="/assets/images/edit-help.png">
 </div>

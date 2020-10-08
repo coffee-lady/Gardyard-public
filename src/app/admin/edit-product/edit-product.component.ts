@@ -1,15 +1,108 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { take } from 'rxjs/operators';
+import { LoaderService } from 'src/app/loader/loader.service';
+import { Plant } from 'src/app/shared/interfaces';
+import { ProductsService } from 'src/app/shared/services';
+import { AlertService } from 'src/app/_alert';
 
 @Component({
-  selector: 'app-edit-product',
-  templateUrl: './edit-product.component.html',
-  styleUrls: ['./edit-product.component.scss']
+    selector: 'app-edit-product',
+    templateUrl: './edit-product.component.html',
+    styleUrls: ['./edit-product.component.scss']
 })
 export class EditProductComponent implements OnInit {
+    private productId: string;
+    title: string;
 
-  constructor() { }
+    constructor(
+        private productsService: ProductsService,
+        private alert: AlertService,
+        private loaderService: LoaderService,
+        private route: ActivatedRoute) {}
 
-  ngOnInit(): void {
-  }
+    form: FormGroup = new FormGroup({
+        picture: new FormControl('', [Validators.required]),
+        description: new FormControl('', [
+            Validators.required,
+            Validators.minLength(400)
+        ]),
+        cultivation: new FormControl('', [
+            Validators.required,
+            Validators.minLength(400)
+        ]),
+        inStock: new FormControl('', [
+            Validators.required,
+            Validators.pattern('^[0-9]*$'),
+            Validators.min(0)
+        ]),
+        numberOfSeeds: new FormControl('', [
+            Validators.required,
+            Validators.pattern('^[0-9]*$'),
+            Validators.min(1)
+        ]),
+        cost: new FormControl('', [
+            Validators.required,
+            Validators.pattern('^[0-9]*$'),
+            Validators.min(0)
+        ]),
+        care: new FormArray([
+            new FormGroup({
+                param: new FormControl(null, [Validators.required]),
+                value: new FormControl(null, [Validators.required]),
+            }),
+            new FormGroup({
+                param: new FormControl(null, [Validators.required]),
+                value: new FormControl(null, [Validators.required]),
+            }),
+            new FormGroup({
+                param: new FormControl(null, [Validators.required]),
+                value: new FormControl(null, [Validators.required]),
+            }),
+            new FormGroup({
+                param: new FormControl(null, [Validators.required]),
+                value: new FormControl(null, [Validators.required]),
+            }),
+        ])
+    });
+
+    ngOnInit(): void {
+        this.productId = this.route.snapshot.paramMap.get('id');
+        this.productsService
+            .get(this.productId)
+            .pipe(take(1))
+            .subscribe((product: Plant) => {
+                this.title = product.title;
+                this.form.patchValue(product);
+            }, () => {
+                this.alert.fire('Error', 'Something went wrong.', false);
+            });
+    }
+
+    update(): void {
+        if (!this.form.getRawValue()) {
+            return;
+        }
+        this.productsService
+            .update(this.productId, this.form.getRawValue())
+            .pipe(take(1))
+            .subscribe(() => {
+                this.alert.fire('Successfully changed', 'Changes have been made to the database.', false);
+            }, () => {
+                this.alert.fire('Error', 'Something went wrong.', false);
+            });
+    }
+
+    delete(): void {
+        this.productsService
+            .delete(this.productId)
+            .pipe(take(1))
+            .subscribe(() => {
+                this.alert.fire('Successfully deleted', 'Changes have been made to the database.', false);
+            }, () => {
+                this.alert.fire('Error', 'Something went wrong.', false);
+            });
+    }
 
 }

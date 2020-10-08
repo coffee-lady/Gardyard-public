@@ -5,10 +5,14 @@
     font-family: $fontfamily--condensed;
     font-size: $fontsize--page__title;
 
-    span {
+    .title_main {
         padding: 15px 15px 15px 0;
         color: $color--base;
         background: $color--default;
+    }
+
+    .title_add {
+        padding: 15px;
     }
 }
 
@@ -16,9 +20,14 @@
     .title-box {
         width: 100vw;
 
-        span {
-            padding: 0.5em;
+        .title_main {
             display: block;
+            padding: 0.5em;
+        }
+
+        .title_add {
+            display: block;
+            padding: 0.5em;
         }
     }
 }

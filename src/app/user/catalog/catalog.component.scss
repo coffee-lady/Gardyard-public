@@ -1,0 +1,122 @@
+@import '../../../assets/styles/style.scss';
+
+@include scrollbar($color--base, $color--primary);
+
+.g-page-picture {
+    grid-area: picture;
+    left: 0;
+    top: 0;
+}
+
+.g-content-container {
+    display: grid;
+    grid-template-rows: 136px auto;
+    grid-template-columns: auto 4fr 5fr;
+    grid-template-areas:
+        "title search catalog"
+        "picture edit catalog";
+}
+
+.search {
+    position: absolute;
+    top: 160px;
+    right: 121px;
+    @extend %search;
+}
+
+.catalog {
+    grid-area: catalog;
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-auto-rows: min-content;
+    grid-gap: 62px;
+    padding: 1em 253px;
+    box-sizing: border-box;
+}
+
+.catalog__item {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 233px;
+    height: 305px;
+    box-sizing: border-box;
+    color: $color--base;
+    font-family: $fontfamily--round;
+    font-size: $fontsize--catalog__card__title;
+    transition: all 200ms linear;
+    background: $color--default;
+
+    &:hover {
+        cursor: pointer;
+        background: #396354;
+    }
+}
+
+.item__text {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 1em 0.7em;
+    box-sizing: border-box;
+}
+
+.item__pic {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 210px;
+    height: 210px;
+    border-radius: 3px;
+    background: $color--white;
+
+    img {
+        height: 100%;
+    }
+}
+
+.item__not-available {
+    color: #E99A23;
+}
+
+@media (max-width: $size--width_tablet) {
+    .g-content-container {
+        @include tablet_content-container;
+    }
+
+    .catalog {
+        margin-top: 3em;
+        padding: 1em 0;
+        @include tablet_content-container;
+    }
+
+    .catalog__item {
+        @include tablet_content-container;
+        display: grid;
+        grid-template-columns: 3fr 5fr;
+        grid-template-areas: "picture title"
+            "picture cost"
+            "picture inStock"
+            "picture availible";
+        padding: 0.5em;
+        text-align: left;
+
+        &:nth-child(2n) {
+            background: #f1f1f1;
+        }
+    }
+
+    .catalog_scroll {
+        box-shadow: none;
+    }
+
+    .item__pic {
+        grid-area: picture;
+        height: 200px;
+        width: 200px;
+    }
+}

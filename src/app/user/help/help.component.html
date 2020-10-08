@@ -1,11 +1,14 @@
 <div class="g-content-container">
     <app-page-title title="Frequently Asked Questions" left="70"></app-page-title>
+
     <div class="g-block questions">
+        <app-not-found *ngIf="!questions.length" title="¯\_(ツ)_/¯"></app-not-found>
+
         <div class="question" *ngFor="let item of questions">
-            <button class="question__button">
+            <div class="question__header">
                 <img class="question__icon" src="/assets/images/triangle.png">
-                <span class="question__title">{{ item.question }}</span>
-            </button>
+                <div class="question__title">{{ item.question }}</div>
+            </div>
             <div class="question__answer">{{ item.answer }}</div>
         </div>
     </div>

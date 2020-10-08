@@ -4,6 +4,7 @@ import { passwordValidator } from 'src/app/shared/validators/password.validator'
 import { UserValidator } from 'src/app/shared/validators/user-uniqueness.validator';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/shared/services';
+import { take } from 'rxjs/operators';
 
 @Component({
     selector: 'app-register',
@@ -60,6 +61,7 @@ export class RegisterComponent implements OnInit {
 
         this.authService
             .register(fullname, email, password, role)
+            .pipe(take(1))
             .subscribe(() => {
                 this.router.navigateByUrl('/');
             });

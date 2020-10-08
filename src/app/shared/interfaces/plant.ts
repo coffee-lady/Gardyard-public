@@ -1,20 +1,12 @@
-import { Binary } from '@angular/compiler';
-import { Currency } from './currency';
+import { Product } from './product';
 
 interface CareItem {
     title: string;
     text: string;
 }
 
-export interface Plant {
-    title: string;
-    picture: string;
-    description: string;
+export interface Plant extends Product {
     cultivation: string;
     care: [CareItem];
-    inStock: number;
-    rates: [number];
-    vendorCode: string;
     numberOfSeeds: number;
-    cost: Currency;
 }

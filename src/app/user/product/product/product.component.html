@@ -1,1 +1,15 @@
-<p>product works!</p>
+<div class="g-content-container">
+    <app-not-found *ngIf="!product || loading" title="Catalog is empty. Come later!"></app-not-found>
+
+    <section class="picture" *ngIf="product">
+        <div class="picture__top g-box">Plant picture</div>
+        <div class="picture__main g-box">
+            <div class="picture__main_wrapper">
+                <img [src]="product.picture">
+            </div>
+        </div>
+    </section>
+
+    <router-outlet></router-outlet>
+</div>
+<img class="g-page-picture" src="/assets/images/product-img.png">

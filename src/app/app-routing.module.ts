@@ -23,6 +23,8 @@ import { ManageProductsComponent } from './admin/manage-products/manage-products
 import { ManageOrdersComponent } from './admin/manage-orders/manage-orders.component';
 import { EditHelpComponent } from './admin/edit-help/edit-help.component';
 import { EditContactsComponent } from './admin/edit-contacts/edit-contacts.component';
+import { EditProductComponent } from './admin/edit-product/edit-product.component';
+import { ProductDescriptionComponent } from './user/product/product-description/product-description.component';
 
 const routes: Routes = [{
         path: 'auth',
@@ -41,10 +43,10 @@ const routes: Routes = [{
             { path: 'contacts', component: ContactsComponent, pathMatch: 'full' },
             { path: 'cart', canActivate: [AuthGuard], component: CartComponent, pathMatch: 'full' },
             {
-                path: 'product/:id',
+                path: 'products/:id',
                 component: ProductComponent,
                 children: [
-                    { path: 'description', component: ProductCareComponent, pathMatch: 'full' },
+                    { path: 'description', component: ProductDescriptionComponent, pathMatch: 'full' },
                     { path: 'cultivation', component: ProductCultivationComponent, pathMatch: 'full' },
                     { path: 'plant-care', component: ProductCareComponent, pathMatch: 'full' },
                     { path: 'specifications', component: ProductSpecComponent, pathMatch: 'full' },
@@ -56,6 +58,12 @@ const routes: Routes = [{
                 children: [
                     { path: 'new-product', component: NewProductComponent, canActivate: [AdminGuard], pathMatch: 'full' },
                     { path: 'products', component: ManageProductsComponent, canActivate: [AdminGuard], pathMatch: 'full' },
+                    {
+                        path: 'products/:id',
+                        component: EditProductComponent,
+                        canActivate: [AdminGuard],
+                        pathMatch: 'full'
+                    },
                     { path: 'orders', component: ManageOrdersComponent, pathMatch: 'full' },
                     { path: 'edit-help', component: EditHelpComponent, canActivate: [AdminGuard], pathMatch: 'full' },
                     { path: 'edit-contacts', component: EditContactsComponent, canActivate: [AdminGuard], pathMatch: 'full' },
