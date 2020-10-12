@@ -1,1 +1,5 @@
-<p>product-cultivation works!</p>
+<div class="container" *ngIf="product" @productAnimation>
+    <div class="text">
+        {{ product.cultivation }}
+    </div>
+</div>

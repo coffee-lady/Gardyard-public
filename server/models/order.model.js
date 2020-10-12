@@ -17,6 +17,17 @@ const ProductInOrderSchema = new mongoose.Schema({
     },
 });
 
+const ReviewSchema = new mongoose.Schema({
+    total: {
+        type: Number,
+        required: true,
+    },
+    average: {
+        type: Number,
+        required: true,
+    },
+});
+
 const OrderSchema = new mongoose.Schema({
     No: {
         type: Number,
@@ -36,7 +47,11 @@ const OrderSchema = new mongoose.Schema({
         enum: Object.values(States),
         required: true
     },
-    products: [ProductInOrderSchema]
+    products: [ProductInOrderSchema],
+    review: {
+        default: 0,
+        type: ReviewSchema,
+    }
 });
 
 module.exports = mongoose.model('Order', OrderSchema, 'orders');

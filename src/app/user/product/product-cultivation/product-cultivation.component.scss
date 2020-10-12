@@ -1,0 +1,27 @@
+@import '../../../../assets/styles/style.scss';
+
+@include scrollbar($color--base, $color--default);
+
+.container {
+    position: relative;
+    height: 100%;
+    padding-right: 1.5em;
+}
+
+.text {
+    position: absolute;
+    height: 100%;
+    overflow-y: auto;
+    color: $color--base;
+    font-weight: 400;
+    font-family: $fontfamily--default;
+    font-size: $fontsize--product__description;
+    line-height: 1.5em;
+}
+
+@media (max-width: $size--width_tablet) {
+    .container, .text {
+        position: static;
+        height: fit-content;
+    }
+}

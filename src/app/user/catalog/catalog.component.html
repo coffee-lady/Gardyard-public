@@ -2,7 +2,7 @@
     <input #search class="g-field__input" [(ngModel)]="searchString" type="text" placeholder="Search products...">
 </div>
 
-<div class="g-content-container">
+<div class="g-content-container" [ngClass]="loading ? 'container-loading' : ''">
     <app-not-found *ngIf="!products.length || loading" title="Catalog is empty. Come later!"></app-not-found>
     <section class="catalog g-block" *ngIf="products.length && !loading" [ngClass]="!loading && products.length && isCatalogScrollable() ? 'catalog_scroll' : ''">
         <div (click)="getFullInformation(item._id)" class="catalog__item g-box" *ngFor="let item of products | filterProducts: searchString" (click)="chooseItem(item._id)">

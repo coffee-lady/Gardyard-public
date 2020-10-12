@@ -1,1 +1,12 @@
-<p>product-care works!</p>
+<div class="container" *ngIf="product" @productAnimation>
+    <div class="text">
+        <div class="item" *ngFor="let item of product.care">
+            <span class="item__param">
+                {{ item.param }}
+            </span>
+            <div class="item__value">
+                {{ item.value }}
+            </div>
+        </div>
+    </div>
+</div>

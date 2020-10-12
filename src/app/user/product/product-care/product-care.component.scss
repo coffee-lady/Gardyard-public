@@ -1,0 +1,52 @@
+@import '../../../../assets/styles/style.scss';
+
+@include scrollbar($color--base, $color--default);
+
+.container {
+    position: relative;
+    height: 100%;
+    padding-right: 1.5em;
+}
+
+.text {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.item {
+    display: grid;
+    grid-template-columns: 225px 1fr;
+    grid-gap: 2em;
+    font-family: $fontfamily--condensed;
+    font-size: $fontsize--product__description;
+    line-height: 1.5em;
+}
+
+.item__param {
+    height: min-content;
+    padding: 0.5em;
+    color: $color--default;
+    font-size: $fontsize--product__care__title;
+    box-sizing: border-box;
+    background: $color--base;
+}
+
+.item__value {
+    color: $color--base;
+    font-size: $fontsize--product__care__text;
+    line-height: 1.5em;
+}
+
+@media (max-width: $size--width_tablet) {
+    .container, .text {
+        @include tablet_content-container;
+    }
+
+    .item {
+        @include tablet_content-container;
+    }
+}

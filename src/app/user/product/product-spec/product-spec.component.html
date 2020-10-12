@@ -1,1 +1,39 @@
-<p>product-spec works!</p>
+<div class="container" *ngIf="product" @productAnimation>
+    <div class="spec">
+        <!-- {{ product.review.total }} -->
+        <div class="reviews">
+            <app-star-rating checkedColor="#D7AA54" uncheckedColor="#e1e1e1" checked="3" total="5"></app-star-rating>
+            <span>|</span>
+            <span>12 reviews</span>
+        </div>
+        <div class="params">
+            <div class="params__item">
+                <div>vendor code:</div>
+                <div>{{ product.vendorCode }}</div>
+            </div>
+            <div class="params__item">
+                <div>number of seeds:</div>
+                <div>{{ product.numberOfSeeds }}</div>
+            </div>
+            <div class="params__item">
+                <div>the total cost:</div>
+                <div>${{ product.cost }}</div>
+            </div>
+        </div>
+        <button class="button-add" type="button">Add to shopping cart</button>
+    </div>
+    <div class="advantages">
+        <div class="advantages__item">
+            <img src="/assets/images/product-icon-box.png">
+            <span>in stock</span>
+        </div>
+        <div class="advantages__item">
+            <img src="/assets/images/product-icon-pin.png">
+            <span>fast delivery</span>
+        </div>
+        <div class="advantages__item">
+            <img src="/assets/images/product-icon-shield.png">
+            <span>60 days warranty</span>
+        </div>
+    </div>
+</div>

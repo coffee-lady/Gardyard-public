@@ -43,6 +43,7 @@ import { LoaderComponent } from './loader/loader/loader.component';
 
 import { FilterPipe } from './shared/pipes/filterProducts.pipe';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { StarRatingComponent } from './star-rating/star-rating.component';
 
 @NgModule({
     declarations: [
@@ -74,6 +75,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
         LoaderComponent,
         FilterPipe,
         NotFoundComponent,
+        StarRatingComponent,
     ],
     imports: [
         BrowserModule,
@@ -82,7 +84,7 @@ import { NotFoundComponent } from './not-found/not-found.component';
         FormsModule,
         ReactiveFormsModule,
         HttpClientModule,
-        AlertModule
+        AlertModule,
     ],
     providers: [{
         provide: HTTP_INTERCEPTORS,

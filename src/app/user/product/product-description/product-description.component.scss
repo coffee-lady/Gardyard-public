@@ -1,8 +1,26 @@
-.g-content-container {
+@import '../../../../assets/styles/style.scss';
+
+@include scrollbar($color--base, $color--default);
+
+.container {
+    position: relative;
+    height: 100%;
+    padding-right: 1.5em;
+}
+
+.text {
     position: absolute;
-    width: 959px;
-    height: 592px;
-    right: 280px;
-    bottom: 103px;
-    background: rgb(226, 243, 255);
+    height: 100%;
+    overflow-y: auto;
+    color: $color--base;
+    font-weight: 400;
+    font-family: $fontfamily--default;
+    font-size: $fontsize--product__description;
+    line-height: 1.5em;
+}
+
+@media (max-width: $size--width_tablet) {
+    .container, .text {
+        @include tablet_content-container;
+    }
 }

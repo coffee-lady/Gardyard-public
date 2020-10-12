@@ -9,10 +9,16 @@ enum States {
     CLOSED
 }
 
+interface Review {
+    total: number;
+    average: number;
+}
+
 export interface Order {
     No: number;
     userId: string;
     date: Date;
     state: States;
     products: [ProductInOrderSchema];
+    review ? : Review;
 }

@@ -6,6 +6,7 @@ const usersRoutes = require('./users.route');
 const productsRoutes = require('./products.route');
 const ordersRoutes = require('./orders.route');
 const questionsRoute = require('./questions.route');
+const cartRoute = require('./cart.route');
 
 router.use('/auth', authRoutes);
 router.use('/users', usersRoutes);

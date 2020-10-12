@@ -36,7 +36,7 @@ module.exports.delete = function(req, res) {
 };
 
 module.exports.get = async function(req, res) {
-    const doc = await Plant.findById(req.params.id);
+    const doc = await Plant.findById(req.params.id)
     doc.toObject();
     res.status(200).json(doc);
 };

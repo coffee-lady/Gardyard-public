@@ -1,0 +1,77 @@
+@import '../../../../assets/styles/style.scss';
+
+@include scrollbar($color--base, $color--default);
+
+.container {
+    position: relative;
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    align-items: center;
+    height: 100%;
+    padding-right: 1.5em;
+}
+
+.spec {
+    display: flex;
+    flex-direction: column;
+    gap: 3em;
+    height: 100%;
+}
+
+.reviews {
+    display: flex;
+    gap: 18px;
+    color: #CACACA;
+    font-size: $fontsize--product__spec__reviews;
+    font-family: $fontfamily--condensed;
+}
+
+.params {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    color: $color--base;
+    font-size: $fontsize--product__spec__params;
+    font-family: $fontfamily--condensed;
+}
+
+.params__item {
+    display: grid;
+    grid-template-columns: 186px 1fr;
+    grid-gap: 2em;
+}
+
+.advantages {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5em;
+    color: $color--default;
+    font-size: $fontsize--product__spec__qualities;
+    font-family: $fontfamily--condensed;
+}
+
+.advantages__item {
+    display: flex;
+    align-items: center;
+    gap: 0.7em;
+
+    span {
+        padding: 0.5em;
+        background: $color--base;
+    }
+}
+
+.button-add {
+    width: 224px;
+    height: 46px;
+    font-size: $fontsize--button;
+    @include g-btn ($color--primary, $color--secondary);
+}
+
+@media (max-width: $size--width_tablet) {
+    .container {
+        gap: 3em;
+        align-items: flex-start;
+        @include tablet_content-container;
+    }
+}

@@ -1,15 +1,17 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { Order } from '../../interfaces';
+import { Injectable, OnDestroy } from '@angular/core';
+import { ReplaySubject, Observable } from 'rxjs';
+import { Cart, Order } from '../../interfaces';
 
 type EmptyFullRes = HttpResponse < null > ;
 
 @Injectable({
     providedIn: 'root'
 })
-export class OrdersService {
+export class OrdersService implements OnDestroy {
     constructor(private http: HttpClient) {}
+
+    ngOnDestroy(): void {}
 
     create(data: Order): Observable < EmptyFullRes > {
         return this.http.post < null > ('api/orders/new', data, { observe: 'response' });

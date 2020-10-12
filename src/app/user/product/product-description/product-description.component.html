@@ -1,3 +1,5 @@
-<div class="g-content-container">
-    <p>product-description works!</p>
+<div class="container" *ngIf="product" @productAnimation>
+    <div class="text">
+        {{ product.description }}
+    </div>
 </div>

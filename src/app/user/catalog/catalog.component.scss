@@ -17,6 +17,12 @@
         "picture edit catalog";
 }
 
+.container-loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .search {
     position: absolute;
     top: 160px;
@@ -47,8 +53,8 @@
     color: $color--base;
     font-family: $fontfamily--round;
     font-size: $fontsize--catalog__card__title;
-    transition: all 200ms linear;
     background: $color--default;
+    transition: all 200ms linear;
 
     &:hover {
         cursor: pointer;
@@ -88,35 +94,39 @@
         @include tablet_content-container;
     }
 
+    .search {
+        @include tablet__block;
+    }
+
     .catalog {
-        margin-top: 3em;
-        padding: 1em 0;
-        @include tablet_content-container;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 1em;
+        padding: 3em 0;
+        box-sizing: border-box;
+        @include tablet__block;
     }
 
     .catalog__item {
-        @include tablet_content-container;
-        display: grid;
-        grid-template-columns: 3fr 5fr;
-        grid-template-areas: "picture title"
-            "picture cost"
-            "picture inStock"
-            "picture availible";
-        padding: 0.5em;
-        text-align: left;
-
-        &:nth-child(2n) {
-            background: #f1f1f1;
-        }
-    }
-
-    .catalog_scroll {
-        box-shadow: none;
+        width: auto;
+        height: 270px;
+        box-sizing: border-box;
     }
 
     .item__pic {
-        grid-area: picture;
-        height: 200px;
-        width: 200px;
+        width: 150px;
+        height: 150px;
+
+        img {
+            height: 100%;
+        }
+    }
+
+    .item__text {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        padding: 1em 0.7em;
+        box-sizing: border-box;
     }
 }
