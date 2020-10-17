@@ -1,1 +1,58 @@
-<p>cart works!</p>
+<div class="search">
+    <input #search class="g-field__input" [(ngModel)]="searchString" type="text" placeholder="Search products...">
+</div>
+
+<div class="g-content-container">
+    <section class="catalog g-block" [ngClass]="loading ? 'catalog_loading' : ''"
+             [ngClass]="!loading && products.length && isCatalogScrollable() ? 'catalog_scroll' : ''">
+        <app-not-found *ngIf="!products.length || loading" title="Catalog is empty. Come later!"></app-not-found>
+        <div class="catalog__inner" *ngIf="products.length && !loading">
+            <div #catalogItem
+                 *ngFor="let item of products | filterProducts: searchString"
+                 [attr.data-id]="item._id"
+                 class="catalog__item g-box"
+                 unselectable="on"
+                 onselectstart="return false;"
+                 (focusout)="save(item)">
+                <div class="item__data">
+                    <button class="item__close" (click)="removeProduct(item._id)" type="button">
+                        <img src="/assets/images/cart-close.png">
+                    </button>
+                    <div class="item__title">
+                        {{ item.title }}
+                    </div>
+
+                    <div class="item__cost">
+                        ${{ item.cost }}
+                    </div>
+                    <div class="item__count">
+                        <button type="button" (click)="increase(item)">
+                            <img src="/assets/images/cart__plus.png">
+                        </button>
+                        <input type="number" [(ngModel)]="item.count">
+                        <button type="button" (click)="decrease(item)">
+                            <img src="/assets/images/cart__minus.png">
+                        </button>
+                    </div>
+                </div>
+
+                <div class="item__pic">
+                    <img [src]="item.picture"
+                         draggable="false"
+                         (click)="getFullInformation(item._id)">
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+    <section class="summary g-box">
+        <div class="summary__text">Order Summary:</div>
+        <div class="summary__text">${{ sum }}</div>
+        <button class="summary__button" type="button">
+            Make an order
+        </button>
+        <img class="summary__img" src="/assets/images/order-summary-img.png">
+    </section>
+</div>
+<img class="g-page-picture" src="/assets/images/cart-img.png">

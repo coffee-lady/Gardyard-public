@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
-import { take, takeUntil } from 'rxjs/operators';
+import { mergeMap, take, takeUntil } from 'rxjs/operators';
 import { LoaderService } from 'src/app/loader/loader.service';
 import { Plant } from 'src/app/shared/interfaces';
 import { ProductsService } from 'src/app/shared/services';
@@ -54,16 +54,12 @@ export class ManageProductsComponent implements OnInit, OnDestroy {
 
     ngOnInit(): void {
         this.products$
-            .pipe(takeUntil(this.unsubscribe$))
-            .subscribe(() => {
-                this.productsService
-                    .getAll()
-                    .pipe(take(1))
-                    .subscribe((products: Plant[]) => {
-                        this.products = products;
-                    }, () => {
-                        this.alertService.fire('Error', 'Something went wrong.', false);
-                    });
+            .pipe(takeUntil(this.unsubscribe$),
+                mergeMap(() => this.productsService.getAll()))
+            .subscribe((products: Plant[]) => {
+                this.products = products;
+            }, () => {
+                this.alertService.fire('Error', 'Something went wrong.', false);
             });
 
         this.products$.next();
@@ -88,6 +84,7 @@ export class ManageProductsComponent implements OnInit, OnDestroy {
         if (!this.form.getRawValue()) {
             return;
         }
+
         this.productsService
             .update(this.choosed._id, this.form.getRawValue())
             .pipe(take(1))

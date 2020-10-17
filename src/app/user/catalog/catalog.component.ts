@@ -1,11 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
-import { takeUntil, take } from 'rxjs/operators';
+import { takeUntil, take, mergeMap } from 'rxjs/operators';
 import { LoaderService } from 'src/app/loader/loader.service';
 import { Plant } from 'src/app/shared/interfaces';
-import { ProductsService } from 'src/app/shared/services';
+import { CartDragDropService, ProductsService } from 'src/app/shared/services';
 import { AlertService } from 'src/app/_alert';
 
 @Component({
@@ -13,44 +12,53 @@ import { AlertService } from 'src/app/_alert';
     templateUrl: './catalog.component.html',
     styleUrls: ['./catalog.component.scss']
 })
-export class CatalogComponent implements OnInit, OnDestroy {
+export class CatalogComponent implements OnInit, AfterViewInit, OnDestroy {
     private unsubscribe$ = new Subject();
-    private products$ = new Subject();
 
     loading = true;
     products: Plant[] = [];
     searchString = '';
 
+    @ViewChild('cart')
+    cartElem: ElementRef;
+
+    @ViewChildren('catalogItem')
+    catalogItems: QueryList < ElementRef > ;
+
     constructor(private productsService: ProductsService,
         private alertService: AlertService,
         private loaderService: LoaderService,
-        private router: Router) {}
+        private router: Router,
+        private dragDrop: CartDragDropService) {}
 
     ngOnInit(): void {
-        this.products$
-            .pipe(takeUntil(this.unsubscribe$))
-            .subscribe(() => {
-                this.productsService
-                    .getAll()
-                    .pipe(take(1))
-                    .subscribe((products: Plant[]) => {
-                        this.products = products;
-                    }, () => {
-                        this.alertService.fire('Error', 'Something went wrong.', false);
-                    });
+        this.productsService.getAll()
+            .subscribe((products: Plant[]) => {
+                this.products = products;
+            }, () => {
+                this.alertService.fire('Error', 'Something went wrong.', false);
             });
 
-        this.products$.next();
-
-        const loaderSubs = this.loaderService
+        this.loaderService
             .httpProgress()
             .pipe(takeUntil(this.unsubscribe$))
             .subscribe((status: boolean) => {
                 this.loading = status;
-                if (!status) {
-                    loaderSubs.unsubscribe();
-                }
             });
+    }
+
+    ngAfterViewInit(): void {
+        this.dragDrop.init(this.cartElem);
+        this.dragDrop.setClasses('cart_drag-out', 'cart_drag-enter', 'cart__img_drag');
+
+        for (const item of this.catalogItems) {
+            this.dragDrop.makeDraggable(item);
+        }
+        this.catalogItems.changes.subscribe((items: ElementRef[]) => {
+            for (const item of items) {
+                this.dragDrop.makeDraggable(item);
+            }
+        });
     }
 
     ngOnDestroy(): void {

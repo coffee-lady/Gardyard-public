@@ -1,9 +1,4 @@
-interface ProductItem {
-    productId: string;
+export interface CartItem {
+    id: string;
     count: number;
-}
-
-export interface Cart {
-    userId: string;
-    products: [ProductItem];
 }

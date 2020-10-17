@@ -51,8 +51,6 @@ export class RegisterComponent implements OnInit {
     }
 
     submit(): void {
-        console.log(this.form.controls.email);
-
         if (!this.form.valid) {
             return;
         }

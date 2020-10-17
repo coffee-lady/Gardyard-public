@@ -44,7 +44,9 @@
                        text="Go to product creation"></app-not-found>
 
         <section class="catalog__inner" *ngIf="products.length && !loading">
-            <div class="catalog__item" *ngFor="let item of products | filterProducts: searchString" (click)="chooseItem(item._id)">
+            <div class="catalog__item"
+                 *ngFor="let item of products | filterProducts: searchString"
+                 (click)="chooseItem(item._id)">
                 <img class="item__triangle" src="/assets/images/manage-products__triangle.png">
                 <span class="item__text">{{ item.title }}</span>
                 <div class="item__pic g-box">

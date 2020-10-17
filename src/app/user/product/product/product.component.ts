@@ -42,14 +42,11 @@ export class ProductComponent implements OnInit, OnDestroy {
             });
 
 
-        const loaderSubs = this.loaderService
+        this.loaderService
             .httpProgress()
             .pipe(takeUntil(this.unsubscribe$))
             .subscribe((status: boolean) => {
                 this.loading = status;
-                if (!status) {
-                    loaderSubs.unsubscribe();
-                }
             });
     }
 

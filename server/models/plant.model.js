@@ -10,7 +10,7 @@ const CareItemSchema = new mongoose.Schema({
         type: String,
         required: true
     }
-})
+});
 
 const PlantSchema = new mongoose.Schema({
     title: {
@@ -28,7 +28,10 @@ const PlantSchema = new mongoose.Schema({
     },
     care: [CareItemSchema],
     inStock: Number,
-    rates: [Number],
+    rates: {
+        type: [Number],
+        default: [5]
+    },
     vendorCode: {
         type: String,
         required: true
@@ -41,10 +44,6 @@ const PlantSchema = new mongoose.Schema({
         type: Number,
         required: true
     }
-    // cost: {
-    //     type: CurrencySchema,
-    //     required: true
-    // }
 });
 
 module.exports = mongoose.model('Plant', PlantSchema, 'products');

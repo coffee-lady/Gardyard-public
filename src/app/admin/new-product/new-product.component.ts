@@ -47,6 +47,7 @@ export class NewProductComponent {
             Validators.pattern('^[0-9]*$'),
             Validators.min(0)
         ]),
+        rates: new FormControl([5]),
         care: new FormArray([
             new FormGroup({
                 param: new FormControl(null, [Validators.required]),

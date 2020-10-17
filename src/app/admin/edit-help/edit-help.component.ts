@@ -75,8 +75,6 @@ export class EditHelpComponent implements OnInit, OnDestroy {
             return;
         }
 
-        console.log(this.form.value);
-
         this.questionsService
             .create(this.form.value)
             .pipe(take(1))

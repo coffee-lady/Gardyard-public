@@ -22,7 +22,7 @@ module.exports.update = async function(req, res) {
     delete req.body._id;
     delete req.body.No;
 
-    Order.findOneAndUpdate(req.params.id, { $set: req.body })
+    Order.findByIdAndUpdate(req.params.id, { $set: req.body })
         .then(() => {
             res.status(201).end();
         })

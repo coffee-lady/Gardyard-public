@@ -44,6 +44,7 @@ import { LoaderComponent } from './loader/loader/loader.component';
 import { FilterPipe } from './shared/pipes/filterProducts.pipe';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { StarRatingComponent } from './star-rating/star-rating.component';
+import { ModuleWindowComponent } from './module-window/module-window.component';
 
 @NgModule({
     declarations: [
@@ -76,6 +77,7 @@ import { StarRatingComponent } from './star-rating/star-rating.component';
         FilterPipe,
         NotFoundComponent,
         StarRatingComponent,
+        ModuleWindowComponent,
     ],
     imports: [
         BrowserModule,

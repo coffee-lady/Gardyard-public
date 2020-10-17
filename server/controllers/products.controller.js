@@ -19,8 +19,7 @@ module.exports.create = async function(req, res) {
 
 module.exports.update = async function(req, res) {
     delete req.body._id;
-
-    Plant.findOneAndUpdate(req.params.id, { $set: req.body })
+    Plant.findByIdAndUpdate(req.params.id, { $set: req.body })
         .then(() => {
             res.status(201).end();
         })

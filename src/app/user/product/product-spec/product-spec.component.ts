@@ -1,10 +1,9 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Component, ElementRef, OnDestroy, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
-import { take, takeUntil } from 'rxjs/operators';
+import { takeUntil } from 'rxjs/operators';
 import { LoaderService } from 'src/app/loader/loader.service';
-import { Plant } from 'src/app/shared/interfaces';
-import { ProductsService } from 'src/app/shared/services';
+import { Plant, User } from 'src/app/shared/interfaces';
+import { AuthService, CartService } from 'src/app/shared/services';
 import { AlertService } from 'src/app/_alert';
 import { productAnimation } from '../product-animaiton';
 import { ProductDataService } from '../product-data-service/-product-data.service';
@@ -16,19 +15,24 @@ import { ProductDataService } from '../product-data-service/-product-data.servic
     animations: [productAnimation]
 })
 export class ProductSpecComponent implements OnInit, OnDestroy {
-    private productId: string;
     private unsubscribe$ = new Subject();
 
     loading = true;
     product: Plant;
+    averageRate = 0;
 
     constructor(private loaderService: LoaderService,
-        private route: ActivatedRoute,
-        private productDataService: ProductDataService) {}
+        private cart: CartService,
+        private alert: AlertService,
+        private productDataService: ProductDataService,
+        private authService: AuthService) {}
 
     ngOnInit(): void {
-        this.productId = this.route.parent.snapshot.paramMap.get('id');
         this.product = this.productDataService.get();
+        for (const rate of this.product.rates) {
+            this.averageRate += rate;
+        }
+        this.averageRate /= this.product.rates.length;
 
         this.loaderService
             .httpProgress()
@@ -41,5 +45,14 @@ export class ProductSpecComponent implements OnInit, OnDestroy {
     ngOnDestroy(): void {
         this.unsubscribe$.next();
         this.unsubscribe$.complete();
+    }
+
+    addToCart(): void {
+        this.authService.getUser().subscribe((user: User) => {
+            this.cart.set(user._id, { id: this.product._id, count: 1 });
+            this.alert.fire('Success', 'The product was successfully added to the cart!', false);
+        }, () => {
+            this.alert.fire('Error', 'Something went wrong.', false);
+        });
     }
 }

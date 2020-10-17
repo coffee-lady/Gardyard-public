@@ -1,35 +1,55 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
-import { Injectable, OnDestroy } from '@angular/core';
-import { ReplaySubject, Observable } from 'rxjs';
-import { Cart, Order } from '../../interfaces';
+import { Injectable } from '@angular/core';
+import { Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { Order } from '../../interfaces';
 
 type EmptyFullRes = HttpResponse < null > ;
+type DataType = Order;
 
 @Injectable({
     providedIn: 'root'
 })
-export class OrdersService implements OnDestroy {
+export class OrdersService {
+
+    data: DataType[] = [];
+    private changed = false;
+    private apiRoute = 'api/orders/';
+
     constructor(private http: HttpClient) {}
 
-    ngOnDestroy(): void {}
-
-    create(data: Order): Observable < EmptyFullRes > {
-        return this.http.post < null > ('api/orders/new', data, { observe: 'response' });
+    create(data: DataType): Observable < EmptyFullRes > {
+        return this.http.post < null > (this.apiRoute + 'new', data, { observe: 'response' });
     }
 
-    get(id: string): Observable < Order > {
-        return this.http.get < Order > (`api/orders/${id}`);
+    get(id: string): Observable < DataType > {
+        if (this.data.length && !this.changed) {
+            return of(this.data.find(p => p._id === id));
+        }
+        this.changed = false;
+        return this.http.get < DataType > (this.apiRoute + id);
     }
 
-    update(id: string, data: Order): Observable < EmptyFullRes > {
-        return this.http.put < null > (`api/orders/${id}`, data, { observe: 'response' });
+    update(id: string, data: DataType): Observable < EmptyFullRes > {
+        this.changed = true;
+        return this.http.put < null > (this.apiRoute + id, data, { observe: 'response' });
     }
 
     delete(id: string): Observable < EmptyFullRes > {
-        return this.http.delete < null > (`api/orders/${id}`, { observe: 'response' });
+        this.changed = true;
+        return this.http.delete < null > (this.apiRoute + id, { observe: 'response' });
     }
 
-    getAll(): Observable < Order[] > {
-        return this.http.get < Order[] > (`api/orders`);
+    getAll(): Observable < DataType[] > {
+        if (this.data.length && !this.changed) {
+            return of(this.data);
+        }
+
+        this.changed = false;
+        return this.http.get < DataType[] > (this.apiRoute)
+            .pipe(map(data => {
+                this.data = data;
+                return data;
+            }));
     }
 }

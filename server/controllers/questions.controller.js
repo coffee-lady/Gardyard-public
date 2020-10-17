@@ -9,7 +9,6 @@ function handleError(err, res) {
 }
 
 module.exports.create = async function(req, res) {
-    console.log(req.body);
     const doc = new Question(req.body);
     doc.save()
         .then(() => {
@@ -21,7 +20,7 @@ module.exports.create = async function(req, res) {
 module.exports.update = async function(req, res) {
     delete req.body._id;
 
-    Question.findOneAndUpdate(req.params.id, { $set: req.body })
+    Question.findByIdAndUpdate(req.params.id, { $set: req.body })
         .then(() => {
             res.status(201).end();
         })
