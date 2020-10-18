@@ -1,25 +1,17 @@
-interface ProductInOrderSchema {
-    count: number;
-    productId: number;
-}
+import { CartItem } from './cart';
 
-enum States {
+export enum States {
     NEW,
     SENT,
+    ARRIVED,
     CLOSED
-}
-
-interface Review {
-    total: number;
-    average: number;
 }
 
 export interface Order {
     _id ? : string;
-    No: number;
     userId: string;
     date: Date;
     state: States;
-    products: [ProductInOrderSchema];
-    review ? : Review;
+    products: CartItem[];
+    rate ? : number;
 }

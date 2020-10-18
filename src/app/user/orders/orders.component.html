@@ -1,1 +1,69 @@
-<p>orders works!</p>
+<div class="g-content-container">
+    <app-not-found *ngIf="!orders.length || loading"
+                   title="Make some orders!"></app-not-found>
+    <section class="catalog g-block">
+        <div class="catalog__inner" *ngIf="orders.length && !loading">
+            <div class="catalog__item"
+                 *ngFor="let item of orders"
+                 (click)="select(item)">
+                <img class="item__triangle" src="/assets/images/manage-products__triangle.png">
+                <span class="item__text">Order №{{ item.No }}</span>
+                <span class="item__text"> {{ item.date | date:'dd/MM/yyyy HH:mm' }}</span>
+                <ng-container [ngSwitch]="item.state" class="item__text">
+                    <img *ngSwitchCase="0" src="/assets/images/state-new.png">
+                    <img *ngSwitchCase="1" src="/assets/images/state-sent.png">
+                    <img *ngSwitchCase="2" src="/assets/images/state-arrived.png">
+                </ng-container>
+            </div>
+        </div>
+        <div class="line"></div>
+    </section>
+    <section class="selected_empty" *ngIf="!selected">
+        Select an order<br>
+        to see more inormation
+    </section>
+    <section class="selected" *ngIf="selected">
+        <div class="selected__header">
+            <span class="selected__title">Order №{{ selected.No }}</span>
+            <div [ngSwitch]="selected.state" class="selected__state">
+                <ng-container *ngSwitchCase="0">
+                    <img src="/assets/images/state-new.png">
+                    <span class="selected__state_new">New</span>
+                </ng-container>
+                <ng-container *ngSwitchCase="1">
+                    <img src="/assets/images/state-sent.png">
+                    <span class="selected__state_sent">Sent</span>
+                </ng-container>
+                <ng-container *ngSwitchCase="2">
+                    <img src="/assets/images/state-arrived.png">
+                    <span class="selected__state_arrived">Arrived</span>
+                </ng-container>
+                <ng-container *ngSwitchCase="3">
+                    <span>Closed</span>
+                </ng-container>
+            </div>
+        </div>
+        <span class="selected__date"> {{ selected.date | date:'dd/MM/yyyy HH:mm' }}</span>
+        <div class="selected__note">Please rate the order if you receive it<br>to mark it closed</div>
+        <app-star-rating [forEstimating]="selected.rate === 0"
+                         checkedColor="#D7AA54"
+                         uncheckedColor="#e1e1e1"
+                         [checked]="selected.rate"
+                         total="5"
+                         (estimate)="estimate($event)"></app-star-rating>
+        <div class="selected__table g-box">
+            <div class="selected__table__body">
+                <div class="selected__table__row" *ngFor="let item of products">
+                    <div>{{ item.title }}</div>
+                    <div>{{ item.cost }}</div>
+                    <div>{{ item.count }} plants</div>
+                    <div>${{ item.cost * item.count }}</div>
+                </div>
+            </div>
+            <div class="selected__table__footer">
+                Total: {{ count }} plants; ${{ cost }}
+            </div>
+        </div>
+    </section>
+    <img class="g-page-picture" src="/assets/images/my-orders.png">
+</div>

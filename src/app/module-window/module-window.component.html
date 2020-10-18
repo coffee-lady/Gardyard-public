@@ -1,3 +1,8 @@
-<div class="module-container">
-    <ng-content select="selector"></ng-content>
+<div #moduleWindow class="module-container">
+    <div class="module">
+        <button (click)="close()" class="module__close">
+            <img src="/assets/images/dialog-close.png">
+        </button>
+        <ng-content></ng-content>
+    </div>
 </div>

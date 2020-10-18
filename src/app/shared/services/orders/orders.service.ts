@@ -11,7 +11,6 @@ type DataType = Order;
     providedIn: 'root'
 })
 export class OrdersService {
-
     data: DataType[] = [];
     private changed = false;
     private apiRoute = 'api/orders/';
@@ -24,10 +23,17 @@ export class OrdersService {
 
     get(id: string): Observable < DataType > {
         if (this.data.length && !this.changed) {
-            return of(this.data.find(p => p._id === id));
+            return of(this.data.find(x => x._id === id));
         }
         this.changed = false;
         return this.http.get < DataType > (this.apiRoute + id);
+    }
+
+    getAllOfUser(userId: string): Observable < DataType[] > {
+        if (this.data.length && !this.changed) {
+            return of(this.data.filter(x => x.userId === userId));
+        }
+        return this.http.get < DataType[] > (this.apiRoute + 'user/' + userId);
     }
 
     update(id: string, data: DataType): Observable < EmptyFullRes > {

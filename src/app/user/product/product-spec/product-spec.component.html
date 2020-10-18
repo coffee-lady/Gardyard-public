@@ -1,7 +1,11 @@
 <div class="container" *ngIf="product" @productAnimation>
     <div class="spec">
         <div class="reviews">
-            <app-star-rating checkedColor="#D7AA54" uncheckedColor="#e1e1e1" [checked]="averageRate" total="5"></app-star-rating>
+            <app-star-rating [forEstimating]="false"
+                             checkedColor="#D7AA54"
+                             uncheckedColor="#e1e1e1"
+                             [checked]="averageRate"
+                             total="5"></app-star-rating>
             <span>|</span>
             <span>{{ product.rates.length }} review {{ product.rates.length > 1 ? 's' : ''}}</span>
         </div>

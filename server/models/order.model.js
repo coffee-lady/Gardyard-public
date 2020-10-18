@@ -3,7 +3,8 @@ const mongoose = require('mongoose');
 const States = Object.freeze({
     NEW: 0,
     SENT: 1,
-    CLOSED: 2
+    ARRIVED: 2,
+    CLOSED: 3,
 });
 
 const ProductInOrderSchema = new mongoose.Schema({
@@ -11,19 +12,8 @@ const ProductInOrderSchema = new mongoose.Schema({
         type: Number,
         required: true,
     },
-    productId: {
+    id: {
         type: String,
-        required: true,
-    },
-});
-
-const ReviewSchema = new mongoose.Schema({
-    total: {
-        type: Number,
-        required: true,
-    },
-    average: {
-        type: Number,
         required: true,
     },
 });
@@ -48,9 +38,9 @@ const OrderSchema = new mongoose.Schema({
         required: true
     },
     products: [ProductInOrderSchema],
-    review: {
-        default: 0,
-        type: ReviewSchema,
+    rate: {
+        type: Number,
+        default: 0
     }
 });
 

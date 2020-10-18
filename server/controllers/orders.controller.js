@@ -10,12 +10,16 @@ function handleError(err, res) {
 
 module.exports.create = async function(req, res) {
     const doc = new Order(req.body);
-    doc.No = Order.estimatedDocumentCount() + 1;
-    doc.save()
-        .then(() => {
-            res.status(201).end();
-        })
-        .catch((err) => { handleError(err, res); return; });
+    Order.estimatedDocumentCount((err, num) => {
+        if (err) { return handleError(err, res); }
+        doc.No = num + 1;
+        doc.save()
+            .then(() => {
+                res.status(201).end();
+            })
+            .catch((err) => { handleError(err, res); return; });
+    });
+
 };
 
 module.exports.update = async function(req, res) {
@@ -39,6 +43,11 @@ module.exports.delete = function(req, res) {
 module.exports.get = async function(req, res) {
     const doc = await Order.findById(req.params.id);
     doc.toObject();
+    res.status(200).json(doc);
+};
+
+module.exports.getAllOfUser = async function(req, res) {
+    const doc = await Order.find({ userId: req.params.id }).exec();
     res.status(200).json(doc);
 };
 

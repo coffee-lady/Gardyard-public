@@ -1,5 +1,6 @@
 <div class="container">
-    <svg *ngFor="let color of colors"
+    <svg *ngFor="let color of colors; let i = index"
+         (click)="setEstimate(i)"
          width="28" height="26"
          viewBox="0 0 28 26"
          fill="none"

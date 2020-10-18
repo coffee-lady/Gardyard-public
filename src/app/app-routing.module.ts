@@ -25,6 +25,7 @@ import { EditHelpComponent } from './admin/edit-help/edit-help.component';
 import { EditContactsComponent } from './admin/edit-contacts/edit-contacts.component';
 import { EditProductComponent } from './admin/edit-product/edit-product.component';
 import { ProductDescriptionComponent } from './user/product/product-description/product-description.component';
+import { OrdersComponent } from './user/orders/orders.component';
 
 const routes: Routes = [{
         path: 'auth',
@@ -40,6 +41,7 @@ const routes: Routes = [{
         children: [
             { path: 'help', component: HelpComponent, pathMatch: 'full' },
             { path: 'catalog', component: CatalogComponent, pathMatch: 'full' },
+            { path: 'orders', component: OrdersComponent, pathMatch: 'full' },
             { path: 'contacts', component: ContactsComponent, pathMatch: 'full' },
             { path: 'cart', canActivate: [AuthGuard], component: CartComponent, pathMatch: 'full' },
             {

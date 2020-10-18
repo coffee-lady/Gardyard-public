@@ -6,3 +6,4 @@ export * from './orders/orders.service';
 export * from './questions/questions.service';
 export * from './cart/cart.service';
 export * from './cart/drag-drop/_cart-drag-drop.service';
+export * from './contacts/contacts.service';

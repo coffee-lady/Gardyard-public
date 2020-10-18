@@ -9,6 +9,7 @@
         <div class="catalog__inner" *ngIf="products.length && !loading">
             <div #catalogItem
                  *ngFor="let item of products | filterProducts: searchString"
+                 @appearDisappear
                  [attr.data-id]="item._id"
                  class="catalog__item g-box"
                  unselectable="on"
@@ -41,7 +42,6 @@
                          draggable="false"
                          (click)="getFullInformation(item._id)">
                 </div>
-
             </div>
         </div>
 
@@ -49,10 +49,52 @@
     <section class="summary g-box">
         <div class="summary__text">Order Summary:</div>
         <div class="summary__text">${{ sum }}</div>
-        <button class="summary__button" type="button">
+        <button class="summary__button" type="button"
+                [disabled]="!products.length"
+                (click)="moduleWindow.open()">
             Make an order
         </button>
         <img class="summary__img" src="/assets/images/order-summary-img.png">
     </section>
 </div>
 <img class="g-page-picture" src="/assets/images/cart-img.png">
+
+<app-module-window>
+    <div class="module">
+        <div class="module__title">Make and order</div>
+        <div class="module__table">
+            <div class="module__table__row" *ngFor="let item of products">
+                <div class="g-col">{{ item.title }}</div>
+                <div class="g-col">${{ item.cost }}</div>
+                <div class="g-col">{{ item.count }} plant{{ item.count > 1? 's' : '' }}</div>
+                <div class="g-col">${{ item.cost * item.count }}</div>
+            </div>
+            <div class="module__table__footer">Total price: ${{ sum }}</div>
+        </div>
+
+        <section class="module__location">
+            <div class="module__map"></div>
+            <div class="module__location__side">
+                <div class="module__text">Choose your city</div>
+                <app-dropdown [dataToSelect]="testData"></app-dropdown>
+                <div class="module__checkbox">
+                    <app-checkbox (click)="saveCity = !saveCity"></app-checkbox>
+                    <span>Remember the city</span>
+                </div>
+            </div>
+        </section>
+
+        <form [formGroup]="moduleForm" class="module__form" (ngSubmit)="makeOrder()">
+            <div class="module__confirm">
+                <div class="module__text">To confirm your order by phone,<br>
+                    please enter your phone number:</div>
+                <div class="module__note">
+                    <div class="module__note__line"></div>
+                    <span>Please note that<br>email must be verified</span>
+                </div>
+                <input formControlName="phone" class="module__input" placeholder="+1 596 547 45 57">
+            </div>
+            <button [disabled]="moduleForm.invalid" class="module__submit" type="submit">Send</button>
+        </form>
+    </div>
+</app-module-window>

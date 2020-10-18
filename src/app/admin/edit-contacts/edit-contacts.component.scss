@@ -1,0 +1,93 @@
+@import '../../../assets/styles/style.scss';
+
+.g-content-container {
+    display: flex;
+    // display: grid;
+    // grid-template-columns: 0.5fr 725px 1fr;
+    align-items: center;
+    padding-left: 395px;
+    box-sizing: border-box;
+    font-family: $fontfamily--condensed;
+}
+
+.map, agm-map {
+    width: 725px;
+    height: 420px;
+}
+
+.g-page-picture {
+    left: 0;
+    bottom: 187px;
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    padding: 1em 2em;
+    height: 420px;
+}
+
+.list__title {
+    font-size: $fontsize--contacts__title;
+}
+
+.list__item {
+    font-size: $fontsize--contacts__text;
+    cursor: pointer;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+    width: 356px;
+    padding: 1em 3em;
+}
+
+.field {
+    display: flex;
+    justify-content: space-between;
+}
+
+.form__title {
+    font-size: $fontsize--contacts__title;
+}
+
+.field__label {
+    font-size: $fontsize--contacts__text;
+}
+
+.field__input {
+    width: 205px;
+    height: 34px;
+    box-sizing: border-box;
+    font-weight: 300;
+    font-family: $fontfamily--default;
+    font-size: $fontsize--contacts__text;
+    border-radius: 0;
+    border: 2px solid #4F4F4F;
+
+    &.ng-dirty.ng-invalid {
+        border-color: $color--invalid
+    }
+}
+
+input[type="number"] {
+    -webkit-appearance: textfield;
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+}
+
+.form__button {
+    align-self: flex-end;
+    width: 158px;
+    height: 40px;
+    font-size: $fontsize--button;
+    @include g-btn(#8EBAC6, $color--secondary)
+}

@@ -1,9 +1,9 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router, NavigationStart } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AlertService } from '../alert.service';
-import { Alert, AlertType } from '../alert.model';
-import { trigger, transition, style, animate, keyframes, state } from '@angular/animations';
+import { Alert } from '../alert.model';
+import { trigger, transition, style, animate, keyframes } from '@angular/animations';
 
 @Component({
     selector: 'app-alert',

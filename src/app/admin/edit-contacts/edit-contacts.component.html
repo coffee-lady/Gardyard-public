@@ -1,1 +1,28 @@
-<p>edit-contacts works!</p>
+<div class="g-content-container">
+    <div class="list" *ngIf="contacts">
+        <div class="list__title">List of cities</div>
+        <div class="list__item" *ngFor="let item of contacts" (click)="select(item)">{{ item.city }}</div>
+    </div>
+    <div class="map g-box" *ngIf="selected">
+        <agm-map [latitude]="selected.latitude" [longitude]="selected.longitude">
+            <agm-marker [latitude]="selected.latitude" [longitude]="selected.longitude"></agm-marker>
+        </agm-map>
+    </div>
+    <form [formGroup]="form" class="form" (ngSubmit)="create()">
+        <div class="form__title">Add another city</div>
+        <div class="field">
+            <div class="field__label">City</div>
+            <input formControlName="city" type="text" class="field__input">
+        </div>
+        <div class="field">
+            <div class="field__label">Latitude</div>
+            <input formControlName="latitude" type="number" class="field__input">
+        </div>
+        <div class="field">
+            <div class="field__label">Longitude</div>
+            <input formControlName="longitude" type="number" class="field__input">
+        </div>
+        <button [disabled]="form.invalid" class="form__button" type="submit">Set</button>
+    </form>
+</div>
+<img class="g-page-picture" src="/assets/images/edit-contacts.png">

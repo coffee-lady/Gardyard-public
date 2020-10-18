@@ -1,10 +1,13 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { trigger, transition, animate, keyframes, style } from '@angular/animations';
+import { Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { takeUntil, take, mergeMap } from 'rxjs/operators';
 import { LoaderService } from 'src/app/loader/loader.service';
-import { CartItem, Plant, Product, User } from 'src/app/shared/interfaces';
-import { AuthService, CartService, ProductsService } from 'src/app/shared/services';
+import { ModuleWindowComponent } from 'src/app/module-window/module-window.component';
+import { CartItem, Plant, Product, User, Order, States } from 'src/app/shared/interfaces';
+import { AuthService, CartService, OrdersService, ProductsService, UserService } from 'src/app/shared/services';
 import { AlertService } from 'src/app/_alert';
 
 // tslint:disable-next-line: class-name
@@ -15,10 +18,41 @@ interface _Product extends Product {
 @Component({
     selector: 'app-cart',
     templateUrl: './cart.component.html',
-    styleUrls: ['./cart.component.scss']
+    styleUrls: ['./cart.component.scss'],
+    animations: [
+        trigger('appearDisappear', [
+            transition(':leave', [
+                animate('400ms linear', keyframes([
+                    style({
+                        opacity: 1,
+                        transform: 'translateX(0%)',
+                        offset: 0
+                    }),
+                    style({
+                        opacity: 0,
+                        transform: 'translateX(-100%)',
+                        offset: 1
+                    }),
+                ]))
+            ]),
+        ]),
+    ],
 })
 export class CartComponent implements OnInit, OnDestroy {
     private unsubscribe$ = new Subject();
+    private products$ = new Subject();
+
+    constructor(private productsService: ProductsService,
+        private cartService: CartService,
+        private alertService: AlertService,
+        private loaderService: LoaderService,
+        private userService: UserService,
+        private ordersService: OrdersService,
+        private router: Router,
+        private auth: AuthService) {}
+
+    @ViewChild(ModuleWindowComponent)
+    moduleWindow: ModuleWindowComponent;
 
     user: User;
     loading = true;
@@ -26,15 +60,40 @@ export class CartComponent implements OnInit, OnDestroy {
     searchString = '';
     cart: CartItem[];
     sum = 0;
+    saveCity = false;
 
-    constructor(private productsService: ProductsService,
-        private cartService: CartService,
-        private alertService: AlertService,
-        private loaderService: LoaderService,
-        private router: Router,
-        private auth: AuthService) {}
+    testData = [{ title: 'Liverpool', id: '1' },
+        { title: 'Paris', id: '2' },
+        { title: 'Beijing', id: '3' },
+    ];
+
+    moduleForm = new FormGroup({
+        phone: new FormControl(null, [
+            Validators.required,
+            Validators.pattern('[0-9]+')
+        ]),
+    });
 
     ngOnInit(): void {
+        this.products$
+            .pipe(takeUntil(this.unsubscribe$))
+            .subscribe(() => {
+                this.cart = this.cartService.get(this.user._id);
+                if (!this.cart) {
+                    this.cart = [];
+                }
+                const data = this.cart;
+                this.products = this.products
+                    .filter(p =>
+                        data.find(i => i.id === p._id))
+                    .map(p => {
+                        p.count =
+                            data.find(i => i.id === p._id).count;
+                        return p;
+                    });
+                this.countSum();
+            });
+
         this.auth.getUser()
             .pipe(take(1),
                 mergeMap((user: User) => {
@@ -42,8 +101,8 @@ export class CartComponent implements OnInit, OnDestroy {
                     return this.productsService.getAll();
                 }))
             .subscribe((products: Plant[]) => {
-                this.makeProductsList(products);
-                this.countSum();
+                this.products = products;
+                this.products$.next();
             }, () => {
                 this.alertService.fire('Error', 'Something went wrong.', false);
             });
@@ -61,22 +120,9 @@ export class CartComponent implements OnInit, OnDestroy {
         this.unsubscribe$.complete();
     }
 
-    private makeProductsList(products: _Product[]): void {
-        this.cart = this.cartService.get(this.user._id);
-        const data = this.cart;
-        this.products = products
-            .filter((product: Product) =>
-                data.find(item => item.id === product._id))
-            .map((product: _Product) => {
-                product.count =
-                    data.find(item => item.id === product._id).count;
-                return product;
-            });
-    }
-
     removeProduct(id: string): void {
         this.cartService.delete(this.user._id, id);
-        this.makeProductsList(this.products);
+        this.products$.next();
     }
 
     countSum(): void {
@@ -87,19 +133,17 @@ export class CartComponent implements OnInit, OnDestroy {
     }
 
     increase(p: _Product): void {
-        if (p.inStock < p.count + 1) {
-            return;
+        if (p.inStock >= p.count + 1) {
+            p.count++;
+            this.countSum();
         }
-        p.count++;
-        this.countSum();
     }
 
     decrease(p: _Product): void {
-        if (p.count - 1 <= 0) {
-            return;
+        if (p.count - 1 >= 0) {
+            p.count--;
+            this.countSum();
         }
-        p.count--;
-        this.countSum();
     }
 
     save(p: _Product): void {
@@ -121,4 +165,29 @@ export class CartComponent implements OnInit, OnDestroy {
         return this.products.length * 100 > document.documentElement.clientHeight - 239;
     }
 
+    makeOrder(): void {
+        if (!this.products.length || this.moduleForm.invalid) {
+            return;
+        }
+
+        this.user.phone = this.moduleForm.getRawValue().phone;
+        this.userService.update(this.user._id, this.user).subscribe();
+
+        const order: Order = {
+            userId: this.user._id,
+            date: new Date(),
+            state: States.NEW,
+            products: this.cart,
+        };
+
+        this.ordersService.create(order).subscribe(() => {
+            this.alertService.fire('Success', 'Your order has been successfully sent.', false);
+            this.moduleForm.reset();
+            this.moduleWindow.close();
+            this.cartService.clear(this.user._id);
+            this.products$.next();
+        }, () => {
+            this.alertService.fire('Error', 'Something went wrong.', false);
+        });
+    }
 }

@@ -1,0 +1,13 @@
+<div class="dropdown-container">
+    <div class="dropdown">
+        <div class="select">
+            <span class="result"
+                  unselectable="on"
+                  onselectstart="return false;">{{ title ? title : dataToSelect[0].title }}</span>
+            <img src="/assets/images/dropdown-arrow.png">
+        </div>
+        <ul class="dropdown-menu">
+            <li *ngFor="let elem of dataToSelect" (click)="choose(elem)">{{ elem.title }}</li>
+        </ul>
+    </div>
+</div>

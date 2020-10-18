@@ -1,1 +1,95 @@
-<p>manage-orders works!</p>
+<div class="g-content-container">
+    <app-page-title title="Orders" left="222"></app-page-title>
+    <app-not-found *ngIf="!orders.length || loading"
+                   title="Make some orders!"></app-not-found>
+    <section class="catalog g-block">
+        <div class="catalog__inner" *ngIf="orders.length && !loading">
+            <div class="catalog__item"
+                 *ngFor="let item of orders | fliterOrders: filter"
+                 (click)="select(item)">
+                <img class="item__triangle" src="/assets/images/manage-products__triangle.png">
+                <span class="item__text">Order №{{ item.No }}</span>
+                <span class="item__text"> {{ item.date | date:'dd/MM/yyyy HH:mm' }}</span>
+                <ng-container [ngSwitch]="item.state" class="item__text">
+                    <img *ngSwitchCase="0" src="/assets/images/state_new_manage.png">
+                    <img *ngSwitchCase="1" src="/assets/images/state-sent.png">
+                    <img *ngSwitchCase="2" src="/assets/images/state-arrived.png">
+                </ng-container>
+            </div>
+        </div>
+    </section>
+    <section class="selected_empty" *ngIf="!selected">
+        Select an order<br>
+        to see more inormation
+    </section>
+    <section class="selected" @appear *ngIf="selected">
+        <div class="selected__top">
+            <div class="selected__title">Order №{{ selected.No }}</div>
+            <div class="selected__date"> {{ selected.date | date:'dd/MM/yyyy HH:mm' }}</div>
+            <div class="selected__user" *ngIf="user">
+                <div class="user__name">
+                    <img src="/assets/images/orders__user-icon.png">
+                    {{ user.fullname }}
+                </div>
+                <div class="user__email">
+                    email: {{ user.email }}
+                </div>
+                <div class="user__phone">
+                    phone: +{{ user.phone }}
+                </div>
+            </div>
+            <div [ngSwitch]="selected.state" class="selected__state">
+                State:
+                <span *ngSwitchCase="0">new</span>
+                <span *ngSwitchCase="1">sent</span>
+                <span *ngSwitchCase="2">arrived</span>
+                <span *ngSwitchCase="3">closed</span>
+            </div>
+        </div>
+        <div class="selected__bottom">
+            <div class="selected__table g-box">
+                <div class="selected__table__body">
+                    <div class="selected__table__row" *ngFor="let item of products">
+                        <div>{{ item.title }}</div>
+                        <div>{{ item.cost }}</div>
+                        <div>{{ item.count }} plants</div>
+                        <div>${{ item.cost * item.count }}</div>
+                    </div>
+                </div>
+                <div class="selected__table__footer">
+                    Total: {{ count }} plants; ${{ cost }}
+                </div>
+            </div>
+            <div class="selected__buttons">
+                <button [disabled]="selected.state === 3" type="button" (click)="setState(3)">
+                    <img src="/assets/images/orders__set-closed.png">
+                </button>
+                <button [disabled]="selected.state === 1" type="button" (click)="setState(1)">
+                    <img src="/assets/images/orders__set-sent.png">
+                </button>
+            </div>
+
+        </div>
+    </section>
+    <section class="settings">
+        <app-dropdown [dataToSelect]="testData"></app-dropdown>
+        <div class="settings__list">
+            <button class="active" (click)="setFilter($event)" [attr.data-filter]="''" type="button">
+                <img src="/assets/images/orders__filter.png">
+                Show all orders
+            </button>
+            <button (click)="setFilter($event)" [attr.data-filter]="'0'" type="button">
+                <img src="/assets/images/orders__filter.png">
+                Show only new orders
+            </button>
+            <button (click)="setFilter($event)" [attr.data-filter]="'1'" type="button">
+                <img src="/assets/images/orders__filter.png">
+                Show only sent orders
+            </button>
+            <button (click)="setFilter($event)" [attr.data-filter]="'2'" type="button">
+                <img src="/assets/images/orders__filter.png">
+                Show only arrived orders
+            </button>
+        </div>
+    </section>
+</div>

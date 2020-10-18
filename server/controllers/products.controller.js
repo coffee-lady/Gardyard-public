@@ -24,7 +24,6 @@ module.exports.update = async function(req, res) {
             res.status(201).end();
         })
         .catch((err) => { handleError(err, res); return; });
-
 };
 
 module.exports.delete = function(req, res) {

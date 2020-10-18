@@ -45,6 +45,10 @@ import { FilterPipe } from './shared/pipes/filterProducts.pipe';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { StarRatingComponent } from './star-rating/star-rating.component';
 import { ModuleWindowComponent } from './module-window/module-window.component';
+import { DropdownComponent } from './dropdown/dropdown.component';
+import { CheckboxComponent } from './checkbox/checkbox.component';
+import { FliterOrdersPipe } from './shared/pipes/fliter-orders.pipe';
+import { AgmCoreModule } from '@agm/core';
 
 @NgModule({
     declarations: [
@@ -78,9 +82,15 @@ import { ModuleWindowComponent } from './module-window/module-window.component';
         NotFoundComponent,
         StarRatingComponent,
         ModuleWindowComponent,
+        DropdownComponent,
+        CheckboxComponent,
+        FliterOrdersPipe,
     ],
     imports: [
         BrowserModule,
+        AgmCoreModule.forRoot({
+            apiKey: 'AIzaSyA8P1L1dw6yqCIWDIN_9CBtUKmv2Ao2Py0'
+        }),
         BrowserAnimationsModule,
         AppRoutingModule,
         FormsModule,

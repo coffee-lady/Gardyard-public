@@ -24,7 +24,7 @@ export class ProductsService {
 
     get(id: string): Observable < DataType > {
         if (this.data.length && !this.changed) {
-            return of(this.data.find(p => p._id === id));
+            return of(this.data.find(x => x._id === id));
         }
         this.changed = false;
         return this.http.get < DataType > (this.apiRoute + id);
