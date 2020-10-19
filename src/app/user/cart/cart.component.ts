@@ -6,8 +6,8 @@ import { Subject } from 'rxjs';
 import { takeUntil, take, mergeMap } from 'rxjs/operators';
 import { LoaderService } from 'src/app/loader/loader.service';
 import { ModuleWindowComponent } from 'src/app/module-window/module-window.component';
-import { CartItem, Plant, Product, User, Order, States } from 'src/app/shared/interfaces';
-import { AuthService, CartService, OrdersService, ProductsService, UserService } from 'src/app/shared/services';
+import { CartItem, Plant, Product, User, Order, States, Contacts } from 'src/app/shared/interfaces';
+import { AuthService, CartService, ContactsService, OrdersService, ProductsService, UserService } from 'src/app/shared/services';
 import { AlertService } from 'src/app/_alert';
 
 // tslint:disable-next-line: class-name
@@ -49,6 +49,7 @@ export class CartComponent implements OnInit, OnDestroy {
         private userService: UserService,
         private ordersService: OrdersService,
         private router: Router,
+        private contactsService: ContactsService,
         private auth: AuthService) {}
 
     @ViewChild(ModuleWindowComponent)
@@ -61,11 +62,8 @@ export class CartComponent implements OnInit, OnDestroy {
     cart: CartItem[];
     sum = 0;
     saveCity = false;
-
-    testData = [{ title: 'Liverpool', id: '1' },
-        { title: 'Paris', id: '2' },
-        { title: 'Beijing', id: '3' },
-    ];
+    selectedCity: Contacts = null;
+    contacts: Contacts[] = [];
 
     moduleForm = new FormGroup({
         phone: new FormControl(null, [
@@ -113,6 +111,13 @@ export class CartComponent implements OnInit, OnDestroy {
             .subscribe((status: boolean) => {
                 this.loading = status;
             });
+
+        this.contactsService.getAll().pipe(take(1)).subscribe(contacts => {
+            this.contacts = contacts;
+            this.selectedCity = this.contacts[0];
+        }, () => {
+            this.alertService.fire('Error', 'Something went wrong.', false);
+        });
     }
 
     ngOnDestroy(): void {
@@ -165,9 +170,17 @@ export class CartComponent implements OnInit, OnDestroy {
         return this.products.length * 100 > document.documentElement.clientHeight - 239;
     }
 
+    selectCity(item: Contacts): void {
+        this.selectedCity = item;
+    }
+
     makeOrder(): void {
         if (!this.products.length || this.moduleForm.invalid) {
             return;
+        }
+
+        if (this.saveCity) {
+            this.user.city = this.selectedCity._id;
         }
 
         this.user.phone = this.moduleForm.getRawValue().phone;

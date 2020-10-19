@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { trigger, transition, animate, keyframes, style } from '@angular/animations';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
-import { take } from 'rxjs/operators';
+import { take, takeUntil } from 'rxjs/operators';
 import { Contacts } from 'src/app/shared/interfaces';
 import { ContactsService } from 'src/app/shared/services';
 import { AlertService } from 'src/app/_alert';
@@ -9,19 +10,38 @@ import { AlertService } from 'src/app/_alert';
 @Component({
     selector: 'app-edit-contacts',
     templateUrl: './edit-contacts.component.html',
-    styleUrls: ['./edit-contacts.component.scss']
+    styleUrls: ['./edit-contacts.component.scss'],
+    animations: [
+        trigger('disappear', [
+            transition(':leave', [
+                animate('300ms ease-in', keyframes([
+                    style({
+                        opacity: 1,
+                        transform: 'translateX(0)',
+                        offset: 0
+                    }),
+                    style({
+                        opacity: 0,
+                        transform: 'translateX(100%)',
+                        offset: 1
+                    }),
+                ]))
+            ]),
+        ]),
+    ],
 })
-export class EditContactsComponent implements OnInit {
+export class EditContactsComponent implements OnInit, OnDestroy {
+    private unsubscribe$ = new Subject();
     private contacts$ = new Subject();
 
-    title = 'My first AGM project';
-    lat = 51.678418;
-    lng = 7.809007;
-
-    selected: Contacts = null;
+    selected: Contacts = {
+        longitude: 2.349095,
+        latitude: 48.855250,
+        title: ''
+    };
     contacts: Contacts[] = [];
     form = new FormGroup({
-        city: new FormControl(null, [Validators.required]),
+        title: new FormControl(null, [Validators.required]),
         latitude: new FormControl(null, [Validators.required]),
         longitude: new FormControl(null, [Validators.required]),
     });
@@ -30,15 +50,24 @@ export class EditContactsComponent implements OnInit {
         private alert: AlertService) {}
 
     ngOnInit(): void {
-        this.contacts$.subscribe(() => {
-            this.contactsService.getAll().pipe(take(1)).subscribe(contacts => {
-                this.contacts = contacts;
-                this.selected = this.contacts[0];
-            }, () => {
-                this.alert.fire('Error', 'Something went wrong.', false);
+        this.contacts$
+            .pipe(takeUntil(this.unsubscribe$))
+            .subscribe(() => {
+                this.contactsService.getAll().pipe(take(1)).subscribe(contacts => {
+                    this.contacts = contacts;
+                    if (this.contacts.length) {
+                        this.selected = this.contacts[0];
+                    }
+                }, () => {
+                    this.alert.fire('Error', 'Something went wrong.', false);
+                });
             });
-        });
         this.contacts$.next();
+    }
+
+    ngOnDestroy(): void {
+        this.unsubscribe$.unsubscribe();
+        this.unsubscribe$.complete();
     }
 
     create(): void {
@@ -47,9 +76,11 @@ export class EditContactsComponent implements OnInit {
         }
 
         this.contactsService.create(this.form.getRawValue())
+            .pipe(take(1))
             .subscribe(() => {
                 this.alert.fire('Success', 'Contacts are created!', false);
                 this.contacts$.next();
+                this.form.reset();
             }, () => {
                 this.alert.fire('Error', 'Something went wrong.', false);
             });
@@ -57,5 +88,25 @@ export class EditContactsComponent implements OnInit {
 
     select(item: Contacts): void {
         this.selected = item;
+    }
+
+    setActive(event: Event): void {
+        const prev = document.querySelector('.active') as HTMLElement;
+        const elem = event.target as HTMLElement;
+        if (prev) {
+            prev.classList.remove('active');
+        }
+        elem.classList.add('active');
+    }
+
+    remove(id: string): void {
+        this.contactsService
+            .delete(id)
+            .pipe(take(1))
+            .subscribe(() => {
+                this.contacts$.next();
+            }, () => {
+                this.alert.fire('Error', 'Something went wrong.', false);
+            });
     }
 }

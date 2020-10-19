@@ -1,18 +1,20 @@
 <div class="g-content-container">
-    <div class="list" *ngIf="contacts">
+    <div class="list" *ngIf="contacts.length">
         <div class="list__title">List of cities</div>
-        <div class="list__item" *ngFor="let item of contacts" (click)="select(item)">{{ item.city }}</div>
+        <div class="list__item" @disappear *ngFor="let item of contacts" (click)="select(item); setActive($event)">
+            <img src="/assets/images/edit-contacts__polygon.png">
+            {{ item.title }} |
+            <a class="item__remove" (click)="remove(item._id)">remove</a>
+        </div>
     </div>
-    <div class="map g-box" *ngIf="selected">
-        <agm-map [latitude]="selected.latitude" [longitude]="selected.longitude">
-            <agm-marker [latitude]="selected.latitude" [longitude]="selected.longitude"></agm-marker>
-        </agm-map>
+    <div class="map g-box">
+        <app-map width="725px" height="420px" [coords]="[selected.longitude, selected.latitude]"></app-map>
     </div>
     <form [formGroup]="form" class="form" (ngSubmit)="create()">
         <div class="form__title">Add another city</div>
         <div class="field">
             <div class="field__label">City</div>
-            <input formControlName="city" type="text" class="field__input">
+            <input maxlength="25" formControlName="title" type="text" class="field__input">
         </div>
         <div class="field">
             <div class="field__label">Latitude</div>

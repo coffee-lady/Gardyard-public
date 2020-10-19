@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const ContactsSchema = new mongoose.Schema({
-    city: {
+    title: {
         type: String,
         required: true,
     },

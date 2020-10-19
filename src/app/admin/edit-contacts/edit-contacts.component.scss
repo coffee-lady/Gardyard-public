@@ -2,17 +2,10 @@
 
 .g-content-container {
     display: flex;
-    // display: grid;
-    // grid-template-columns: 0.5fr 725px 1fr;
     align-items: center;
-    padding-left: 395px;
+    padding-left: 350px;
     box-sizing: border-box;
     font-family: $fontfamily--condensed;
-}
-
-.map, agm-map {
-    width: 725px;
-    height: 420px;
 }
 
 .g-page-picture {
@@ -24,7 +17,8 @@
     display: flex;
     flex-direction: column;
     gap: 1em;
-    padding: 1em 2em;
+    padding: 1em 0.5em;
+    width: 400px;
     height: 420px;
 }
 
@@ -33,8 +27,24 @@
 }
 
 .list__item {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
     font-size: $fontsize--contacts__text;
     cursor: pointer;
+
+    img {
+        opacity: 0;
+        transition: all 200ms ease-in;
+    }
+
+    &.active img {
+        opacity: 1;
+    }
+}
+
+.item__remove {
+    color: #A84E4F;
 }
 
 .form {
@@ -42,7 +52,7 @@
     flex-direction: column;
     gap: 2em;
     width: 356px;
-    padding: 1em 3em;
+    padding: 0 7em 0 3em;
 }
 
 .field {
@@ -90,4 +100,26 @@ input[type=number]::-webkit-outer-spin-button {
     height: 40px;
     font-size: $fontsize--button;
     @include g-btn(#8EBAC6, $color--secondary)
+}
+
+@media (max-width: $size--width_tablet) {
+    .g-page-picture {
+        display: none;
+    }
+
+    .g-content-container {
+        padding: 0;
+        @include tablet_content-container;
+    }
+
+    .list {
+        padding: 2em;
+        @include tablet_content-container;
+    }
+
+    .form {
+        padding: 2em 0;
+        @include tablet_content-container;
+    }
+
 }

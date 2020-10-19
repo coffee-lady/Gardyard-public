@@ -1,0 +1,49 @@
+@import '../../../assets/styles/style.scss';
+
+.g-content-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 100px;
+    padding-left: 122px;
+}
+
+.g-page-picture_bottom {
+    right: 0;
+    bottom: 0;
+}
+
+.side {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    align-self: flex-start;
+    padding-top: 200px;
+}
+
+.title {
+    font-family: $fontfamily--round;
+    font-size: $fontsize--contacts__title_big;
+}
+
+@media (max-width: $size--width_tablet) {
+    .g-page-picture {
+        display: none;
+    }
+
+    .g-content-container {
+        padding: 0;
+        @include tablet_content-container;
+    }
+
+    .list {
+        padding: 2em;
+        @include tablet_content-container;
+    }
+
+    .form {
+        padding: 2em 0;
+        @include tablet_content-container;
+    }
+
+}

@@ -1,1 +1,12 @@
-<p>contacts works!</p>
+<img class="g-page-picture g-page-picture_bottom" src="/assets/images/contacts-bottom.png">
+
+<div class="g-content-container">
+    <div class="g-box">
+        <app-map width="1001px" height="579px" *ngIf="selected" [coords]="[selected.longitude, selected.latitude]"></app-map>
+    </div>
+
+    <section class="side">
+        <div class="title">Choose your<br>city to find us</div>
+        <app-dropdown (elemChoosed)="select($event)" *ngIf="contacts.length" [dataToSelect]="contacts"></app-dropdown>
+    </section>
+</div>

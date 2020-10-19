@@ -1,6 +1,6 @@
 export interface Contacts {
     _id ? : string;
-    city: string;
+    title: string;
     latitude: number;
     longitude: number;
 }

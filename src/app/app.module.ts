@@ -48,7 +48,7 @@ import { ModuleWindowComponent } from './module-window/module-window.component';
 import { DropdownComponent } from './dropdown/dropdown.component';
 import { CheckboxComponent } from './checkbox/checkbox.component';
 import { FliterOrdersPipe } from './shared/pipes/fliter-orders.pipe';
-import { AgmCoreModule } from '@agm/core';
+import { MapComponent } from './map/map.component';
 
 @NgModule({
     declarations: [
@@ -85,12 +85,10 @@ import { AgmCoreModule } from '@agm/core';
         DropdownComponent,
         CheckboxComponent,
         FliterOrdersPipe,
+        MapComponent,
     ],
     imports: [
         BrowserModule,
-        AgmCoreModule.forRoot({
-            apiKey: 'AIzaSyA8P1L1dw6yqCIWDIN_9CBtUKmv2Ao2Py0'
-        }),
         BrowserAnimationsModule,
         AppRoutingModule,
         FormsModule,

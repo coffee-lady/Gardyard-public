@@ -73,10 +73,12 @@
         </div>
 
         <section class="module__location">
-            <div class="module__map"></div>
-            <div class="module__location__side">
+            <div class="module__map g-box" *ngIf="contacts.length && selectedCity">
+                <app-map width="301px" height="142px" [coords]="[selectedCity.longitude, selectedCity.latitude]"></app-map>
+            </div>
+            <div class="module__location__side" *ngIf="contacts.length">
                 <div class="module__text">Choose your city</div>
-                <app-dropdown [dataToSelect]="testData"></app-dropdown>
+                <app-dropdown (elemChoosed)="selectCity($event)" [dataToSelect]="contacts"></app-dropdown>
                 <div class="module__checkbox">
                     <app-checkbox (click)="saveCity = !saveCity"></app-checkbox>
                     <span>Remember the city</span>
