@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { mergeMap, take, takeUntil } from 'rxjs/operators';
 import { LoaderService } from 'src/app/loader/loader.service';
-import { User, Order, Product, CartItem } from 'src/app/shared/interfaces';
+import { User, Order, Product } from 'src/app/shared/interfaces';
 import { OrdersService, AuthService, ProductsService } from 'src/app/shared/services';
 import { AlertService } from 'src/app/_alert';
 

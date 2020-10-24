@@ -1,11 +1,9 @@
 <div class="container">
     <div class="header">
         <img class="icon" src="/assets/images/logo_pink.png">
-        <app-logo [navHumHidden]="true"></app-logo>
+        <app-logo></app-logo>
     </div>
-    <div class="g-link back">
-        <a routerLink="">BACK TO HOME</a>
-    </div>
+
     <form [formGroup]="form" novalidate method="post" (ngSubmit)="submit()">
         <div class="input-container">
             <input class="form__field" formControlName="fullname" type="text" placeholder="name">
@@ -17,4 +15,8 @@
             <a class="g-link" routerLink="/auth/login">or sign in</a>
         </div>
     </form>
+
+    <div class="g-link back">
+        <a routerLink="">BACK TO HOME</a>
+    </div>
 </div>

@@ -26,7 +26,7 @@
     font-size: $fontsize--contacts__title_big;
 }
 
-@media (max-width: $size--width_tablet) {
+@media (max-width: $size--width_laptop) {
     .g-page-picture {
         display: none;
     }
@@ -36,14 +36,13 @@
         @include tablet_content-container;
     }
 
-    .list {
-        padding: 2em;
-        @include tablet_content-container;
+    .map {
+        order: 2;
     }
 
-    .form {
-        padding: 2em 0;
-        @include tablet_content-container;
+    .side {
+        order: 1;
+        padding: 4em 2em 0;
     }
 
 }

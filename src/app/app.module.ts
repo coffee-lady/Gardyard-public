@@ -47,8 +47,10 @@ import { StarRatingComponent } from './star-rating/star-rating.component';
 import { ModuleWindowComponent } from './module-window/module-window.component';
 import { DropdownComponent } from './dropdown/dropdown.component';
 import { CheckboxComponent } from './checkbox/checkbox.component';
-import { FliterOrdersPipe } from './shared/pipes/fliter-orders.pipe';
+import { FilterOrdersPipe } from './shared/pipes/filter-orders.pipe';
 import { MapComponent } from './map/map.component';
+import { HamburgerIconComponent } from './hamburger-icon/hamburger-icon.component';
+import { FilterByCityPipe } from './shared/pipes/filter-by-city.pipe';
 
 @NgModule({
     declarations: [
@@ -84,8 +86,10 @@ import { MapComponent } from './map/map.component';
         ModuleWindowComponent,
         DropdownComponent,
         CheckboxComponent,
-        FliterOrdersPipe,
+        FilterOrdersPipe,
         MapComponent,
+        HamburgerIconComponent,
+        FilterByCityPipe,
     ],
     imports: [
         BrowserModule,

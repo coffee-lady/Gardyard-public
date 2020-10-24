@@ -1,0 +1,41 @@
+@import '../../assets/styles/style.scss';
+
+.nav__ham-icon {
+    margin-right: 20px;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: transform 400ms;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    .ham-icon__line_top {
+        stroke-dasharray: 40 139;
+    }
+
+    .ham-icon__line_bottom {
+        stroke-dasharray: 40 180;
+    }
+
+    &.hav-icon_active {
+        transform: rotate(45deg);
+        transform: rotate(180deg);
+
+        .ham-icon__line_top {
+            stroke-dashoffset: -98px;
+        }
+
+        .ham-icon__line_bottom {
+            stroke-dashoffset: -138px;
+        }
+    }
+}
+
+.ham-icon__line {
+    fill: none;
+    transition: stroke-dasharray 400ms, stroke-dashoffset 400ms;
+    stroke: $color--default;
+    stroke-width: 4;
+    stroke-linecap: round;
+}

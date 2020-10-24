@@ -32,6 +32,10 @@ const OrderSchema = new mongoose.Schema({
         type: Date,
         required: true
     },
+    geo: {
+        type: String,
+        required: true
+    },
     state: {
         type: String,
         enum: Object.values(States),

@@ -53,3 +53,24 @@
         }
     }
 }
+
+@mixin tablet_content-container {
+    position: static;
+    display: flex;
+    flex-direction: column;
+    height: fit-content;
+}
+
+@mixin tablet__block {
+    position: static;
+    margin: 0;
+    width: 100vw;
+    min-height: fit-content;
+    max-height: fit-content;
+    height: fit-content;
+    max-width: 0;
+    min-width: 100vw;
+    width: 100vw;
+    border-radius: 0;
+    box-sizing: border-box;
+}

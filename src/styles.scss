@@ -31,7 +31,7 @@ body {
     overflow: hidden;
 }
 
-@media (max-width: $size--width_tablet) {
+@media (max-width: $size--width_laptop) {
     body {
         overflow: auto;
     }

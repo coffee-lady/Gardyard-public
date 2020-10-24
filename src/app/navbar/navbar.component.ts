@@ -57,6 +57,7 @@ import { take } from 'rxjs/operators';
 export class NavbarComponent implements OnInit {
     user: User | null;
     dropdownMenuState = false;
+    hamHidden = true;
 
     constructor(private authService: AuthService) {}
 
@@ -69,6 +70,7 @@ export class NavbarComponent implements OnInit {
             });
         if (document.documentElement.clientWidth <= 1024) {
             this.dropdownMenuState = true;
+            this.hamHidden = false;
         }
     }
 
@@ -80,6 +82,7 @@ export class NavbarComponent implements OnInit {
     toggleMobileMenu(): void {
         document.querySelector('.nav').classList.toggle('nav_cycled');
     }
+
     toggleDropdownState(): void {
         if (document.documentElement.clientWidth >= 1024) {
             this.dropdownMenuState = !this.dropdownMenuState;

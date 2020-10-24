@@ -1,7 +1,5 @@
 @import '../../../assets/styles/style.scss';
 
-@include scrollbar($color--base, $color--primary);
-
 .g-page-picture {
     grid-area: picture;
     left: 0;
@@ -11,7 +9,7 @@
 .g-content-container {
     display: grid;
     grid-template-rows: 136px auto;
-    grid-template-columns: auto 4fr 5fr;
+    grid-template-columns: 4fr 5fr;
     grid-template-areas:
         "title search catalog"
         "picture edit catalog";
@@ -39,6 +37,11 @@
     grid-gap: 62px;
     padding: 1em 253px;
     box-sizing: border-box;
+    overflow: hidden auto;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
 }
 
 .catalog__item {
@@ -159,17 +162,18 @@
     transition: all 200ms linear;
 }
 
-@media (max-width: $size--width_tablet) {
+@media (max-width: $size--width_laptop) {
     .g-content-container {
         @include tablet_content-container;
     }
 
     .search {
+        padding: 2em 0;
         @include tablet__block;
     }
 
     .catalog {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, 1fr);
         grid-gap: 1em;
         padding: 3em 0;
         box-sizing: border-box;
@@ -195,6 +199,7 @@
         display: flex;
         flex-direction: column;
         align-items: flex-start;
+        gap: 1em;
         width: 100%;
         padding: 1em 0.7em;
         box-sizing: border-box;
@@ -202,5 +207,15 @@
 
     .cart {
         display: none;
+    }
+}
+
+@media (max-width: $size--width_mobile) {
+    .catalog {
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 1em;
+        padding: 3em 0;
+        box-sizing: border-box;
+        @include tablet__block;
     }
 }

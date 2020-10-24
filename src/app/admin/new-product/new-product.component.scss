@@ -7,6 +7,11 @@
     align-items: center;
 }
 
+.g-field {
+    display: grid;
+    grid-template-columns: 273px 1fr;
+}
+
 .block_spec {
     grid-area: spec;
     max-width: 574px;
@@ -19,6 +24,11 @@
     height: 574px;
     overflow: auto;
     @extend %scroll-box-shadow;
+
+    .g-field {
+        display: grid;
+        grid-template-columns: 250px 1fr;
+    }
 }
 
 .button-save {
@@ -43,9 +53,9 @@
 }
 
 .care__title {
-    padding: 8px 23px;
+    padding: 10px 23px;
     color: $color--base;
-    font-family: $fontfamily--default;
+    font-family: $fontfamily--condensed;
     font-size: $fontsize--new-product__plant-care__title;
     font-weight: 300;
     background: $color--default;
@@ -58,7 +68,7 @@
     bottom: 0;
 }
 
-@media (max-width: $size--width_tablet) {
+@media (max-width: $size--width_laptop) {
     .blocks {
         @include tablet_content-container;
     }
@@ -78,8 +88,53 @@
 
     .care {
         margin-top: 2em;
+        gap: 2em;
         width: 100vw;
-        overflow-x: auto;
+        height: fit-content;
+    }
+
+    .description {
+        margin-top: 2em;
+    }
+
+    .care__title {
+        padding: 8px 23px;
+        color: $color--base;
+        font-family: $fontfamily--default;
+        font-size: $fontsize--new-product__plant-care__title;
+        font-weight: 300;
+        background: $color--default;
+    }
+
+    @include scrollbar($color--base, $color--default);
+}
+
+@media (max-width: $size--width_mobile) {
+    .blocks {
+        @include tablet_content-container;
+    }
+
+    .block_spec {
+        @include tablet__block;
+        padding: 0;
+    }
+
+    .block_description {
+        @include tablet__block;
+    }
+
+    .button-save {
+        margin-top: 2em;
+    }
+
+    .g-field {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .care {
+        margin-top: 2em;
+        width: 100vw;
     }
 
     .care__field {
@@ -95,11 +150,6 @@
 
     .care__title {
         padding: 8px 23px;
-        color: $color--base;
-        font-family: $fontfamily--default;
-        font-size: $fontsize--new-product__plant-care__title;
-        font-weight: 300;
-        background: $color--default;
     }
 
     @include scrollbar($color--base, $color--default);

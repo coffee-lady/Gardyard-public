@@ -108,8 +108,18 @@ hr {
     transition: all 300ms ease;
 }
 
+@media (max-width: $size--width_laptop) {}
+
 @media (max-width: $size--width_mobile) {
-    .g-content-container {
+
+    .container {
+        height: fit-content;
+        gap: 2em;
         background: none;
+    }
+
+    .back {
+        position: static;
+        border: none;
     }
 }

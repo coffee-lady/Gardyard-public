@@ -12,6 +12,7 @@ import { ProductComponent } from './user/product/product/product.component';
 import { ProductSpecComponent } from './user/product/product-spec/product-spec.component';
 import { ProductCultivationComponent } from './user/product/product-cultivation/product-cultivation.component';
 import { ProductCareComponent } from './user/product/product-care/product-care.component';
+import { ProductDescriptionComponent } from './user/product/product-description/product-description.component';
 
 import { ContactsComponent } from './user/contacts/contacts.component';
 import { CartComponent } from './user/cart/cart.component';
@@ -24,7 +25,6 @@ import { ManageOrdersComponent } from './admin/manage-orders/manage-orders.compo
 import { EditHelpComponent } from './admin/edit-help/edit-help.component';
 import { EditContactsComponent } from './admin/edit-contacts/edit-contacts.component';
 import { EditProductComponent } from './admin/edit-product/edit-product.component';
-import { ProductDescriptionComponent } from './user/product/product-description/product-description.component';
 import { OrdersComponent } from './user/orders/orders.component';
 
 const routes: Routes = [{

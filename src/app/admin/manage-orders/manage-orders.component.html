@@ -1,11 +1,11 @@
 <div class="g-content-container">
     <app-page-title title="Orders" left="222"></app-page-title>
     <app-not-found *ngIf="!orders.length || loading"
-                   title="Make some orders!"></app-not-found>
-    <section class="catalog g-block">
-        <div class="catalog__inner" *ngIf="orders.length && !loading">
+                   title="¯\_(ツ)_/¯"></app-not-found>
+    <section class="catalog g-block" *ngIf="orders.length && !loading">
+        <div class="catalog__inner">
             <div class="catalog__item"
-                 *ngFor="let item of orders | fliterOrders: filter"
+                 *ngFor="let item of orders | filterOrders: filterState | filterByCity: filterGeo"
                  (click)="select(item)">
                 <img class="item__triangle" src="/assets/images/manage-products__triangle.png">
                 <span class="item__text">Order №{{ item.No }}</span>
@@ -18,7 +18,7 @@
             </div>
         </div>
     </section>
-    <section class="selected_empty" *ngIf="!selected">
+    <section class="selected_empty" *ngIf="!selected && orders.length && !loading">
         Select an order<br>
         to see more inormation
     </section>
@@ -61,32 +61,34 @@
                 </div>
             </div>
             <div class="selected__buttons">
-                <button [disabled]="selected.state === 3" type="button" (click)="setState(3)">
+                <button [disabled]="selected.state == 3" type="button" (click)="setState(3)">
                     <img src="/assets/images/orders__set-closed.png">
                 </button>
-                <button [disabled]="selected.state === 1" type="button" (click)="setState(1)">
+                <button [disabled]="selected.state == 1" type="button" (click)="setState(1)">
                     <img src="/assets/images/orders__set-sent.png">
                 </button>
             </div>
 
         </div>
     </section>
-    <section class="settings">
-        <app-dropdown [dataToSelect]="testData"></app-dropdown>
+    <section class="settings" *ngIf="orders.length && !loading">
+        <app-dropdown *ngIf="contacts.length"
+                      [dataToSelect]="contacts"
+                      (elemChoosed)="setFilterGeo($event)"></app-dropdown>
         <div class="settings__list">
-            <button class="active" (click)="setFilter($event)" [attr.data-filter]="''" type="button">
+            <button (click)="setFilterState($event)" class="active" [attr.data-filter]="''" type="button">
                 <img src="/assets/images/orders__filter.png">
                 Show all orders
             </button>
-            <button (click)="setFilter($event)" [attr.data-filter]="'0'" type="button">
+            <button (click)="setFilterState($event)" [attr.data-filter]="'0'" type="button">
                 <img src="/assets/images/orders__filter.png">
                 Show only new orders
             </button>
-            <button (click)="setFilter($event)" [attr.data-filter]="'1'" type="button">
+            <button (click)="setFilterState($event)" [attr.data-filter]="'1'" type="button">
                 <img src="/assets/images/orders__filter.png">
                 Show only sent orders
             </button>
-            <button (click)="setFilter($event)" [attr.data-filter]="'2'" type="button">
+            <button (click)="setFilterState($event)" [attr.data-filter]="'2'" type="button">
                 <img src="/assets/images/orders__filter.png">
                 Show only arrived orders
             </button>

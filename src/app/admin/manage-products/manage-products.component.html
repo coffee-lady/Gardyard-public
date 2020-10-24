@@ -52,8 +52,8 @@
                 <div class="item__pic g-box">
                     <img [src]="item.picture">
                 </div>
-                <span class="item__text"> {{ item.cost }}</span>
-                <span class="item__text"> {{ item.inStock }} in stock</span>
+                <span class="item__text">${{ item.cost }}</span>
+                <span class="item__text">{{ item.inStock }} in stock</span>
                 <span class="item__not-available" *ngIf="!item.inStock">• not available</span>
             </div>
         </section>

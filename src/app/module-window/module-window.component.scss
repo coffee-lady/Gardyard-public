@@ -19,10 +19,27 @@
     height: 881px;
     border-radius: 3px;
     background: $color--base;
+    box-sizing: border-box;
 }
 
 .module__close {
     position: absolute;
     top: 30px;
     right: 30px;
+}
+
+@media (max-width: $size--width_laptop) {
+    .module-container {
+        @include tablet_content-container;
+        display: none;
+    }
+
+    .module {
+        width: 100vw;
+    }
+
+    .module__close {
+        top: 20px;
+        right: 20px;
+    }
 }

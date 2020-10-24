@@ -146,13 +146,13 @@
     @include g-btn($color--primary, $color--secondary);
 }
 
-@media (max-width: $size--width_tablet) {
+@media (max-width: $size--width_laptop) {
     .g-content-container {
         @include tablet_content-container;
     }
 
     .questions {
-        margin: 2em 0;
+        margin: 0;
     }
 
     .box {
@@ -165,12 +165,16 @@
     }
 
     .questions {
-        padding: 1em 0;
+        padding: 0 0 3em;
         @include tablet__block;
     }
 
-    .question:nth-child(2n) {
-        background: rgb(241, 241, 241);
+    .question {
+        padding: 1em;
+
+        &:nth-child(2n) {
+            background: rgb(241, 241, 241);
+        }
     }
 
     .question__icon {
@@ -190,9 +194,9 @@
     }
 
     .question__answer {
-        display: none;
-        padding: 0.3em;
-        max-width: 90vw;
+        height: fit-content;
+        width: 90vw;
+        opacity: 1;
     }
 }
 

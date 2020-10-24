@@ -14,7 +14,7 @@ div {
     @include g-link ($color--default);
 }
 
-@media (max-width: $size--width_tablet) {
+@media (max-width: $size--width_laptop) {
     div {
         padding: 0.5em 1.5em;
     }

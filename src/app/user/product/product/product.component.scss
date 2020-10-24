@@ -117,7 +117,7 @@ router-outlet {
 }
 
 
-@media (max-width: $size--width_tablet) {
+@media (max-width: $size--width_laptop) {
     .g-content-container {
         margin-top: 2em;
         gap: 2em;

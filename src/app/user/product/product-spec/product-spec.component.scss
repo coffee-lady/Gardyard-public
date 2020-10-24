@@ -68,10 +68,21 @@
     @include g-btn ($color--primary, $color--secondary);
 }
 
-@media (max-width: $size--width_tablet) {
+@media (max-width: $size--width_laptop) {
     .container {
         gap: 3em;
         align-items: flex-start;
         @include tablet_content-container;
+    }
+}
+
+@media (min-width: $size--width_laptop) {
+    .container {
+        position: relative;
+        display: grid;
+        grid-template-columns: 3fr 2fr;
+        align-items: center;
+        height: 100%;
+        padding: 1.5em;
     }
 }

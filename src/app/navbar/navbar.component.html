@@ -1,26 +1,28 @@
 <div class="nav-container">
-    <app-logo (toggle)="toggleMobileMenu()" [navHumHidden]="false"></app-logo>
+    <app-logo>
+        <app-hamburger-icon *ngIf="!hamHidden" (toggle)="toggleMobileMenu()"></app-hamburger-icon>
+    </app-logo>
 
     <div class="nav nav_cycled">
-        <div class="link-to-auth" *ngIf="!user">
-            <a routerLink="auth/register">SIGN IN | JOIN</a>
-        </div>
-
         <div class="list" *ngIf="user && user.role === 'admin' else userTemplate">
             <app-nav-link href="admin/new-product" text="NEW PRODUCT"></app-nav-link>
             <app-nav-link href="admin/products" text="PRODUCTS"></app-nav-link>
             <app-nav-link href="admin/orders" text="ORDERS"></app-nav-link>
-            <app-nav-link href="admin/edit-help" text="EDIT HELP (E.)"></app-nav-link>
+            <app-nav-link href="admin/edit-help" text="HELP (E.)"></app-nav-link>
             <app-nav-link href="admin/edit-contacts" text="CONTACTS (E.)"></app-nav-link>
             <app-nav-link class="user_tablet" href="orders" text="MY ORDERS"></app-nav-link>
             <app-nav-link class="user_tablet" href="admin/edit-contacts" (click)="logout()" text="SIGN OUT"></app-nav-link>
+        </div>
+
+        <div class="link-to-auth" *ngIf="!user">
+            <a routerLink="auth/register">SIGN IN | JOIN</a>
         </div>
 
         <div class="user" *ngIf="user"
              (mouseenter)="toggleDropdownState()"
              (mouseleave)="toggleDropdownState()">
             <div class="user__header">
-                <img src="/assets/images/avatar.png" >
+                <img src="/assets/images/avatar.png">
                 <a class="user__name">{{ user.fullname | uppercase }}</a>
             </div>
             <div class="g-block user__dropdown"
@@ -29,8 +31,9 @@
                 <a class="user__dropdown__link" (click)="logout()">Sign Out</a>
             </div>
         </div>
-    </div>
 
+        <hr class="cycled_hr" size="2" width="90%">
+    </div>
 </div>
 
 <ng-template #userTemplate>

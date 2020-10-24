@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { take } from 'rxjs/operators';
-import { LoaderService } from 'src/app/loader/loader.service';
 import { Plant } from 'src/app/shared/interfaces';
 import { ProductsService } from 'src/app/shared/services';
 import { AlertService } from 'src/app/_alert';
@@ -19,7 +18,6 @@ export class EditProductComponent implements OnInit {
     constructor(
         private productsService: ProductsService,
         private alert: AlertService,
-        private loaderService: LoaderService,
         private route: ActivatedRoute) {}
 
     form: FormGroup = new FormGroup({

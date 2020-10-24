@@ -1,10 +1,8 @@
 <div class="container">
-    <div class="back">
-        <a routerLink="">BACK TO HOME</a>
-    </div>
+
     <div class="header">
         <img class="icon" src="/assets/images/logo_gold.png">
-        <app-logo [navHumHidden]="true"></app-logo>
+        <app-logo></app-logo>
     </div>
     <form [formGroup]="form" novalidate method="post" (ngSubmit)="submit()">
         <div class="input-container">
@@ -17,4 +15,8 @@
             <a routerLink="/auth/register">or sign up</a>
         </div>
     </form>
+
+    <div class="back">
+        <a routerLink="">BACK TO HOME</a>
+    </div>
 </div>

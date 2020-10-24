@@ -1,7 +1,5 @@
-import { HttpResponse } from '@angular/common/http';
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
-import { Subject } from 'rxjs';
 import { take } from 'rxjs/operators';
 import { ProductsService } from 'src/app/shared/services';
 import { AlertService } from 'src/app/_alert';

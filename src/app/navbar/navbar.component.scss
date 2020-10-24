@@ -52,22 +52,31 @@
 .user__header {
     display: flex;
     align-items: center;
+    gap: 24px;
 }
 
 .user__name {
-    margin-left: 23.7px;
     font-size: $fontsize--nav__user__name;
 }
 
 .user__dropdown {
     display: flex;
-    margin-top: 15px;
     flex-direction: column;
     justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+}
 
-    :nth-child(2) {
-        margin-top: 10px;
-    }
+.user__dropdown__link {
+    margin-left: 23.7px+45.53px;
+    color: $color--on-base;
+    font-size: $fontsize--nav__user__dropdown;
+    background: $color--base;
+    z-index: 10;
+}
+
+.cycled_hr {
+    display: none;
 }
 
 @keyframes dropdownAppear {
@@ -94,15 +103,8 @@
     }
 }
 
-.user__dropdown__link {
-    margin-left: 23.7px+45.53px;
-    color: $color--on-base;
-    font-size: $fontsize--nav__user__dropdown;
-    background: $color--base;
-    z-index: 10;
-}
 
-@media (max-width: $size--width_tablet) {
+@media (max-width: $size--width_laptop) {
     .nav-container {
         position: static;
         height: fit-content;
@@ -115,23 +117,73 @@
     .nav {
         display: flex;
         flex-direction: column;
+        padding: 30px 0;
     }
 
     .list {
-        display: flex;
-        flex-direction: column;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
         min-width: 100vw;
         margin-top: 0;
         height: fit-content;
     }
 
     .user {
-        display: none;
+        position: static;
+        padding: 2em 3.5em;
+    }
+
+    .link-to-auth {
+        position: static;
+        padding: 2.5em;
+        border: none;
     }
 
     .user_tablet {
+        display: none;
+    }
+
+    .user__header {
+        display: flex;
+        align-items: center;
+        gap: 0.8em;
+    }
+
+    .user__name {
+        font-size: $fontsize--nav__items;
+    }
+
+    .user__dropdown {
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    .user__dropdown__link {
+        font-size: $fontsize--nav__items;
+    }
+
+    .cycled_hr {
         display: block;
     }
 }
 
-@media (max-width: $size--width_mobile) {}
+@media (max-width: $size--width_mobile) {
+    .list {
+        display: flex;
+        flex-direction: column;
+        align-self: center;
+        min-width: 100vw;
+        margin-top: 0;
+        height: fit-content;
+    }
+
+    .user__dropdown {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .cycled_hr {
+        display: block;
+    }
+}

@@ -1,7 +1,7 @@
 @import '../../assets/styles/style.scss';
 @import "@tomtom-international/web-sdk-maps";
 
-@media (max-width: $size--width_tablet) {
+@media (max-width: $size--width_laptop) {
     #gMap {
         width: 100vw;
     }

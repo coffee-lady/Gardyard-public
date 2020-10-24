@@ -19,7 +19,7 @@
     line-height: 1.5em;
 }
 
-@media (max-width: $size--width_tablet) {
+@media (max-width: $size--width_laptop) {
     .container, .text {
         @include tablet_content-container;
     }

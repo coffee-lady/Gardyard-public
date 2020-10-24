@@ -12,6 +12,17 @@ textarea:focus {
     border: 2px solid $color--primary;
 }
 
+input[type="number"] {
+    -webkit-appearance: textfield;
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+}
+
 .g-field {
     display: flex;
     align-items: center;
@@ -20,7 +31,6 @@ textarea:focus {
 }
 
 .g-field__label {
-    width: 274px;
     box-sizing: border-box;
     font-family: $fontfamily--default;
     font-weight: 300;
@@ -30,7 +40,6 @@ textarea:focus {
 .g-field__input {
     padding: 12px;
     height: 44px;
-    width: 300px;
     box-sizing: border-box;
     font-weight: 300;
     font-family: $fontfamily--default;
@@ -54,19 +63,10 @@ textarea:focus {
 }
 
 .g-field__input_big {
-    width: 488px;
     height: 150px;
 }
 
-.g-field__input_long-param {
-    width: auto;
-}
-
-.g-field__input_long-val {
-    width: auto;
-}
-
-@media (max-width: $size--width_tablet) {
+@media (max-width: $size--width_laptop) {
     .g-field {
         flex-direction: column;
         width: 100vw;

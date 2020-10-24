@@ -40,7 +40,7 @@ export class ContactsService {
     }
 
     getAll(): Observable < DataType[] > {
-        if (this.data.length && this.changed) {
+        if (this.data.length && !this.changed) {
             return of(this.data);
         }
 

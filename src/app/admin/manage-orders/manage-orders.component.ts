@@ -3,8 +3,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { take, takeUntil } from 'rxjs/operators';
 import { LoaderService } from 'src/app/loader/loader.service';
-import { Product, User, Order, States } from 'src/app/shared/interfaces';
-import { OrdersService, ProductsService, AuthService, UserService } from 'src/app/shared/services';
+import { Product, User, Order, Contacts } from 'src/app/shared/interfaces';
+import { ContactsService, OrdersService, ProductsService, UserService } from 'src/app/shared/services';
 import { AlertService } from 'src/app/_alert';
 
 interface _Product extends Product {
@@ -40,9 +40,9 @@ export class ManageOrdersComponent implements OnInit, OnDestroy {
     constructor(private alertService: AlertService,
         private loaderService: LoaderService,
         private ordersService: OrdersService,
+        private contactsService: ContactsService,
         private productsService: ProductsService,
-        private userService: UserService,
-        private auth: AuthService) {}
+        private userService: UserService) {}
 
     user: User;
     loading = true;
@@ -52,13 +52,19 @@ export class ManageOrdersComponent implements OnInit, OnDestroy {
     selected: Order | null = null;
     cost = 0;
     count = 0;
-    testData = [{ title: 'Liverpool', id: '1' },
-        { title: 'Paris', id: '2' },
-        { title: 'Beijing', id: '3' },
-    ];
-    filter = '';
+    selectedCity: Contacts = null;
+    contacts: Contacts[] = [];
+    filterState = '';
+    filterGeo = '';
 
     ngOnInit(): void {
+        this.contactsService.getAll()
+            .pipe(take(1))
+            .subscribe((contacts) => {
+                this.contacts = contacts;
+            }, () => {
+                this.alertService.fire('Error', 'Something went wrong.', false);
+            });
 
         this.ordersService.getAll()
             .pipe(takeUntil(this.unsubscribe$))
@@ -112,11 +118,15 @@ export class ManageOrdersComponent implements OnInit, OnDestroy {
         this.ordersService.update(this.selected._id, this.selected).subscribe();
     }
 
-    setFilter(event: Event): void {
+    setFilterState(event: Event): void {
         const elem = event.target as HTMLElement;
-        this.filter = elem.dataset.filter;
+        this.filterState = elem.dataset.filter;
         document.querySelector('.active').classList.remove('active');
         elem.classList.add('active');
+    }
+
+    setFilterGeo(geo: Contacts): void {
+        this.filterGeo = geo._id;
     }
 
     ngOnDestroy(): void {

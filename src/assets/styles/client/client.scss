@@ -1,5 +1,24 @@
-@import 'desktop.scss';
-@import 'tablet.scss';
-@import 'laptop.scss';
-@import 'mobile.scss';
 @import 'sizes.scss';
+
+.g-content-container {
+    position: relative;
+    height: calc(100vh - 239px);
+    width: 100vw;
+}
+
+.g-page-picture {
+    position: absolute;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+.g-box {
+    border-radius: 4px;
+    box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: $size--width_laptop) {
+    .g-page-picture {
+        display: none;
+    }
+}

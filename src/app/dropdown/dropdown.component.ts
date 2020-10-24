@@ -13,6 +13,7 @@ interface DataToSelect {
 })
 export class DropdownComponent implements OnInit {
     @Input() dataToSelect: DataToSelect[];
+    @Input() selected: DataToSelect = null;
     @Input() title = '';
     @Output() elemChoosed = new EventEmitter < DataToSelect > ();
 
@@ -23,6 +24,10 @@ export class DropdownComponent implements OnInit {
     constructor() {}
 
     ngOnInit(): void {
+        if (!this.selected) {
+            this.selected = this.dataToSelect[0];
+        }
+
         $('.dropdown').on('click', function(): void {
             $(this).attr('tabindex', 1).trigger('focus');
             $(this).toggleClass('active');

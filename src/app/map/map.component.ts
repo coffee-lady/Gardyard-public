@@ -52,9 +52,9 @@ export class MapComponent implements OnInit, OnChanges, AfterViewInit {
 
     ngAfterViewInit(): void {
         if (document.documentElement.clientWidth > 1265) {
-            this.MapElement.nativeElement.style.height = this.height;
             this.MapElement.nativeElement.style.width = this.width;
         }
+        this.MapElement.nativeElement.style.height = this.height;
     }
 
     ngOnChanges(): void {

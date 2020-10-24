@@ -58,6 +58,7 @@
 .field {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .form__title {
@@ -83,16 +84,6 @@
     }
 }
 
-input[type="number"] {
-    -webkit-appearance: textfield;
-    -moz-appearance: textfield;
-    appearance: textfield;
-}
-
-input[type=number]::-webkit-inner-spin-button,
-input[type=number]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-}
 
 .form__button {
     align-self: flex-end;
@@ -102,24 +93,64 @@ input[type=number]::-webkit-outer-spin-button {
     @include g-btn(#8EBAC6, $color--secondary)
 }
 
-@media (max-width: $size--width_tablet) {
+@media (max-width: $size--width_laptop) {
     .g-page-picture {
         display: none;
     }
 
     .g-content-container {
+        display: grid;
+        grid-template-rows: auto auto auto;
+        align-items: flex-start;
+        order: 1;
+        grid-template-columns: 50% 50%;
         padding: 0;
-        @include tablet_content-container;
+        width: 100vw;
+    }
+
+    .map {
+        order: 2;
+        width: 100vw;
     }
 
     .list {
+        order: 1;
+        height: fit-content;
+        width: auto;
+        padding: 2em;
+    }
+
+    .form {
+        order: 1;
+        height: fit-content;
+        width: auto;
+        padding: 2em;
+    }
+
+}
+
+@media (max-width: $size--width_mobile) {
+    .g-content-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0;
+        width: 100vw;
+    }
+
+    .list {
+        order: 1;
         padding: 2em;
         @include tablet_content-container;
     }
 
     .form {
-        padding: 2em 0;
+        padding: 2em;
+        order: 1;
         @include tablet_content-container;
     }
 
+    .field {
+        gap: 1em;
+    }
 }

@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
-import { takeUntil, take, mergeMap } from 'rxjs/operators';
+import { takeUntil } from 'rxjs/operators';
 import { LoaderService } from 'src/app/loader/loader.service';
 import { Plant } from 'src/app/shared/interfaces';
 import { CartDragDropService, ProductsService } from 'src/app/shared/services';
@@ -68,9 +68,5 @@ export class CatalogComponent implements OnInit, AfterViewInit, OnDestroy {
 
     getFullInformation(id: string): void {
         this.router.navigateByUrl(`products/${id}/description`);
-    }
-
-    isCatalogScrollable(): boolean {
-        return this.products.length * 100 > document.documentElement.clientHeight - 239;
     }
 }

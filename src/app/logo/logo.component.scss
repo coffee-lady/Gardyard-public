@@ -12,61 +12,30 @@
     font-size: $fontsize--logo;
     text-align: center;
     letter-spacing: 0.4em;
+    box-sizing: border-box;
 }
 
-.nav__ham-icon {
-    display: none;
-    margin-right: 20px;
-    cursor: pointer;
-    -webkit-tap-highlight-color: transparent;
-    transition: transform 400ms;
-    -moz-user-select: none;
-    -webkit-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-
-    .ham-icon__line_top {
-        stroke-dasharray: 40 139;
-    }
-
-    .ham-icon__line_bottom {
-        stroke-dasharray: 40 180;
-    }
-
-    &.hav-icon_active {
-        transform: rotate(45deg);
-        transform: rotate(180deg);
-
-        .ham-icon__line_top {
-            stroke-dashoffset: -98px;
-        }
-
-        .ham-icon__line_bottom {
-            stroke-dashoffset: -138px;
-        }
-    }
-}
-
-.ham-icon__line {
-    fill: none;
-    transition: stroke-dasharray 400ms, stroke-dashoffset 400ms;
-    stroke: $color--default;
-    stroke-width: 4;
-    stroke-linecap: round;
-}
-
-@media (max-width: $size--width_tablet) {
+@media (max-width: $size--width_laptop) {
     .container {
         display: flex;
         justify-content: center;
         align-items: center;
-        padding: 0;
         width: 100vw;
         box-sizing: border-box;
     }
 
-    .nav__ham-icon {
-        display: block;
+    hr {
+        display: none;
+    }
+}
+
+@media (max-width: $size--width_mobile) {
+    .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100vw;
+        box-sizing: border-box;
     }
 
     .logo {
