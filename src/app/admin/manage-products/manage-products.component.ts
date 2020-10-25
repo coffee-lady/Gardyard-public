@@ -17,14 +17,12 @@ export class ManageProductsComponent implements OnInit, OnDestroy {
     private unsubscribe$ = new Subject();
     private products$ = new Subject();
 
-    loading = true;
     products: Plant[] = [];
     choosed: Plant | null = null;
     searchString = '';
 
     constructor(private productsService: ProductsService,
         private alertService: AlertService,
-        private loaderService: LoaderService,
         private router: Router) {}
 
     form: FormGroup = new FormGroup({
@@ -63,16 +61,6 @@ export class ManageProductsComponent implements OnInit, OnDestroy {
             });
 
         this.products$.next();
-
-        const loaderSubs = this.loaderService
-            .httpProgress()
-            .pipe(takeUntil(this.unsubscribe$))
-            .subscribe((status: boolean) => {
-                this.loading = status;
-                if (!status) {
-                    loaderSubs.unsubscribe();
-                }
-            });
     }
 
     ngOnDestroy(): void {

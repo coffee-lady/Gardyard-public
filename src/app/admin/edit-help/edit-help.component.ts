@@ -17,12 +17,10 @@ export class EditHelpComponent implements OnInit, OnDestroy {
     private questions$ = new Subject();
 
     questions: Question[] = [];
-    loading = true;
 
     constructor(
         private questionsService: QuestionsService,
-        private alert: AlertService,
-        private loaderService: LoaderService) {}
+        private alert: AlertService) {}
 
     form: FormGroup = new FormGroup({
         question: new FormControl('', [Validators.required]),
@@ -44,13 +42,6 @@ export class EditHelpComponent implements OnInit, OnDestroy {
             });
 
         this.questions$.next();
-
-        this.loaderService
-            .httpProgress()
-            .pipe(takeUntil(this.unsubscribe$))
-            .subscribe((status: boolean) => {
-                this.loading = status;
-            });
     }
 
     ngOnDestroy(): void {

@@ -2,8 +2,7 @@ export interface User {
     _id ? : string;
     fullname: string;
     email: string;
-    hashedPassword: string;
+    phone ? : number;
     role: string;
     city ? : string;
-    phone ? : number;
 }

@@ -14,6 +14,6 @@ export class FilterByCityPipe implements PipeTransform {
         if (!geoId) {
             return orders;
         }
-        return orders.filter(order => order.geo === geoId);
+        return orders.filter(order => order.userGeo === geoId);
     }
 }

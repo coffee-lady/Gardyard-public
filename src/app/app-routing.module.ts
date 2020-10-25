@@ -43,7 +43,7 @@ const routes: Routes = [{
             { path: 'catalog', component: CatalogComponent, pathMatch: 'full' },
             { path: 'orders', component: OrdersComponent, pathMatch: 'full' },
             { path: 'contacts', component: ContactsComponent, pathMatch: 'full' },
-            { path: 'cart', canActivate: [AuthGuard], component: CartComponent, pathMatch: 'full' },
+            { path: 'cart', component: CartComponent, pathMatch: 'full' },
             {
                 path: 'products/:id',
                 component: ProductComponent,

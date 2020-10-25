@@ -51,6 +51,7 @@ import { FilterOrdersPipe } from './shared/pipes/filter-orders.pipe';
 import { MapComponent } from './map/map.component';
 import { HamburgerIconComponent } from './hamburger-icon/hamburger-icon.component';
 import { FilterByCityPipe } from './shared/pipes/filter-by-city.pipe';
+import { SortByRecentlyViewedPipe } from './shared/pipes/sort-by-recently-viewed.pipe';
 
 @NgModule({
     declarations: [
@@ -90,6 +91,7 @@ import { FilterByCityPipe } from './shared/pipes/filter-by-city.pipe';
         MapComponent,
         HamburgerIconComponent,
         FilterByCityPipe,
+        SortByRecentlyViewedPipe,
     ],
     imports: [
         BrowserModule,

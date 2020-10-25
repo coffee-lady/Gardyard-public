@@ -4,7 +4,7 @@ import { Subject } from 'rxjs';
 import { take, takeUntil } from 'rxjs/operators';
 import { LoaderService } from 'src/app/loader/loader.service';
 import { Plant } from 'src/app/shared/interfaces';
-import { ProductsService } from 'src/app/shared/services';
+import { AuthService, ProductsService, RecentlyViewedService } from 'src/app/shared/services';
 import { AlertService } from 'src/app/_alert';
 import { ProductDataService } from '../product-data-service/-product-data.service';
 
@@ -18,18 +18,23 @@ export class ProductComponent implements OnInit, OnDestroy {
     private productId: string;
     private unsubscribe$ = new Subject();
 
-    loading = true;
     product: Plant;
 
     constructor(private productsService: ProductsService,
         private alertService: AlertService,
-        private loaderService: LoaderService,
         private router: Router,
+        private recentlyViewedService: RecentlyViewedService,
+        private authService: AuthService,
         private route: ActivatedRoute,
         private productDataService: ProductDataService) {}
 
     ngOnInit(): void {
         this.productId = this.route.snapshot.paramMap.get('id');
+        this.authService.getUser()
+            .pipe(take(1))
+            .subscribe(user => {
+                this.recentlyViewedService.set((user ? user._id : 'anonymous'), this.productId)
+            });
 
         this.productsService
             .get(this.productId)
@@ -39,14 +44,6 @@ export class ProductComponent implements OnInit, OnDestroy {
                 this.productDataService.set(product);
             }, () => {
                 this.alertService.fire('Error', 'Something went wrong.', false);
-            });
-
-
-        this.loaderService
-            .httpProgress()
-            .pipe(takeUntil(this.unsubscribe$))
-            .subscribe((status: boolean) => {
-                this.loading = status;
             });
     }
 

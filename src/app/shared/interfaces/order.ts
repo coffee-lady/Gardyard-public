@@ -9,10 +9,12 @@ export enum States {
 
 export interface Order {
     _id ? : string;
-    userId: string;
+    No ? : number;
     date: Date;
-    geo: string;
     state: States;
     products: CartItem[];
     rate ? : number;
+    userGeo: string;
+    userId: string;
+    userPhone ? : number;
 }

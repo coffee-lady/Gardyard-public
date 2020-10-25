@@ -1,8 +1,8 @@
 <div class="g-content-container">
     <app-page-title title="Orders" left="222"></app-page-title>
-    <app-not-found *ngIf="!orders.length || loading"
+    <app-not-found *ngIf="!orders.length"
                    title="¯\_(ツ)_/¯"></app-not-found>
-    <section class="catalog g-block" *ngIf="orders.length && !loading">
+    <section class="catalog g-block" *ngIf="orders.length">
         <div class="catalog__inner">
             <div class="catalog__item"
                  *ngFor="let item of orders | filterOrders: filterState | filterByCity: filterGeo"
@@ -18,7 +18,7 @@
             </div>
         </div>
     </section>
-    <section class="selected_empty" *ngIf="!selected && orders.length && !loading">
+    <section class="selected_empty" *ngIf="!selected && orders.length">
         Select an order<br>
         to see more inormation
     </section>
@@ -71,7 +71,7 @@
 
         </div>
     </section>
-    <section class="settings" *ngIf="orders.length && !loading">
+    <section class="settings" *ngIf="orders.length">
         <app-dropdown *ngIf="contacts.length"
                       [dataToSelect]="contacts"
                       (elemChoosed)="setFilterGeo($event)"></app-dropdown>

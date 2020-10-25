@@ -1,8 +1,9 @@
 <div class="g-content-container">
-    <app-not-found *ngIf="!orders.length || loading"
+    <app-page-title title="My Orders" left="295"></app-page-title>
+    <app-not-found *ngIf="!orders.length"
                    title="Make some orders!"></app-not-found>
     <section class="catalog g-block">
-        <div class="catalog__inner" *ngIf="orders.length && !loading">
+        <div class="catalog__inner" *ngIf="orders.length">
             <div class="catalog__item"
                  *ngFor="let item of orders"
                  (click)="select(item)">

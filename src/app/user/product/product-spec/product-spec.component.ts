@@ -1,7 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
-import { LoaderService } from 'src/app/loader/loader.service';
 import { Plant, User } from 'src/app/shared/interfaces';
 import { AuthService, CartService } from 'src/app/shared/services';
 import { AlertService } from 'src/app/_alert';
@@ -17,12 +15,10 @@ import { ProductDataService } from '../product-data-service/-product-data.servic
 export class ProductSpecComponent implements OnInit, OnDestroy {
     private unsubscribe$ = new Subject();
 
-    loading = true;
     product: Plant;
     averageRate = 0;
 
-    constructor(private loaderService: LoaderService,
-        private cart: CartService,
+    constructor(private cart: CartService,
         private alert: AlertService,
         private productDataService: ProductDataService,
         private authService: AuthService) {}
@@ -33,13 +29,6 @@ export class ProductSpecComponent implements OnInit, OnDestroy {
             this.averageRate += rate;
         }
         this.averageRate /= this.product.rates.length;
-
-        this.loaderService
-            .httpProgress()
-            .pipe(takeUntil(this.unsubscribe$))
-            .subscribe((status: boolean) => {
-                this.loading = status;
-            });
     }
 
     ngOnDestroy(): void {

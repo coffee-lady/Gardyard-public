@@ -24,16 +24,8 @@ const OrderSchema = new mongoose.Schema({
         required: true,
         unique: true
     },
-    userId: {
-        type: String,
-        required: true
-    },
     date: {
         type: Date,
-        required: true
-    },
-    geo: {
-        type: String,
         required: true
     },
     state: {
@@ -45,7 +37,20 @@ const OrderSchema = new mongoose.Schema({
     rate: {
         type: Number,
         default: 0
-    }
+    },
+    userGeo: {
+        type: String,
+        required: true
+    },
+    userId: {
+        type: String,
+        required: false
+    },
+    userPhone: {
+        type: Number,
+        required: false
+    },
+
 });
 
 module.exports = mongoose.model('Order', OrderSchema, 'orders');

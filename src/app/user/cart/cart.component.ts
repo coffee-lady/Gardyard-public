@@ -1,16 +1,14 @@
 import { trigger, transition, animate, keyframes, style } from '@angular/animations';
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { forkJoin, merge, Subject } from 'rxjs';
-import { takeUntil, take, mergeMap } from 'rxjs/operators';
-import { LoaderService } from 'src/app/loader/loader.service';
+import { forkJoin, Subject } from 'rxjs';
+import { takeUntil, take } from 'rxjs/operators';
 import { ModuleWindowComponent } from 'src/app/module-window/module-window.component';
-import { CartItem, Plant, Product, User, Order, States, Contacts } from 'src/app/shared/interfaces';
+import { CartItem, Product, User, Order, States, Contacts } from 'src/app/shared/interfaces';
 import { AuthService, CartService, ContactsService, OrdersService, ProductsService, UserService } from 'src/app/shared/services';
 import { AlertService } from 'src/app/_alert';
 
-// tslint:disable-next-line: class-name
 interface _Product extends Product {
     count ? : number;
 }
@@ -46,7 +44,6 @@ export class CartComponent implements OnInit, OnDestroy {
         private productsService: ProductsService,
         private cartService: CartService,
         private alertService: AlertService,
-        private loaderService: LoaderService,
         private userService: UserService,
         private ordersService: OrdersService,
         private router: Router,
@@ -57,10 +54,10 @@ export class CartComponent implements OnInit, OnDestroy {
     moduleWindow: ModuleWindowComponent;
 
     user: User;
-    loading = true;
+    userId = 'anonymous';
     products: _Product[] = [];
     searchString = '';
-    cart: CartItem[];
+    cart: CartItem[] = [];
     sum = 0;
     saveCity = false;
     selectedCity: Contacts = null;
@@ -74,42 +71,16 @@ export class CartComponent implements OnInit, OnDestroy {
     });
 
     ngOnInit(): void {
-        this.loaderService
-            .httpProgress()
-            .pipe(takeUntil(this.unsubscribe$))
-            .subscribe((status: boolean) => {
-                this.loading = status;
-            });
-
-        forkJoin([this.auth.getUser(), this.contactsService.getAll(), this.productsService.getAll()])
-            .pipe(take(1))
-            .subscribe(([user, contacts, products]) => {
-                this.user = user;
-                this.contacts = contacts;
-                if (products.length) {
-                    this.products = products;
-                }
-                this.products$.next();
-                if (this.user.city) {
-                    this.selectedCity = this.contacts.find(item => item._id === this.user.city);
-                }
-                if (this.user.phone) {
-                    this.moduleForm.patchValue({ phone: this.user.phone });
-                }
-                this.cdr.detectChanges();
-                return this.products$;
-            }, () => {
-                this.alertService.fire('Error', 'Something went wrong.', false);
-            });
-
         this.products$
             .pipe(takeUntil(this.unsubscribe$))
             .subscribe(() => {
-                this.cart = this.cartService.get(this.user._id);
-                if (!this.cart) {
+                const data = this.cartService.get(this.userId);
+                if (!data) {
                     this.cart = [];
+                    this.products = [];
+                    return;
                 }
-                const data = this.cart;
+                this.cart = data;
                 this.products = this.products
                     .filter(p =>
                         data.find(i => i.id === p._id))
@@ -122,6 +93,30 @@ export class CartComponent implements OnInit, OnDestroy {
             }, () => {
                 this.alertService.fire('Error', 'Something went wrong.', false);
             });
+
+        forkJoin([this.auth.getUser(), this.contactsService.getAll(), this.productsService.getAll()])
+            .pipe(take(1))
+            .subscribe(([user, contacts, products]) => {
+                this.user = user;
+                if (this.user) {
+                    this.userId = this.user._id;
+                }
+                this.contacts = contacts;
+                if (products.length) {
+                    this.products = products;
+                }
+                this.products$.next();
+                if (this.user && this.user.city) {
+                    this.selectedCity = this.contacts.find(item => item._id === this.user.city);
+                }
+                if (this.user && this.user.phone) {
+                    this.moduleForm.patchValue({ phone: this.user.phone });
+                }
+
+                this.cdr.detectChanges();
+            }, () => {
+                this.alertService.fire('Error', 'Something went wrong.', false);
+            });
     }
 
     ngOnDestroy(): void {
@@ -129,8 +124,8 @@ export class CartComponent implements OnInit, OnDestroy {
         this.unsubscribe$.complete();
     }
 
-    removeProduct(id: string): void {
-        this.cartService.delete(this.user._id, id);
+    removeProduct(pId: string): void {
+        this.cartService.delete(this.userId, pId);
         this.products$.next();
     }
 
@@ -162,7 +157,7 @@ export class CartComponent implements OnInit, OnDestroy {
         if (p.count <= 0) {
             p.count = 1;
         }
-        this.cartService.set(this.user._id, { id: p._id, count: p.count });
+        this.cartService.set(this.userId, { id: p._id, count: p.count });
         this.countSum();
     }
 
@@ -183,26 +178,32 @@ export class CartComponent implements OnInit, OnDestroy {
             return;
         }
 
-        if (this.saveCity) {
+        if (this.saveCity && this.user) {
             this.user.city = this.selectedCity._id;
         }
 
-        this.user.phone = this.moduleForm.getRawValue().phone;
-        this.userService.update(this.user._id, this.user).subscribe();
+        if (this.user && this.user.phone) {
+            this.user.phone = this.moduleForm.getRawValue().phone;
+            this.userService.update(this.user._id, this.user).subscribe();
+        }
 
         const order: Order = {
-            userId: this.user._id,
+            userId: (this.user ? this.userId : null),
             date: new Date(),
-            geo: this.selectedCity._id,
+            userGeo: this.selectedCity._id,
             state: States.NEW,
             products: this.cart,
         };
+
+        if (!this.user) {
+            order.userPhone = this.moduleForm.getRawValue().phone;
+        }
 
         this.ordersService.create(order).subscribe(() => {
             this.alertService.fire('Success', 'Your order has been successfully sent.', false);
             this.moduleForm.reset();
             this.moduleWindow.close();
-            this.cartService.clear(this.user._id);
+            this.cartService.clear(this.userId);
             this.products$.next();
         }, () => {
             this.alertService.fire('Error', 'Something went wrong.', false);

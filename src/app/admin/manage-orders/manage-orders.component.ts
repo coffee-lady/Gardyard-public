@@ -38,14 +38,12 @@ export class ManageOrdersComponent implements OnInit, OnDestroy {
     private unsubscribe$ = new Subject();
 
     constructor(private alertService: AlertService,
-        private loaderService: LoaderService,
         private ordersService: OrdersService,
         private contactsService: ContactsService,
         private productsService: ProductsService,
         private userService: UserService) {}
 
     user: User;
-    loading = true;
     orders: Order[] = [];
     products: _Product[] = [];
     allProducts: Product[] = [];
@@ -74,13 +72,6 @@ export class ManageOrdersComponent implements OnInit, OnDestroy {
                 this.alertService.fire('Error', 'Something went wrong.', false);
             });
 
-        this.loaderService
-            .httpProgress()
-            .pipe(takeUntil(this.unsubscribe$))
-            .subscribe((status: boolean) => {
-                this.loading = status;
-            });
-
         this.productsService
             .getAll()
             .pipe(take(1))
@@ -93,9 +84,18 @@ export class ManageOrdersComponent implements OnInit, OnDestroy {
 
     select(order: Order): void {
         if (!this.selected || this.selected && this.selected.userId !== order.userId) {
-            this.userService.get(order.userId)
-                .pipe(take(1))
-                .subscribe(user => this.user = user);
+            if (order.userId) {
+                this.userService.get(order.userId)
+                    .pipe(take(1))
+                    .subscribe(user => this.user = user);
+            } else {
+                this.user = {
+                    fullname: 'Anonymous',
+                    email: 'none',
+                    phone: order.userPhone,
+                    role: 'user',
+                };
+            }
         }
         this.products = [];
         this.cost = 0;

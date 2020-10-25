@@ -9,16 +9,20 @@
 
 .g-content-container {
     display: grid;
+    grid-template-rows: 80px auto;
     grid-template-columns: 1.5fr 2fr 1fr;
     align-items: center;
+    grid-template-areas: "title title"
+        "catalog selected";
 }
 
 .catalog {
+    grid-area: catalog;
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 630px;
+    height: 100%;
 }
 
 .catalog__inner {
@@ -27,6 +31,7 @@
     grid-auto-rows: min-content;
     width: 100%;
     height: 100%;
+    padding-top: 2em;
     overflow-y: auto;
     box-sizing: border-box;
 }
@@ -70,10 +75,12 @@
 }
 
 .selected {
+    grid-area: selected;
     position: relative;
     display: flex;
     flex-direction: column;
     gap: 2em;
+    height: 100%;
     max-width: 600px;
     padding: 0 3em;
 }

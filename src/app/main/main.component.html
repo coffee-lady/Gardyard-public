@@ -1,3 +1,8 @@
 <app-navbar></app-navbar>
-<router-outlet></router-outlet>
+<div [hidden]="loading">
+    <router-outlet></router-outlet>
+</div>
 <app-alert></app-alert>
+<div class="g-content-container container">
+    <app-loader *ngIf="loading"></app-loader>
+</div>

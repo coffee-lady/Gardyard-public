@@ -1,10 +1,10 @@
+import { utf8Encode } from '@angular/compiler/src/util';
 import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
-import { LoaderService } from 'src/app/loader/loader.service';
+import { take, takeUntil } from 'rxjs/operators';
 import { Plant } from 'src/app/shared/interfaces';
-import { CartDragDropService, ProductsService } from 'src/app/shared/services';
+import { AuthService, CartDragDropService, ProductsService, RecentlyViewedService } from 'src/app/shared/services';
 import { AlertService } from 'src/app/_alert';
 
 @Component({
@@ -15,9 +15,10 @@ import { AlertService } from 'src/app/_alert';
 export class CatalogComponent implements OnInit, AfterViewInit, OnDestroy {
     private unsubscribe$ = new Subject();
 
-    loading = true;
     products: Plant[] = [];
     searchString = '';
+    recentlyViewed: string[];
+    userId = 'anonymous';
 
     @ViewChild('cart')
     cartElem: ElementRef;
@@ -27,23 +28,25 @@ export class CatalogComponent implements OnInit, AfterViewInit, OnDestroy {
 
     constructor(private productsService: ProductsService,
         private alertService: AlertService,
-        private loaderService: LoaderService,
+        private authService: AuthService,
         private router: Router,
         private dragDrop: CartDragDropService) {}
 
     ngOnInit(): void {
+        this.authService.getUser()
+            .pipe(take(1))
+            .subscribe(user => {
+                if (user) {
+                    this.userId = user._id;
+                }
+            });
+
         this.productsService.getAll()
+            .pipe(take(1))
             .subscribe((products: Plant[]) => {
                 this.products = products;
             }, () => {
                 this.alertService.fire('Error', 'Something went wrong.', false);
-            });
-
-        this.loaderService
-            .httpProgress()
-            .pipe(takeUntil(this.unsubscribe$))
-            .subscribe((status: boolean) => {
-                this.loading = status;
             });
     }
 
@@ -54,11 +57,13 @@ export class CatalogComponent implements OnInit, AfterViewInit, OnDestroy {
         for (const item of this.catalogItems) {
             this.dragDrop.makeDraggable(item);
         }
-        this.catalogItems.changes.subscribe((items: ElementRef[]) => {
-            for (const item of items) {
-                this.dragDrop.makeDraggable(item);
-            }
-        });
+        this.catalogItems.changes
+            .pipe(take(1))
+            .subscribe((items: ElementRef[]) => {
+                for (const item of items) {
+                    this.dragDrop.makeDraggable(item);
+                }
+            });
     }
 
     ngOnDestroy(): void {

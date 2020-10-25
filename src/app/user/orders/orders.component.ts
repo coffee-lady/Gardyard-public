@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { mergeMap, take, takeUntil } from 'rxjs/operators';
-import { LoaderService } from 'src/app/loader/loader.service';
 import { User, Order, Product } from 'src/app/shared/interfaces';
 import { OrdersService, AuthService, ProductsService } from 'src/app/shared/services';
 import { AlertService } from 'src/app/_alert';
@@ -19,13 +18,11 @@ export class OrdersComponent implements OnInit, OnDestroy {
     private unsubscribe$ = new Subject();
 
     constructor(private alertService: AlertService,
-        private loaderService: LoaderService,
         private ordersService: OrdersService,
         private productsService: ProductsService,
         private auth: AuthService) {}
 
     user: User;
-    loading = true;
     orders: Order[] = [];
     products: _Product[] = [];
     allProducts: Product[] = [];
@@ -43,13 +40,6 @@ export class OrdersComponent implements OnInit, OnDestroy {
                 this.orders = orders;
             }, () => {
                 this.alertService.fire('Error', 'Something went wrong.', false);
-            });
-
-        this.loaderService
-            .httpProgress()
-            .pipe(takeUntil(this.unsubscribe$))
-            .subscribe((status: boolean) => {
-                this.loading = status;
             });
 
         this.productsService

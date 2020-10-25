@@ -25,7 +25,7 @@ export class CartDragDropService extends DragAndDrop {
                     id: this.id,
                     count: 1,
                 };
-                this.cart.set(user._id, data);
+                this.cart.set((user && user._id ? user._id : 'anonymous'), data);
             });
     }
 

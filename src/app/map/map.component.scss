@@ -6,3 +6,10 @@
         width: 100vw;
     }
 }
+
+#marker {
+    background-image: url('/assets/map_pin.svg');
+    background-size: cover;
+    width: 30px;
+    height: 30px;
+}
