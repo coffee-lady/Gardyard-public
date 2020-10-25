@@ -1,5 +1,10 @@
 @import '../../assets/styles/style.scss';
 
+.container {
+    display: flex;
+    align-items: center;
+}
+
 .logo {
     display: flex;
     justify-content: center;

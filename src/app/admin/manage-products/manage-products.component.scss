@@ -10,7 +10,7 @@
 
 .g-content-container {
     display: grid;
-    grid-template-rows: 136px auto;
+    grid-template-rows: auto auto;
     grid-template-columns: auto 4fr 5fr;
     grid-template-areas:
         "title search catalog"
@@ -25,6 +25,7 @@
 
 .search {
     @extend %search;
+    align-items: flex-start;
 }
 
 .edit {

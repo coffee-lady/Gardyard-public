@@ -22,6 +22,16 @@
     margin-bottom: 22.4px;
 }
 
+.logo_simple {
+    display: none;
+    padding: 0 84px;
+    font-family: $fontfamily--logo;
+    font-size: $fontsize--logo_mobile;
+    text-align: center;
+    letter-spacing: 0.4em;
+    box-sizing: border-box;
+}
+
 form {
     display: flex;
     flex-direction: column;
@@ -112,6 +122,13 @@ hr {
 @media (max-width: $size--width_laptop) {}
 
 @media (max-width: $size--width_mobile) {
+    app-logo {
+        display: none;
+    }
+
+    .logo_simple {
+        display: block;
+    }
 
     .container {
         height: fit-content;

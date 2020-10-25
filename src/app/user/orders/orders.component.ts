@@ -76,6 +76,8 @@ export class OrdersComponent implements OnInit, OnDestroy {
             x.rates.push(num);
             this.productsService.update(x._id, x).subscribe();
         }
+        this.selected.state = 3;
+        this.ordersService.update(this.selected._id, this.selected).subscribe();
     }
 
     ngOnDestroy(): void {

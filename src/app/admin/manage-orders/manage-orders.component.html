@@ -5,7 +5,7 @@
     <section class="catalog g-block" *ngIf="orders.length">
         <div class="catalog__inner">
             <div class="catalog__item"
-                 *ngFor="let item of orders | filterOrders: filterState | filterByCity: filterGeo"
+                 *ngFor="let item of orders.reverse() | filterOrders: filterState | filterByCity: filterGeo"
                  (click)="select(item)">
                 <img class="item__triangle" src="/assets/images/manage-products__triangle.png">
                 <span class="item__text">Order №{{ item.No }}</span>
@@ -61,10 +61,10 @@
                 </div>
             </div>
             <div class="selected__buttons">
-                <button [disabled]="selected.state == 3" type="button" (click)="setState(3)">
+                <button [disabled]="selected.state == 3" type="button" (click)="setState(2)">
                     <img src="/assets/images/orders__set-closed.png">
                 </button>
-                <button [disabled]="selected.state == 1" type="button" (click)="setState(1)">
+                <button [disabled]="selected.state == 1 || selected.state == 3" type="button" (click)="setState(1)">
                     <img src="/assets/images/orders__set-sent.png">
                 </button>
             </div>

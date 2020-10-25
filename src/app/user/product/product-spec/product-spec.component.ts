@@ -17,6 +17,7 @@ export class ProductSpecComponent implements OnInit, OnDestroy {
 
     product: Plant;
     averageRate = 0;
+    userId = 'anonymous';
 
     constructor(private cart: CartService,
         private alert: AlertService,
@@ -38,7 +39,10 @@ export class ProductSpecComponent implements OnInit, OnDestroy {
 
     addToCart(): void {
         this.authService.getUser().subscribe((user: User) => {
-            this.cart.set(user._id, { id: this.product._id, count: 1 });
+            if (user) {
+                this.userId = user._id;
+            }
+            this.cart.set(this.userId, { id: this.product._id, count: 1 });
             this.alert.fire('Success', 'The product was successfully added to the cart!', false);
         }, () => {
             this.alert.fire('Error', 'Something went wrong.', false);
