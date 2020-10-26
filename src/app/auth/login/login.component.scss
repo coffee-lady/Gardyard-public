@@ -1,7 +1,143 @@
+@import '../../../assets/styles/style.scss';
+
 .container {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-size: 100% 100%;
     background: url('/assets/images/sign in bg.jpg');
 }
 
+.header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: $color--on-base;
+}
+
+.icon {
+    margin-bottom: 22.4px;
+}
+
+.logo_simple {
+    display: none;
+    padding: 0 84px;
+    font-family: $fontfamily--logo;
+    font-size: $fontsize--logo_mobile;
+    text-align: center;
+    letter-spacing: 0.4em;
+    box-sizing: border-box;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 53px;
+    box-sizing: border-box;
+
+}
+
 .input-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     height: 139px;
+}
+
+.form__field {
+    width: 321px;
+    height: 45px;
+    padding: 0 18px;
+    box-sizing: border-box;
+    color: $color--on-base;
+    font-family: $fontfamily--sans-serif;
+    font-size: $fontsize--auth__input;
+    border: 2px solid $color--input__border;
+
+    &:focus {
+        border: 2px solid $color--primary;
+    }
+
+    @include placeholder($fontfamily--sans-serif, $fontsize--auth__input, 400);
+
+    &.ng-dirty.ng-invalid {
+        border-color: $color--invalid
+    }
+}
+
+.submit {
+    margin-top: 53px;
+    font-family: $fontfamily--condensed;
+    font-size: $fontsize--auth__button;
+    width: 321px;
+    height: 64px;
+    @include g-btn ($color--default, $color--primary);
+}
+
+.link {
+    position: relative;
+    margin-top: 20px;
+    padding: 8px 10px;
+    box-sizing: border-box;
+    @include g-link ($color--default);
+    @extend %underline;
+
+    a {
+        font-family: $fontfamily--condensed;
+        font-size: $fontsize--auth__link;
+    }
+}
+
+.back {
+    position: absolute;
+    top: 68px;
+    right: 68px;
+    padding: 1em;
+    box-sizing: border-box;
+    @include g-link ($color--default);
+    @extend %underline;
+
+    a {
+        font-family: $fontfamily--condensed;
+        font-size: $fontsize--auth__back;
+    }
+
+    a:hover &~hr {
+        opacity: 0;
+    }
+}
+
+hr {
+    margin: 0;
+    margin-top: 12px;
+    opacity: 1;
+    width: 100%;
+    transition: all 300ms ease;
+}
+
+@media (max-width: $size--width_mobile) {
+    app-logo {
+        display: none;
+    }
+
+    .logo_simple {
+        display: block;
+    }
+
+    .container {
+        height: fit-content;
+        gap: 2em;
+        background: none;
+    }
+
+    .back {
+        position: static;
+        border: none;
+    }
 }

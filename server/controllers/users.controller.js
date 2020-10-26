@@ -16,6 +16,7 @@ module.exports.exists = function(req, res) {
         .exec((err, user) => {
             if (err) return handleError(err, res);
 
+            delete user.hashedPassword;
             res.status(200).json(user);
         });
 };
@@ -35,6 +36,7 @@ module.exports.get = function(req, res) {
         .exec((err, user) => {
             if (err) return handleError(err, res);
 
+            delete user.hashedPassword;
             res.status(200).json(user);
         });
 };

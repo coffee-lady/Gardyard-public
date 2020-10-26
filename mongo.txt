@@ -1,1 +1,0 @@
-MONGO_URI=mongodb+srv://leitch:1627WpJSvn@cluster0.hdjmf.mongodb.net/GARDYARD?retryWrites=true&w=majority

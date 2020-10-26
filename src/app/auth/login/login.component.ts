@@ -9,7 +9,7 @@ import { take } from 'rxjs/operators';
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
-    styleUrls: ['./login.component.scss', '../../../assets/styles/auth.scss']
+    styleUrls: ['./login.component.scss']
 })
 export class LoginComponent implements OnInit {
 

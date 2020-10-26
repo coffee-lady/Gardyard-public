@@ -17,7 +17,7 @@ const app = express();
 
 app.use(logger('dev'));
 
-const distDir = '../../dist/GARDYARD';
+const distDir = '../../dist/front';
 app.use(express.static(path.join(__dirname, distDir)))
 app.use(/^((?!(api)).)*/, (req, res) => {
     res.sendFile(path.join(__dirname, distDir + '/index.html'));
@@ -28,7 +28,6 @@ app.use(express.urlencoded({
     extended: false
 }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(bodyParser.json({ limit: '500mb' }));
 app.use(bodyParser.urlencoded({ limit: '500mb', extended: true, parameterLimit: 50000 }));
