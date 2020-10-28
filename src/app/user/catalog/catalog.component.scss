@@ -15,6 +15,12 @@
         "picture edit catalog";
 }
 
+.container_empty {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .search {
     position: absolute;
     top: 160px;
