@@ -1,0 +1,226 @@
+@import '../../../assets/styles/style.scss';
+
+@include scrollbar($color--base, $color--default);
+
+.g-page-picture {
+    right: 0;
+    bottom: 0;
+}
+
+.g-content-container {
+    display: grid;
+    grid-template-columns: 2fr 2fr 1fr;
+    grid-auto-rows: min-content;
+    grid-template-areas: "title search search"". . .";
+    align-items: center;
+}
+
+.search {
+    @extend %search;
+    justify-content: flex-start;
+}
+
+app-page-title {
+    grid-area: title;
+}
+
+.catalog {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 577px;
+}
+
+.catalog__inner {
+    position: absolute;
+    top: 4em;
+    display: grid;
+    grid-auto-rows: min-content;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+.catalog_scroll {
+    @extend %scroll-box-shadow;
+}
+
+.catalog__item {
+    position: relative;
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 3fr 4fr 1fr;
+    grid-gap: 1em;
+    align-items: center;
+    padding: 1em 2em;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: $fontfamily--condensed;
+    font-size: $fontsize--orders__catalog;
+    transition: all 200ms linear;
+
+    &:hover {
+        cursor: pointer;
+        background: rgba(106, 120, 124, 0.1);
+
+        .item__triangle {
+            opacity: 1;
+        }
+    }
+}
+
+.line {
+    position: absolute;
+    border-left: 2px solid #393E46;
+    right: 0;
+    top: 0;
+    height: 100%;
+    border-radius: 10px;
+}
+
+.item__triangle {
+    position: absolute;
+    opacity: 0;
+    left: 0;
+    transition: all 200ms linear;
+}
+
+.item__circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    color: #ffffff;
+    font-size: $fontsize--users__catalog__circle;
+    border-radius: 1000px;
+}
+
+.item__circle_admin {
+    background: #737373;
+}
+
+.item__circle_manager {
+    background: #275750;
+}
+
+.selected_empty {
+    padding: 8em 1em 0;
+    height: 100%;
+    font-family: $fontfamily--condensed;
+    font-size: $fontsize--products__nothing-is-found;
+}
+
+.user {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+    margin-top: 4em;
+    gap: 2em;
+    padding: 0 4em;
+    color: $color--on-base;
+    transition: all 200ms ease-in;
+}
+
+.user__name {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    font-family: $fontfamily--condensed;
+    font-size: $fontsize--users__selected__name;
+}
+
+.user__text {
+    font-family: $fontfamily--sans-serif;
+    font-size: $fontsize--users__selected__text;
+}
+
+.user__role {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    font-size: $fontsize--users__selected__role;
+}
+
+.role__block {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.21);
+    border-radius: 3px;
+
+    button {
+        cursor: pointer;
+        padding: 0.5em;
+        text-align: center;
+        font-family: $fontfamily--sans-serif;
+        font-size: $fontsize--users__selected__role;
+
+        &:nth-child(1) {
+            border-radius: 3px 0px 0px 3px;
+        }
+
+        &:nth-child(3) {
+            border-radius: 0px 3px 3px 0px;
+        }
+    }
+}
+
+.user__role_active {
+    color: $color--base;
+    background: $color--default;
+}
+
+@media (max-width: $size--width_laptop) {
+    .g-page-picture {
+        display: none;
+    }
+
+    .g-content-container {
+        @include tablet_content-container;
+    }
+
+    .search {
+        margin: 2em 0;
+    }
+
+    .catalog {
+        height: fit-content;
+        width: 100vw;
+        order: 2;
+    }
+
+    .catalog__inner {
+        @include tablet_content-container;
+    }
+
+    .catalog__item {
+        padding: 1em;
+    }
+
+    .item__triangle {
+        display: none;
+    }
+
+    .line {
+        display: none;
+    }
+
+    .selected_empty {
+        padding: 1em;
+    }
+
+    .user {
+        position: static;
+        padding: 2em 1em;
+        margin: 0;
+        order: 1;
+    }
+}
+
+@media (max-width: $size--width_mobile) {
+    .g-content-container {
+        @include tablet_content-container;
+    }
+}

@@ -19,6 +19,7 @@ export class ProductsService {
     constructor(private http: HttpClient) {}
 
     create(data: DataType): Observable < EmptyFullRes > {
+        this.changed = true;
         return this.http.post < null > (this.apiRoute + 'new', data, { observe: 'response' });
     }
 

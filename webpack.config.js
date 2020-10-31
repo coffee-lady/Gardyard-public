@@ -13,5 +13,8 @@ module.exports = {
             { test: /\.txt$/, use: 'raw-loader' }
         ]
     },
+    node: {
+        __dirname: false
+    },
     externals: [nodeExternals()],
 };

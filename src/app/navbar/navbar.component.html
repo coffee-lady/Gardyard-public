@@ -10,6 +10,7 @@
             <app-nav-link href="admin/orders" text="ORDERS"></app-nav-link>
             <app-nav-link href="admin/edit-help" text="HELP (E.)"></app-nav-link>
             <app-nav-link href="admin/edit-contacts" text="CONTACTS (E.)"></app-nav-link>
+            <app-nav-link href="admin/users" text="USERS (E.)"></app-nav-link>
             <app-nav-link class="user_tablet" href="orders" text="MY ORDERS"></app-nav-link>
             <app-nav-link class="user_tablet" href="admin/edit-contacts" (click)="logout()" text="SIGN OUT"></app-nav-link>
         </div>
@@ -27,7 +28,7 @@
             </div>
             <div class="g-block user__dropdown"
                  [@appearDisappear]="dropdownMenuState ? 'active' : 'inactive'">
-                <a class="user__dropdown__link" routerLink="orders">My Orders</a>
+                <a class="user__dropdown__link" routerLink="help">Help</a>
                 <a class="user__dropdown__link" (click)="logout()">Sign Out</a>
             </div>
         </div>
@@ -39,7 +40,7 @@
 <ng-template #userTemplate>
     <div class="list">
         <app-nav-link href="catalog" text="CATALOG"></app-nav-link>
-        <app-nav-link href="help" text="HELP"></app-nav-link>
+        <app-nav-link href="orders" text="ORDERS"></app-nav-link>
         <app-nav-link href="cart" text="MY CART"></app-nav-link>
         <app-nav-link href="contacts" text="CONTACTS"></app-nav-link>
 

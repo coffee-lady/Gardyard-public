@@ -3,8 +3,9 @@
     "version": "0.0.0",
     "scripts": {
         "ng": "ng",
-        "start": "concurrently -c \"yellow.bold,green.bold\" -n \"SERVER,BUILD\" \"nodemon server\" \"ng build --watch\"",
-        "build": "ng build --prod",
+        "start": "concurrently -c \"yellow.bold,green.bold\" -n \"SERVER,BUILD\" \"nodemon dist/server\" ",
+        "startDev": "concurrently -c \"yellow.bold,green.bold\" -n \"SERVER,BUILD\" \"nodemon server\" \"ng build --watch\"",
+        "build": "ng build --aot --prod --output-hashing none && webpack --config webpack.config.js",
         "test": "ng test",
         "lint": "ng lint",
         "e2e": "ng e2e"
@@ -20,6 +21,7 @@
         "@angular/platform-browser-dynamic": "~10.0.14",
         "@angular/router": "~10.0.14",
         "@tomtom-international/web-sdk-maps": "^5.64.0",
+        "angular-http-server": "^1.9.0",
         "bcrypt": "^5.0.0",
         "concurrently": "^5.3.0",
         "cookie-parser": "^1.4.5",
@@ -29,6 +31,7 @@
         "express-async-handler": "^1.1.4",
         "helmet": "^4.1.1",
         "html-webpack-plugin": "^4.5.0",
+        "http-server": "^0.12.3",
         "joi": "^17.2.1",
         "jquery": "^3.5.1",
         "json-stream-stringify": "^2.0.3",

@@ -19,6 +19,7 @@ export class QuestionsService {
     constructor(private http: HttpClient) {}
 
     create(data: DataType): Observable < EmptyFullRes > {
+        this.changed = true;
         return this.http.post < null > (this.apiRoute + 'new', data, { observe: 'response' });
     }
 
@@ -32,7 +33,6 @@ export class QuestionsService {
 
     update(id: string, data: DataType): Observable < EmptyFullRes > {
         this.changed = true;
-
         return this.http.put < null > (this.apiRoute + id, data, { observe: 'response' });
     }
 

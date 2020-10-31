@@ -12,6 +12,9 @@ router.get('/me', passport.authenticate('jwt', { session: false }), login);
 module.exports = router;
 
 async function register(req, res, next) {
+    if (!req.body) {
+        return res.status(400).json({ message: 'Bad Request.' });
+    }
     let user = await authCtrl.register(req.body);
     delete user.hashedPassword;
     req.user = user;

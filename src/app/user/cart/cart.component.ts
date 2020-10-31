@@ -108,6 +108,9 @@ export class CartComponent implements OnInit, OnDestroy {
                 this.products$.next();
                 if (this.user && this.user.city) {
                     this.selectedCity = this.contacts.find(item => item._id === this.user.city);
+                    if (!this.selectCity) {
+                        this.selectedCity = contacts[0];
+                    }
                 }
                 if (this.user && this.user.phone) {
                     this.moduleForm.patchValue({ phone: this.user.phone });

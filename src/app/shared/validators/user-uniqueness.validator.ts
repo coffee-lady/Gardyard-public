@@ -14,17 +14,16 @@ export class UserValidator {
     validate(
         control: AbstractControl
     ): Observable < ValidationErrors | null > {
-        if (control.invalid) { return null; }
-
+        if (control.invalid || !control.value) { return null; }
         return timer(500).pipe(
             switchMap(() => {
                 return this.userService
                     .checkUserUniqueness(control.value)
                     .pipe(
-                        map((user: User) =>
-                            user ? { userExists: 'User already exists.' } :
-                            null
-                        ),
+                        map((user: User) => {
+                            return user ? { userExists: 'User already exists.' } :
+                                null;
+                        }),
                         catchError(() => of ({ availability: true })));
             }));
     }

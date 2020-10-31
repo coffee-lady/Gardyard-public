@@ -18,10 +18,9 @@ const app = express();
 app.use(logger('dev'));
 
 const distDir = '../../dist/front';
-app.use(express.static(path.join(__dirname, distDir)))
-app.use(/^((?!(api)).)*/, (req, res) => {
-    res.sendFile(path.join(__dirname, distDir + '/index.html'));
-});
+
+app.use(express.static(path.join(__dirname, distDir)));
+
 
 app.use(express.json({ limit: '500mb' }));
 app.use(express.urlencoded({
@@ -40,8 +39,11 @@ app.use(cors());
 
 app.use(passport.initialize());
 
-app.use('/api/', routes);
-
+app.use('/api', routes);
+app.use('*', (req, res) => {
+    res.sendFile(path.join(__dirname, distDir + '/index.html'));
+    res.setHeader('Content-Security-Policy', "default-src 'self' data: blob: https://*.googleapis.com https://*.gstatic.com https://*.tomtom.com 'unsafe-inline';")
+});
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

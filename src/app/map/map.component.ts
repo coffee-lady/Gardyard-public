@@ -24,13 +24,7 @@ export class MapComponent implements OnInit, OnChanges, AfterViewInit {
     constructor(private contactsService: ContactsService) {}
 
     ngOnInit(): void {
-        this.map = tt.map({
-            key: 'RhLL7hssA5Ku2uziA9KuddClqHQHWrGL',
-            container: 'gMap',
-            style: '/assets/map.json',
-            center: new tt.LngLat(this.coords[0], this.coords[1]),
-            zoom: 12
-        });
+        this.setMap();
 
         this.contactsService.getAll()
             .pipe(take(1))
@@ -56,6 +50,16 @@ export class MapComponent implements OnInit, OnChanges, AfterViewInit {
         }
     }
 
+    setMap(): void {
+        this.map = tt.map({
+            key: 'RhLL7hssA5Ku2uziA9KuddClqHQHWrGL',
+            container: 'gMap',
+            style: '/assets/map.json',
+            center: new tt.LngLat(this.coords[0], this.coords[1]),
+            zoom: 15
+        });
+    }
+
     ngAfterViewInit(): void {
         if (document.documentElement.clientWidth > 1265) {
             this.MapElement.nativeElement.style.width = this.width;
@@ -64,13 +68,7 @@ export class MapComponent implements OnInit, OnChanges, AfterViewInit {
     }
 
     ngOnChanges(): void {
-        this.map = tt.map({
-            key: 'RhLL7hssA5Ku2uziA9KuddClqHQHWrGL',
-            container: 'gMap',
-            style: '/assets/map.json',
-            center: new tt.LngLat(this.coords[0], this.coords[1]),
-            zoom: 12
-        });
+        this.setMap();
         this.setPins();
     }
 }

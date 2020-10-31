@@ -52,6 +52,8 @@ import { MapComponent } from './map/map.component';
 import { HamburgerIconComponent } from './hamburger-icon/hamburger-icon.component';
 import { FilterByCityPipe } from './shared/pipes/filter-by-city.pipe';
 import { SortByRecentlyViewedPipe } from './shared/pipes/sort-by-recently-viewed.pipe';
+import { ManageUsersComponent } from './admin/manage-users/manage-users.component';
+import { FilterUsersPipe } from './shared/pipes/filter-users.pipe';
 
 @NgModule({
     declarations: [
@@ -92,6 +94,8 @@ import { SortByRecentlyViewedPipe } from './shared/pipes/sort-by-recently-viewed
         HamburgerIconComponent,
         FilterByCityPipe,
         SortByRecentlyViewedPipe,
+        ManageUsersComponent,
+        FilterUsersPipe,
     ],
     imports: [
         BrowserModule,

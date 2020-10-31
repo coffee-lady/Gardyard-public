@@ -1,7 +1,7 @@
 <div class="g-content-container">
     <div class="list" *ngIf="contacts.length">
         <div class="list__title">List of cities</div>
-        <div class="list__item" @disappear *ngFor="let item of contacts" (click)="select(item); setActive($event)">
+        <div class="list__item" *ngFor="let item of contacts" (click)="select(item); setActive($event)">
             <img src="/assets/images/edit-contacts__polygon.png">
             {{ item.title }} |
             <a class="item__remove" (click)="remove(item._id)">remove</a>

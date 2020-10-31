@@ -26,6 +26,7 @@ import { EditHelpComponent } from './admin/edit-help/edit-help.component';
 import { EditContactsComponent } from './admin/edit-contacts/edit-contacts.component';
 import { EditProductComponent } from './admin/edit-product/edit-product.component';
 import { OrdersComponent } from './user/orders/orders.component';
+import { ManageUsersComponent } from './admin/manage-users/manage-users.component';
 
 const routes: Routes = [{
         path: 'auth',
@@ -69,9 +70,10 @@ const routes: Routes = [{
                     { path: 'orders', component: ManageOrdersComponent, pathMatch: 'full' },
                     { path: 'edit-help', component: EditHelpComponent, canActivate: [AdminGuard], pathMatch: 'full' },
                     { path: 'edit-contacts', component: EditContactsComponent, canActivate: [AdminGuard], pathMatch: 'full' },
+                    { path: 'users', component: ManageUsersComponent, canActivate: [AdminGuard], pathMatch: 'full' },
                 ]
             },
-            { path: '', redirectTo: 'help', pathMatch: 'full' },
+            { path: '', redirectTo: 'catalog', pathMatch: 'full' },
         ]
     },
     { path: '**', redirectTo: '' }

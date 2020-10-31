@@ -1,8 +1,7 @@
-import { utf8Encode } from '@angular/compiler/src/util';
 import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
-import { take, takeUntil } from 'rxjs/operators';
+import { take } from 'rxjs/operators';
 import { Plant } from 'src/app/shared/interfaces';
 import { AuthService, CartDragDropService, ProductsService, RecentlyViewedService } from 'src/app/shared/services';
 import { AlertService } from 'src/app/_alert';

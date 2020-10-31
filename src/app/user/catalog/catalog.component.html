@@ -1,8 +1,8 @@
-<div class="search">
-    <input #search class="g-field__input" [(ngModel)]="searchString" type="text" placeholder="Search products...">
-</div>
-
 <div class="g-content-container" [ngClass]="!products.length ? 'container_empty' : ''">
+    <div class="search">
+        <input #search class="g-field__input" [(ngModel)]="searchString" type="text" placeholder="Search products...">
+    </div>
+
     <app-not-found *ngIf="!products.length" title="Your cart is empty. Add something!"></app-not-found>
     <section class="catalog g-block"
              *ngIf="products.length">

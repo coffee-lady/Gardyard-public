@@ -33,7 +33,7 @@ export class EditHelpComponent implements OnInit, OnDestroy {
             .subscribe(() => {
                 this.questionsService
                     .getAll()
-                    .pipe(take(1))
+                    .pipe(takeUntil(this.unsubscribe$))
                     .subscribe((questions: Question[]) => {
                         this.questions = questions;
                     }, () => {
@@ -68,7 +68,7 @@ export class EditHelpComponent implements OnInit, OnDestroy {
 
         this.questionsService
             .create(this.form.value)
-            .pipe(take(1))
+            .pipe(takeUntil(this.unsubscribe$))
             .subscribe((res) => {
                     this.questions$.next();
                     this.alert.fire(

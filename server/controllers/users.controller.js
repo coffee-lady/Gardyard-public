@@ -1,4 +1,5 @@
 const User = require('../models/index.model');
+const JSONStreamStringify = require('json-stream-stringify');
 
 function handleError(err, res) {
     res.json({
@@ -8,6 +9,9 @@ function handleError(err, res) {
 }
 
 module.exports.exists = function(req, res) {
+    if (!req.body) {
+        return;
+    }
     const searchStr = req.body.searchString;
     User
         .findOne({
@@ -15,9 +19,8 @@ module.exports.exists = function(req, res) {
         })
         .exec((err, user) => {
             if (err) return handleError(err, res);
-
-            delete user.hashedPassword;
-            res.status(200).json(user);
+            if (user) { delete user.hashedPassword; }
+            res.json(user);
         });
 };
 
@@ -39,4 +42,14 @@ module.exports.get = function(req, res) {
             delete user.hashedPassword;
             res.status(200).json(user);
         });
+};
+
+module.exports.getAll = async function(req, res) {
+    const stream = new JSONStreamStringify(await User.find());
+    res.type('json');
+    stream.pipe(res);
+    stream.once('error', () => console.log('Error'));
+    stream.on('end', function() {
+        res.status(200).end();
+    });
 };

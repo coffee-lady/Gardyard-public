@@ -1,0 +1,47 @@
+<div class="g-content-container">
+    <div class="search">
+        <input #search class="g-field__input" [(ngModel)]="filter" type="text" placeholder="Search users...">
+    </div>
+    <app-page-title title="Users" left="222"></app-page-title>
+    <app-not-found *ngIf="!users.length"
+                   title="¯\_(ツ)_/¯"></app-not-found>
+    <section class="catalog g-block" *ngIf="users.length">
+        <div class="catalog__inner">
+            <div class="line"></div>
+            <div class="catalog__item"
+                 *ngFor="let user of users | filterUsers: filter"
+                 (click)="select(user)">
+                <img class="item__triangle" src="/assets/images/manage-products__triangle.png">
+                <span class="item__text">{{ user.fullname }}</span>
+                <span class="item__text">{{ user.email }}</span>
+                <span class="item__circle item__circle_manager" *ngIf="user.role == 'manager'">M</span>
+                <span class="item__circle item__circle_admin" *ngIf="user.role == 'admin'">A</span>
+            </div>
+        </div>
+    </section>
+    <section class="selected_empty" *ngIf="!selected && users.length">
+        Select an user<br>
+        to see more inormation
+    </section>
+    <section class="user" @appear *ngIf="selected">
+        <div class="user__name">
+            <img src="/assets/images/users__user-icon.png">
+            {{ selected.fullname }}
+        </div>
+        <div class="user__text">
+            email: {{ selected.email }}
+        </div>
+        <div class="user__text" *ngIf="selected.phone">
+            phone: +{{ selected.phone }}
+        </div>
+        <div class="user__text user__role">
+            <span>role:</span>
+            <div class="role__block">
+                <button [disabled]="selected.role === 'admin'" (click)="setRole('manager')" type="button" [ngClass]="selected.role == 'manager' ? 'user__role_active' : ''">manager</button>
+                <button [disabled]="selected.role === 'admin'" (click)="setRole('user')" type="button" [ngClass]="selected.role == 'user' ? 'user__role_active' : ''">user</button>
+                <button [disabled] type="button" [ngClass]="selected.role == 'admin' ? 'user__role_active' : ''">admin</button>
+            </div>
+        </div>
+    </section>
+    <img class="g-page-picture" src="/assets/images/users.png">
+</div>

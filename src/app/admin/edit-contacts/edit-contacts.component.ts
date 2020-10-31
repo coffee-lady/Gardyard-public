@@ -1,4 +1,3 @@
-import { trigger, transition, animate, keyframes, style } from '@angular/animations';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
@@ -10,25 +9,7 @@ import { AlertService } from 'src/app/_alert';
 @Component({
     selector: 'app-edit-contacts',
     templateUrl: './edit-contacts.component.html',
-    styleUrls: ['./edit-contacts.component.scss'],
-    animations: [
-        trigger('disappear', [
-            transition(':leave', [
-                animate('300ms ease-in', keyframes([
-                    style({
-                        opacity: 1,
-                        transform: 'translateX(0)',
-                        offset: 0
-                    }),
-                    style({
-                        opacity: 0,
-                        transform: 'translateX(100%)',
-                        offset: 1
-                    }),
-                ]))
-            ]),
-        ]),
-    ],
+    styleUrls: ['./edit-contacts.component.scss']
 })
 export class EditContactsComponent implements OnInit, OnDestroy {
     private unsubscribe$ = new Subject();
