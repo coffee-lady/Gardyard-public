@@ -32,3 +32,10 @@
     top: 0;
     right: 0;
 }
+
+@media (max-width: $size--width_laptop) {
+    .alert {
+        width: 100vw;
+        box-sizing: border-box;
+    }
+}

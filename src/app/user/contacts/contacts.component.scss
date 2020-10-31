@@ -4,7 +4,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    gap: 100px;
+    grid-gap: 100px;
     padding-left: 122px;
 }
 
@@ -16,7 +16,7 @@
 .side {
     display: flex;
     flex-direction: column;
-    gap: 50px;
+    grid-gap: 50px;
     align-self: flex-start;
     padding-top: 200px;
 }
@@ -38,6 +38,7 @@
 
     .map {
         order: 2;
+        width: 100vw;
     }
 
     .side {

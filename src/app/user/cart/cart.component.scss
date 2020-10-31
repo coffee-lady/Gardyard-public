@@ -101,7 +101,7 @@
     grid-template-columns: 1fr minmax(50px, 70px) 1fr;
     align-items: center;
     padding-right: 0.8em;
-    gap: 0.4em;
+    grid-gap: 0.4em;
 
     input {
         color: $color--base;
@@ -165,7 +165,7 @@
 .module {
     display: flex;
     flex-direction: column;
-    gap: 2em;
+    grid-gap: 2em;
     padding: 60px 65px 35px;
 }
 
@@ -183,7 +183,7 @@
 .module__table {
     display: flex;
     flex-direction: column;
-    gap: 2em;
+    grid-gap: 2em;
     justify-content: center;
     max-height: 310px;
     min-height: 300px;
@@ -220,20 +220,20 @@
 .module__location__side {
     display: flex;
     flex-direction: column;
-    gap: 1em;
+    grid-gap: 1em;
 }
 
 .module__checkbox {
     display: flex;
     align-items: center;
-    gap: 0.5em;
+    grid-gap: 0.5em;
     font-size: $fontsize--module__checkbox;
 }
 
 .module__form {
     display: flex;
     flex-direction: column;
-    gap: 43px;
+    grid-gap: 43px;
 }
 
 .module__confirm {
@@ -315,7 +315,7 @@
     .catalog__inner {
         @include tablet__block;
         grid-template-columns: repeat(2, 1fr);
-        gap: 1em;
+        grid-gap: 1em;
         padding: 0;
         box-sizing: border-box;
     }
@@ -370,7 +370,7 @@
 
     .catalog__inner {
         @include tablet_content-container;
-        gap: 1em;
+        grid-gap: 1em;
     }
 
     .summary {

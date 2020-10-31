@@ -33,7 +33,7 @@ router-outlet {
 
 .spec__nav {
     display: flex;
-    gap: 3em;
+    grid-gap: 3em;
     box-sizing: border-box;
 
     .link-active {
@@ -120,7 +120,7 @@ router-outlet {
 @media (max-width: $size--width_laptop) {
     .g-content-container {
         margin-top: 2em;
-        gap: 2em;
+        grid-gap: 2em;
         @include tablet_content-container;
     }
 
@@ -132,8 +132,8 @@ router-outlet {
 
     .spec__nav {
         flex-direction: column;
-        gap: 0.5em;
-        @include tablet__block;
+        grid-gap: 0.5em;
+        height: fit-content;
     }
 
     .picture {

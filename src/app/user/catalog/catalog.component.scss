@@ -101,7 +101,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 3em;
+    grid-gap: 3em;
     right: 0;
     bottom: 162px;
     width: 92px;
@@ -201,7 +201,7 @@
         display: flex;
         flex-direction: column;
         align-items: flex-start;
-        gap: 1em;
+        grid-gap: 1em;
         width: 100%;
         padding: 1em 0.7em;
         box-sizing: border-box;

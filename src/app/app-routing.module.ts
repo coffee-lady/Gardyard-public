@@ -42,7 +42,7 @@ const routes: Routes = [{
         children: [
             { path: 'help', component: HelpComponent, pathMatch: 'full' },
             { path: 'catalog', component: CatalogComponent, pathMatch: 'full' },
-            { path: 'orders', component: OrdersComponent, pathMatch: 'full' },
+            { path: 'orders', component: OrdersComponent, canActivate: [AuthGuard], pathMatch: 'full' },
             { path: 'contacts', component: ContactsComponent, pathMatch: 'full' },
             { path: 'cart', component: CartComponent, pathMatch: 'full' },
             {

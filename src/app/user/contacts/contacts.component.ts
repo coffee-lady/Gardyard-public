@@ -14,7 +14,11 @@ export class ContactsComponent implements OnInit, OnDestroy {
     private unsubscribe$ = new Subject();
     private contacts$ = new Subject();
 
-    selected: Contacts = null;
+    selected: Contacts = {
+        longitude: 2.349095,
+        latitude: 48.855250,
+        title: ''
+    };
     contacts: Contacts[] = [];
 
     constructor(private contactsService: ContactsService,

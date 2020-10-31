@@ -14,13 +14,13 @@
 .spec {
     display: flex;
     flex-direction: column;
-    gap: 3em;
+    grid-gap: 3em;
     height: 100%;
 }
 
 .reviews {
     display: flex;
-    gap: 18px;
+    grid-gap: 18px;
     color: #CACACA;
     font-size: $fontsize--product__spec__reviews;
     font-family: $fontfamily--condensed;
@@ -29,7 +29,7 @@
 .params {
     display: flex;
     flex-direction: column;
-    gap: 1em;
+    grid-gap: 1em;
     color: $color--base;
     font-size: $fontsize--product__spec__params;
     font-family: $fontfamily--condensed;
@@ -45,7 +45,7 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    gap: 1.5em;
+    grid-gap: 1.5em;
     color: $color--default;
     font-size: $fontsize--product__spec__qualities;
     font-family: $fontfamily--condensed;
@@ -54,7 +54,7 @@
 .advantages__item {
     display: flex;
     align-items: center;
-    gap: 0.7em;
+    grid-gap: 0.7em;
 
     span {
         padding: 0.5em;
@@ -71,7 +71,7 @@
 
 @media (max-width: $size--width_laptop) {
     .container {
-        gap: 3em;
+        grid-gap: 3em;
         align-items: flex-start;
         @include tablet_content-container;
     }

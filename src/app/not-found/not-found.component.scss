@@ -3,7 +3,7 @@
 .not-found {
     display: flex;
     flex-direction: column;
-    gap: 0.6em;
+    grid-gap: 0.6em;
     padding: 3em;
     font-family: $fontfamily--condensed;
     font-size: $fontsize--products__nothing-is-found;
@@ -63,6 +63,7 @@
 @media (max-width: $size--width_laptop) {
     .not-found {
         @include tablet__block;
+        padding: 1em;
     }
 
     app-loader {

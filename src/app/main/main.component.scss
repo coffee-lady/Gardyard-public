@@ -12,3 +12,15 @@ app-alert {
     align-items: center;
     justify-content: center;
 }
+
+@media (max-width: $size--width_laptop) {
+    .container {
+        height: 100vh;
+    }
+
+    app-alert {
+        position: static;
+        right: 0;
+        bottom: 0;
+    }
+}
