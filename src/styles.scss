@@ -37,6 +37,12 @@ body {
     }
 }
 
+@media (max-height: 581px) {
+    body {
+        overflow: auto;
+    }
+}
+
 ol, ul {
     list-style: none;
 }

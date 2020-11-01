@@ -17,7 +17,7 @@
     box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
 }
 
-@media (max-width: $size--width_laptop) {
+@media (max-width: $size--width_min-desktop) {
     .g-page-picture {
         display: none;
     }

@@ -68,7 +68,7 @@ export class NavbarComponent implements OnInit {
             .subscribe((user: User | null) => {
                 this.user = user;
             });
-        if (document.documentElement.clientWidth <= 1024) {
+        if (document.documentElement.clientWidth <= 1306) {
             this.dropdownMenuState = true;
             this.hamHidden = false;
         }

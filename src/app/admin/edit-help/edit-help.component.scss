@@ -6,6 +6,7 @@
     grid-template-columns: auto 1fr;
     grid-template-areas: "title title"
         "questions box";
+    margin-top: 1em;
 }
 
 .questions {
@@ -144,6 +145,17 @@
     height: 46px;
     font-size: $fontsize--button;
     @include g-btn($color--primary, $color--secondary);
+}
+
+@media (max-width: $size--width_min-desktop) {
+    .g-content-container {
+        grid-template-columns: max-content 1fr;
+        grid-gap: 1em;
+    }
+
+    .box {
+        position: static;
+    }
 }
 
 @media (max-width: $size--width_laptop) {

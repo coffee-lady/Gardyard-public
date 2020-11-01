@@ -67,7 +67,7 @@ export class ManageOrdersComponent implements OnInit, OnDestroy {
         this.ordersService.getAll()
             .pipe(takeUntil(this.unsubscribe$))
             .subscribe((orders) => {
-                this.orders = orders;
+                this.orders = orders.reverse();
             }, () => {
                 this.alertService.fire('Error', 'Something went wrong.', false);
             });

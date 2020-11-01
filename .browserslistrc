@@ -8,11 +8,30 @@
 # You can see what browsers were selected by your queries by running:
 #   npx browserslist
 
-last 35 Chrome version
-last 35 Firefox version
-last 35 Edge major versions
-last 35 Safari major versions
-last 35 iOS major versions
+last 30 Chrome major version
+last 30 Firefox major version
+last 30 Edge major versions
+last 30 Safari major versions
+
+last 30 android major versions
+last 30 and_qq major versions
+last 30 and_uc major versions
+last 30 and_chr major versions
+
+last 30 iOS major versions
+
+last 30 bb major versions
+last 30 Baidu major versions
+last 30 Electron major versions
+
+last 30 op_mini major versions
+last 30 op_mob major versions
+
+last 30 Samsung major versions
+
+last 30 kaios major versions
+
 Firefox ESR
-IE 9-10 # Angular support for IE 9-10 has been deprecated and will be removed as of Angular v11. To opt-in, remove the 'not' prefix on this line.
-IE 11 # Angular supports IE 11 only as an opt-in. To opt-in, remove the 'not' prefix on this line.
+last 30 ie_mob major versions
+IE 9-10
+IE 11

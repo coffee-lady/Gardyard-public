@@ -1,5 +1,9 @@
 @import '../../../assets/styles/style.scss';
 
+.g-content-container {
+    margin-top: 2em;
+}
+
 .blocks {
     display: grid;
     grid-template-columns: 1fr 142px 1fr 402px;
@@ -40,7 +44,7 @@
 .buttons {
     display: flex;
     align-items: center;
-    grid-gap: 2em;
+    gap: 2em;
     margin-top: 58px;
 
     button {
@@ -80,6 +84,21 @@
     bottom: 0;
 }
 
+@media (max-width: $size--width_min-desktop) {
+    .blocks {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: "spec descr";
+    }
+
+    .block_spec {
+        overflow: auto;
+        max-width: 100%;
+        width: 100%;
+        padding: 2em 1em;
+        box-sizing: border-box;
+    }
+}
+
 @media (max-width: $size--width_laptop) {
     .blocks {
         @include tablet_content-container;
@@ -100,13 +119,19 @@
 
     .care {
         margin-top: 2em;
-        grid-gap: 2em;
+        gap: 2em;
         width: 100vw;
         height: fit-content;
     }
 
     .description {
         margin-top: 2em;
+    }
+
+    .block_description {
+        .g-field {
+            display: flex;
+        }
     }
 
     .care__title {
@@ -154,7 +179,7 @@
         flex-direction: column;
         align-items: flex-start;
         justify-content: flex-start;
-        grid-gap: 1em;
+        gap: 1em;
         width: 100%;
         padding: 1em 0.5em;
         box-sizing: border-box;

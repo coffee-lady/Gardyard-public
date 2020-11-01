@@ -48,7 +48,7 @@
     display: grid;
     grid-template-rows: 1fr;
     grid-template-columns: 5fr 4fr 1fr;
-    grid-gap: 1em;
+    gap: 1em;
     align-items: center;
     padding: 1em 2em;
     width: 100%;
@@ -86,7 +86,7 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    grid-gap: 2em;
+    gap: 2em;
     height: 100%;
     max-width: 600px;
     padding: 0 3em;
@@ -106,7 +106,7 @@
 .selected__state {
     display: flex;
     align-items: center;
-    grid-gap: 0.5em;
+    gap: 0.5em;
     font-family: $fontfamily--default;
     font-size: $fontsize--orders__state;
     color: $color--default;
@@ -139,7 +139,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    grid-gap: 2em;
+    gap: 2em;
     width: 523px;
     height: 318px;
     padding: 2em;
@@ -153,7 +153,7 @@
 .selected__table__body {
     display: flex;
     flex-direction: column;
-    grid-gap: 2em;
+    gap: 2em;
 }
 
 .selected__table__footer {

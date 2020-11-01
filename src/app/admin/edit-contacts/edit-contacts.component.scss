@@ -16,7 +16,7 @@
 .list {
     display: flex;
     flex-direction: column;
-    grid-gap: 1em;
+    gap: 1em;
     padding: 1em 0.5em;
     width: 400px;
     height: 420px;
@@ -29,7 +29,7 @@
 .list__item {
     display: flex;
     align-items: center;
-    grid-gap: 0.5em;
+    gap: 0.5em;
     font-size: $fontsize--contacts__text;
     cursor: pointer;
 
@@ -50,7 +50,7 @@
 .form {
     display: flex;
     flex-direction: column;
-    grid-gap: 2em;
+    gap: 2em;
     width: 356px;
     padding: 0 7em 0 3em;
 }
@@ -91,6 +91,12 @@
     height: 40px;
     font-size: $fontsize--button;
     @include g-btn(#8EBAC6, $color--secondary)
+}
+
+@media (max-width: $size--width_min-desktop) {
+    .g-content-container {
+        padding: 0 3em;
+    }
 }
 
 @media (max-width: $size--width_laptop) {
@@ -151,6 +157,6 @@
     }
 
     .field {
-        grid-gap: 1em;
+        gap: 1em;
     }
 }

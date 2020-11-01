@@ -3,7 +3,6 @@
 @include scrollbar($color--base, $color--default);
 
 .g-page-picture {
-    grid-area: picture;
     right: 0;
     bottom: 62px;
 }
@@ -11,17 +10,18 @@
 .g-content-container {
     display: flex;
     align-items: center;
+    gap: 5em;
+    padding: 0 3em;
+    overflow: auto;
 }
 
 .spec {
-    position: absolute;
     display: grid;
     grid-template-rows: auto 50px 1fr;
-    grid-gap: 2em;
-    width: 959px;
+    gap: 2em;
+    max-width: 959px;
+    width: 100%;
     height: 592px;
-    right: 280px;
-    bottom: 103px;
     padding: 3em;
     box-sizing: border-box;
     background: $color--default;
@@ -33,7 +33,7 @@ router-outlet {
 
 .spec__nav {
     display: flex;
-    grid-gap: 3em;
+    gap: 3em;
     box-sizing: border-box;
 
     .link-active {
@@ -71,11 +71,9 @@ router-outlet {
 }
 
 .picture {
-    position: absolute;
     display: flex;
     flex-direction: column;
     width: 470px;
-    left: 64px;
 }
 
 .picture__top {
@@ -116,11 +114,28 @@ router-outlet {
     }
 }
 
+@media (max-width: $size--width_min-desktop) {
+    .g-content-container {
+        justify-content: center;
+        gap: 2em;
+        padding: 0 2em;
+    }
+
+    .picture {
+        position: static;
+    }
+
+    .spec {
+        position: static;
+        width: 100%;
+        box-sizing: border-box;
+    }
+}
 
 @media (max-width: $size--width_laptop) {
     .g-content-container {
         margin-top: 2em;
-        grid-gap: 2em;
+        gap: 2em;
         @include tablet_content-container;
     }
 
@@ -132,11 +147,11 @@ router-outlet {
 
     .spec__nav {
         flex-direction: column;
-        grid-gap: 0.5em;
+        gap: 0.5em;
         height: fit-content;
     }
 
     .picture {
-        @include tablet__block;
+        align-self: flex-start;
     }
 }

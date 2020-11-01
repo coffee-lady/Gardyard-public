@@ -4,7 +4,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    grid-gap: 100px;
+    gap: 100px;
     padding-left: 122px;
 }
 
@@ -16,7 +16,7 @@
 .side {
     display: flex;
     flex-direction: column;
-    grid-gap: 50px;
+    gap: 50px;
     align-self: flex-start;
     padding-top: 200px;
 }
@@ -24,6 +24,12 @@
 .title {
     font-family: $fontfamily--round;
     font-size: $fontsize--contacts__title_big;
+}
+
+@media (max-width: $size--width_min-desktop) {
+    .g-content-container {
+        padding: 0 2em;
+    }
 }
 
 @media (max-width: $size--width_laptop) {

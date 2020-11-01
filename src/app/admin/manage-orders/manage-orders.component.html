@@ -5,7 +5,7 @@
     <section class="catalog g-block" *ngIf="orders.length">
         <div class="catalog__inner">
             <div class="catalog__item"
-                 *ngFor="let item of orders.reverse() | filterOrders: filterState | filterByCity: filterGeo"
+                 *ngFor="let item of orders | filterOrders: filterState | filterByCity: filterGeo"
                  (click)="select(item)">
                 <img class="item__triangle" src="/assets/images/manage-products__triangle.png">
                 <span class="item__text">Order №{{ item.No }}</span>

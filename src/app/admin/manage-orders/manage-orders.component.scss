@@ -42,7 +42,7 @@ app-page-title {
     display: grid;
     grid-template-rows: 1fr;
     grid-template-columns: 5fr 4fr 1fr;
-    grid-gap: 1em;
+    gap: 1em;
     align-items: center;
     padding: 1em 2em;
     width: 100%;
@@ -78,7 +78,7 @@ app-page-title {
 .selected {
     display: flex;
     flex-direction: column;
-    grid-gap: 2em;
+    gap: 2em;
     padding: 0 4em;
     transition: all 200ms ease-in;
 }
@@ -87,21 +87,21 @@ app-page-title {
     position: relative;
     display: flex;
     flex-direction: column;
-    grid-gap: 1em;
+    gap: 1em;
     width: 600px;
 }
 
 .selected__bottom {
     display: flex;
     align-items: center;
-    grid-gap: 1em;
+    gap: 1em;
 }
 
 .selected__user {
     position: absolute;
     display: flex;
     flex-direction: column;
-    grid-gap: 0.5em;
+    gap: 0.5em;
     top: 0;
     right: 0;
     text-align: right;
@@ -111,7 +111,7 @@ app-page-title {
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    grid-gap: 1em;
+    gap: 1em;
 }
 
 .selected__title {
@@ -122,7 +122,7 @@ app-page-title {
 .selected__state {
     display: flex;
     align-items: center;
-    grid-gap: 0.5em;
+    gap: 0.5em;
     font-family: $fontfamily--condensed;
     font-size: $fontsize--orders__state;
 
@@ -148,7 +148,7 @@ app-page-title {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    grid-gap: 2em;
+    gap: 2em;
     width: 523px;
     height: 318px;
     padding: 2em;
@@ -162,7 +162,7 @@ app-page-title {
 .selected__table__body {
     display: flex;
     flex-direction: column;
-    grid-gap: 2em;
+    gap: 2em;
 }
 
 .selected__table__footer {
@@ -177,7 +177,7 @@ app-page-title {
 .selected__buttons {
     display: flex;
     flex-direction: column;
-    grid-gap: 2em;
+    gap: 2em;
     transition: all 500ms linear;
 
     button[disabled] {
@@ -188,7 +188,7 @@ app-page-title {
 .settings {
     display: flex;
     flex-direction: column;
-    grid-gap: 2em;
+    gap: 2em;
     width: 260px;
     height: 100%;
 }
@@ -197,12 +197,12 @@ app-page-title {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    grid-gap: 1em;
+    gap: 1em;
 
     button {
         display: flex;
         align-items: center;
-        grid-gap: 0.5em;
+        gap: 0.5em;
         font-family: $fontfamily--condensed;
         font-size: $fontsize--orders__note;
         text-align: left;

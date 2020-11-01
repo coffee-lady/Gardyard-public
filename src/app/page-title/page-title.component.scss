@@ -3,15 +3,20 @@
 .title-box {
     font-family: $fontfamily--condensed;
     font-size: $fontsize--page__title;
+    width: fit-content;
+    height: fit-content;
 
     .title_main {
         padding: 15px 15px 15px 0;
         color: $color--base;
         background: $color--default;
+        box-sizing: border-box;
+        width: 100%;
     }
 
     .title_add {
         padding: 15px;
+        box-sizing: border-box;
     }
 }
 

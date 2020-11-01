@@ -16,16 +16,21 @@
 .module {
     position: relative;
     width: 647px;
-    height: 881px;
+    height: 90vh;
     border-radius: 3px;
     background: $color--base;
     box-sizing: border-box;
+    overflow-y: auto;
 }
 
 .module__close {
     position: absolute;
     top: 30px;
     right: 30px;
+}
+
+@media (max-width: $size--width_min-desktop) {
+    .module {}
 }
 
 @media (max-width: $size--width_laptop) {

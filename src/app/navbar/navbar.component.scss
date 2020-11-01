@@ -52,7 +52,7 @@
 .user__header {
     display: flex;
     align-items: center;
-    grid-gap: 24px;
+    gap: 24px;
 }
 
 .user__name {
@@ -63,7 +63,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    grid-gap: 10px;
+    gap: 10px;
     margin-top: 15px;
 }
 
@@ -103,7 +103,6 @@
     }
 }
 
-
 @media (max-width: $size--width_laptop) {
     .nav-container {
         position: static;
@@ -119,6 +118,7 @@
         display: flex;
         flex-direction: column;
         padding: 30px 0;
+        box-sizing: border-box;
     }
 
     .list {
@@ -147,7 +147,7 @@
     .user__header {
         display: flex;
         align-items: center;
-        grid-gap: 0.8em;
+        gap: 0.8em;
     }
 
     .user__name {
