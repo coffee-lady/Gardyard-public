@@ -14,8 +14,8 @@ import { LogoComponent } from './logo/logo.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { NavLinkComponent } from './navbar/nav-link/nav-link.component';
 
-import { LoginComponent } from './auth/login/login.component';
-import { RegisterComponent } from './auth/register/register.component';
+import { LoginComponent } from './components/pages/auth/login/login.component';
+import { RegisterComponent } from './components/pages/auth/register/register.component';
 
 import { ProductComponent } from './user/product/product/product.component';
 import { ProductSpecComponent } from './user/product/product-spec/product-spec.component';
@@ -38,13 +38,13 @@ import { EditProductComponent } from './admin/edit-product/edit-product.componen
 
 import { AlertModule } from './_alert';
 import { InputFileComponent } from './input-file/input-file.component';
-import { PageTitleComponent } from './page-title/page-title.component';
+import { PageTitleComponent } from './components/common/theme/page-title/page-title.component';
 import { LoaderComponent } from './loader/loader/loader.component';
 
 import { FilterPipe } from './shared/pipes/filterProducts.pipe';
-import { NotFoundComponent } from './not-found/not-found.component';
-import { StarRatingComponent } from './star-rating/star-rating.component';
-import { ModuleWindowComponent } from './module-window/module-window.component';
+import { NotFoundComponent } from './components/pages/not-found/not-found.component';
+import { StarRatingComponent } from './components/common/star-rating/star-rating.component';
+import { ModuleWindowComponent } from './components/templates/module-window/module-window.component';
 import { DropdownComponent } from './dropdown/dropdown.component';
 import { CheckboxComponent } from './checkbox/checkbox.component';
 import { FilterOrdersPipe } from './shared/pipes/filter-orders.pipe';
