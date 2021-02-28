@@ -2,9 +2,8 @@ import { trigger, transition, animate, keyframes, style } from '@angular/animati
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { take } from 'rxjs/operators';
-import { User } from 'src/app/shared/interfaces';
-import { UserService } from 'src/app/shared/services';
-import { AlertService } from 'src/app/_alert';
+import { User } from 'src/app/interfaces';
+import { UserService, AlertService } from 'src/app/services';
 
 @Component({
     selector: 'app-manage-users',

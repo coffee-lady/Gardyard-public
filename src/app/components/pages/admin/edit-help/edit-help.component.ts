@@ -2,10 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Subject } from 'rxjs';
 import { take, takeUntil } from 'rxjs/operators';
-import { LoaderService } from 'src/app/loader/loader.service';
-import { Question } from 'src/app/shared/interfaces';
-import { QuestionsService } from 'src/app/shared/services';
-import { AlertService } from 'src/app/_alert';
+import { Question } from 'src/app/interfaces';
+import { QuestionsService, AlertService } from 'src/app/services';
 
 @Component({
     selector: 'app-edit-help',

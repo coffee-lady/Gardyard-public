@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/shared/services';
-import { UserValidator } from 'src/app/shared/validators/user-uniqueness.validator';
 import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
-import { passwordValidator } from 'src/app/shared/validators/password.validator';
+import { AuthService } from 'src/app/services';
+import { PasswordValidator } from 'src/app/validators';
 import { take } from 'rxjs/operators';
 
 @Component({
@@ -18,7 +17,7 @@ export class LoginComponent implements OnInit {
 
     form: FormGroup = new FormGroup({
         email: new FormControl('', [Validators.required, Validators.email]),
-        password: new FormControl('', [Validators.required, passwordValidator]),
+        password: new FormControl('', [Validators.required, PasswordValidator]),
     });
 
     get email(): AbstractControl {

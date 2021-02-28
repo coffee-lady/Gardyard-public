@@ -2,9 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { take } from 'rxjs/operators';
-import { Plant } from 'src/app/shared/interfaces';
-import { ProductsService } from 'src/app/shared/services';
-import { AlertService } from 'src/app/_alert';
+import { Plant } from 'src/app/interfaces';
+import { ProductsService, AlertService } from 'src/app/services';
 
 @Component({
     selector: 'app-edit-product',

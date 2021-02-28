@@ -5,3 +5,4 @@ export * from './alert/alert.service';
 export * from './storages';
 export * from './local';
 export * from './db';
+export * from './product';

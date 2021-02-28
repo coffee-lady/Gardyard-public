@@ -1,13 +1,12 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { take } from 'rxjs/operators';
-import { Product } from '../interfaces';
-import { AuthService, RecentlyViewedService } from '../services';
+import { Product } from 'src/app/interfaces';
+import { RecentlyViewedService } from 'src/app/services';
 
 @Pipe({
     name: 'sortByRecentlyViewed'
 })
 export class SortByRecentlyViewedPipe implements PipeTransform {
-    constructor(private authService: AuthService,
+    constructor(
         private recentlyViewedService: RecentlyViewedService) {}
 
     transform(products: Product[], userId: string): Product[] {

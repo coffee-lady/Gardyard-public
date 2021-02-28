@@ -8,4 +8,5 @@ export interface Product extends DBType {
     rates: [number];
     vendorCode: string;
     cost: number;
+    count ? : number;
 }

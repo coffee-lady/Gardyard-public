@@ -1,6 +1,6 @@
 import { FormControl, ValidationErrors } from '@angular/forms';
 
-export function passwordValidator(control: FormControl): ValidationErrors {
+export function PasswordValidator(control: FormControl): ValidationErrors {
     const value = control.value;
     const hasNumber = /[0-9]/.test(value);
     const hasLetters = /[A-Za-z]/.test(value);

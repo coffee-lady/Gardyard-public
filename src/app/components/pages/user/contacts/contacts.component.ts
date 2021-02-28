@@ -1,9 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { take, takeUntil } from 'rxjs/operators';
-import { Contacts } from 'src/app/shared/interfaces';
-import { ContactsService } from 'src/app/shared/services';
-import { AlertService } from 'src/app/_alert';
+import { Contacts } from 'src/app/interfaces';
+import { ContactsService, AlertService } from 'src/app/services';
 
 @Component({
     selector: 'app-contacts',

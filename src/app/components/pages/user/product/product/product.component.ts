@@ -1,12 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subject } from 'rxjs';
-import { take, takeUntil } from 'rxjs/operators';
-import { LoaderService } from 'src/app/loader/loader.service';
-import { Plant } from 'src/app/shared/interfaces';
-import { AuthService, ProductsService, RecentlyViewedService } from 'src/app/shared/services';
-import { AlertService } from 'src/app/_alert';
-import { ProductDataService } from '../product-data-service/-product-data.service';
+import { take } from 'rxjs/operators';
+import { Plant } from 'src/app/interfaces';
+import { AuthService, ProductsService, RecentlyViewedService } from 'src/app/services';
+import { AlertService, ProductDataService } from 'src/app/services';
 
 @Component({
     selector: 'app-product',

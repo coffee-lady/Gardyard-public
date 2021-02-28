@@ -1,32 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { AdminGuard, AuthGuard, ManagerGuard } from './shared/guards';
+import { AdminGuard, AuthGuard, ManagerGuard } from 'src/app/guards';
 
 import { LoginComponent } from './components/pages/auth/login/login.component';
 import { RegisterComponent } from './components/pages/auth/register/register.component';
 
-import { MainComponent } from './main/main.component';
-
-import { ProductComponent } from './user/product/product/product.component';
-import { ProductSpecComponent } from './user/product/product-spec/product-spec.component';
-import { ProductCultivationComponent } from './user/product/product-cultivation/product-cultivation.component';
-import { ProductCareComponent } from './user/product/product-care/product-care.component';
-import { ProductDescriptionComponent } from './user/product/product-description/product-description.component';
-
-import { ContactsComponent } from './user/contacts/contacts.component';
-import { CartComponent } from './user/cart/cart.component';
-import { CatalogComponent } from './user/catalog/catalog.component';
-import { HelpComponent } from './user/help/help.component';
-
-import { NewProductComponent } from './admin/new-product/new-product.component';
-import { ManageProductsComponent } from './admin/manage-products/manage-products.component';
-import { ManageOrdersComponent } from './admin/manage-orders/manage-orders.component';
-import { EditHelpComponent } from './admin/edit-help/edit-help.component';
-import { EditContactsComponent } from './admin/edit-contacts/edit-contacts.component';
-import { EditProductComponent } from './admin/edit-product/edit-product.component';
-import { OrdersComponent } from './user/orders/orders.component';
-import { ManageUsersComponent } from './admin/manage-users/manage-users.component';
+import * as Components from 'src/app/components';
 
 const routes: Routes = [{
         path: 'auth',
@@ -38,39 +18,39 @@ const routes: Routes = [{
     },
     {
         path: '',
-        component: MainComponent,
+        component: Components.MainComponent,
         children: [
-            { path: 'help', component: HelpComponent, pathMatch: 'full' },
-            { path: 'catalog', component: CatalogComponent, pathMatch: 'full' },
-            { path: 'orders', component: OrdersComponent, canActivate: [AuthGuard], pathMatch: 'full' },
-            { path: 'contacts', component: ContactsComponent, pathMatch: 'full' },
-            { path: 'cart', component: CartComponent, pathMatch: 'full' },
+            { path: 'help', component: Components.HelpComponent, pathMatch: 'full' },
+            { path: 'catalog', component: Components.CatalogComponent, pathMatch: 'full' },
+            { path: 'orders', component: Components.OrdersComponent, canActivate: [AuthGuard], pathMatch: 'full' },
+            { path: 'contacts', component: Components.ContactsComponent, pathMatch: 'full' },
+            { path: 'cart', component: Components.CartComponent, pathMatch: 'full' },
             {
                 path: 'products/:id',
-                component: ProductComponent,
+                component: Components.ProductComponent,
                 children: [
-                    { path: 'description', component: ProductDescriptionComponent, pathMatch: 'full' },
-                    { path: 'cultivation', component: ProductCultivationComponent, pathMatch: 'full' },
-                    { path: 'plant-care', component: ProductCareComponent, pathMatch: 'full' },
-                    { path: 'specifications', component: ProductSpecComponent, pathMatch: 'full' },
+                    { path: 'description', component: Components.ProductDescriptionComponent, pathMatch: 'full' },
+                    { path: 'cultivation', component: Components.ProductCultivationComponent, pathMatch: 'full' },
+                    { path: 'plant-care', component: Components.ProductCareComponent, pathMatch: 'full' },
+                    { path: 'specifications', component: Components.ProductSpecComponent, pathMatch: 'full' },
                 ]
             },
             {
                 path: 'admin',
                 canActivate: [ManagerGuard],
                 children: [
-                    { path: 'new-product', component: NewProductComponent, canActivate: [AdminGuard], pathMatch: 'full' },
-                    { path: 'products', component: ManageProductsComponent, canActivate: [AdminGuard], pathMatch: 'full' },
+                    { path: 'new-product', component: Components.NewProductComponent, canActivate: [AdminGuard], pathMatch: 'full' },
+                    { path: 'products', component: Components.ManageProductsComponent, canActivate: [AdminGuard], pathMatch: 'full' },
                     {
                         path: 'products/:id',
-                        component: EditProductComponent,
+                        component: Components.EditProductComponent,
                         canActivate: [AdminGuard],
                         pathMatch: 'full'
                     },
-                    { path: 'orders', component: ManageOrdersComponent, pathMatch: 'full' },
-                    { path: 'edit-help', component: EditHelpComponent, canActivate: [AdminGuard], pathMatch: 'full' },
-                    { path: 'edit-contacts', component: EditContactsComponent, canActivate: [AdminGuard], pathMatch: 'full' },
-                    { path: 'users', component: ManageUsersComponent, canActivate: [AdminGuard], pathMatch: 'full' },
+                    { path: 'orders', component: Components.ManageOrdersComponent, pathMatch: 'full' },
+                    { path: 'edit-help', component: Components.EditHelpComponent, canActivate: [AdminGuard], pathMatch: 'full' },
+                    { path: 'edit-contacts', component: Components.EditContactsComponent, canActivate: [AdminGuard], pathMatch: 'full' },
+                    { path: 'users', component: Components.ManageUsersComponent, canActivate: [AdminGuard], pathMatch: 'full' },
                 ]
             },
             { path: '', redirectTo: 'catalog', pathMatch: 'full' },

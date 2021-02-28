@@ -1,3 +1,3 @@
 export interface DBType {
-    _id: string;
+    _id ? : string;
 }

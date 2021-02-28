@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, AbstractControl } from '@angular/forms';
-import { passwordValidator } from 'src/app/shared/validators/password.validator';
-import { UserValidator } from 'src/app/shared/validators/user-uniqueness.validator';
-import { Router } from '@angular/router';
-import { AuthService } from 'src/app/shared/services';
 import { take } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { PasswordValidator, UserValidator } from 'src/app/validators';
+import { AuthService } from 'src/app/services';
 
 @Component({
     selector: 'app-register',
@@ -22,7 +21,7 @@ export class RegisterComponent implements OnInit {
         email: new FormControl('',
             [Validators.required, Validators.email],
             this.userValidator.validate.bind(this.userValidator)),
-        password: new FormControl('', [Validators.required, passwordValidator]),
+        password: new FormControl('', [Validators.required, PasswordValidator]),
         role: new FormControl('', [Validators.required]),
     });
 

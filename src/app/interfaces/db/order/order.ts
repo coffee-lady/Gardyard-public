@@ -1,5 +1,5 @@
 import { CartItem } from '../cart/cart_item';
-import { OrderStates } from './order-states/order-states';
+import { OrderStates } from '../order-states/order-states';
 import { DBType } from 'src/app/interfaces/common';
 
 export interface Order extends DBType {

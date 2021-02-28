@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Contacts } from '../../../interfaces/db/contacts/contacts';
+import { Contacts } from 'src/app/interfaces';
 import { ApiService } from 'src/app/classes';
 import { HttpClient } from '@angular/common/http';
 

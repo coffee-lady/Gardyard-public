@@ -4,14 +4,10 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { forkJoin, Subject } from 'rxjs';
 import { takeUntil, take } from 'rxjs/operators';
-import { ModuleWindowComponent } from 'src/app/components/templates/module-window/module-window.component';
-import { CartItem, Product, User, Order, States, Contacts } from 'src/app/shared/interfaces';
-import { AuthService, CartService, ContactsService, OrdersService, ProductsService, UserService } from 'src/app/shared/services';
-import { AlertService } from 'src/app/_alert';
-
-interface _Product extends Product {
-    count ? : number;
-}
+import { ModuleWindowComponent } from 'src/app/components/templates';
+import { CartItem, Product, User, Order, OrderStates, Contacts } from 'src/app/interfaces';
+import { AuthService, CartService, ContactsService, OrdersService, ProductsService, UserService } from 'src/app/services';
+import { AlertService } from 'src/app/services';
 
 @Component({
     selector: 'app-cart',
@@ -55,7 +51,7 @@ export class CartComponent implements OnInit, OnDestroy {
 
     user: User;
     userId = 'anonymous';
-    products: _Product[] = [];
+    products: Product[] = [];
     searchString = '';
     cart: CartItem[] = [];
     sum = 0;
@@ -139,21 +135,21 @@ export class CartComponent implements OnInit, OnDestroy {
         }
     }
 
-    increase(p: _Product): void {
+    increase(p: Product): void {
         if (p.inStock >= p.count + 1) {
             p.count++;
             this.countSum();
         }
     }
 
-    decrease(p: _Product): void {
+    decrease(p: Product): void {
         if (p.count - 1 >= 0) {
             p.count--;
             this.countSum();
         }
     }
 
-    save(p: _Product): void {
+    save(p: Product): void {
         if (p.count > p.inStock) {
             p.count = p.inStock;
         }
@@ -194,7 +190,7 @@ export class CartComponent implements OnInit, OnDestroy {
             userId: (this.user ? this.userId : null),
             date: new Date(),
             userGeo: this.selectedCity._id,
-            state: States.NEW,
+            state: OrderStates.NEW,
             products: this.cart,
         };
 

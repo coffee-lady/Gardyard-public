@@ -2,9 +2,9 @@ import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, QueryList, Vie
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { take } from 'rxjs/operators';
-import { Plant } from 'src/app/shared/interfaces';
-import { AuthService, CartDragDropService, ProductsService, RecentlyViewedService } from 'src/app/shared/services';
-import { AlertService } from 'src/app/_alert';
+import { Plant } from 'src/app/interfaces';
+import { AuthService, CartDragDropService, ProductsService } from 'src/app/services';
+import { AlertService } from 'src/app/services';
 
 @Component({
     selector: 'app-catalog',

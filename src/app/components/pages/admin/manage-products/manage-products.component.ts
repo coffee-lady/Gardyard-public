@@ -3,10 +3,8 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { mergeMap, take, takeUntil } from 'rxjs/operators';
-import { LoaderService } from 'src/app/loader/loader.service';
-import { Plant } from 'src/app/shared/interfaces';
-import { ProductsService } from 'src/app/shared/services';
-import { AlertService } from 'src/app/_alert';
+import { Plant } from 'src/app/interfaces';
+import { AlertService, ProductsService } from 'src/app/services';
 
 @Component({
     selector: 'app-manage-products',

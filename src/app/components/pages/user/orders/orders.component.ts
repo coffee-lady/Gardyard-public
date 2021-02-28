@@ -1,13 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
-import { mergeMap, take, takeUntil } from 'rxjs/operators';
-import { User, Order, Product } from 'src/app/shared/interfaces';
-import { OrdersService, AuthService, ProductsService } from 'src/app/shared/services';
-import { AlertService } from 'src/app/_alert';
-
-interface _Product extends Product {
-    count ? : number;
-}
+import { mergeMap, take } from 'rxjs/operators';
+import { User, Order, Product } from 'src/app/interfaces';
+import { OrdersService, AuthService, ProductsService } from 'src/app/services';
+import { AlertService } from 'src/app/services';
 
 @Component({
     selector: 'app-orders',
@@ -24,7 +20,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
 
     user: User;
     orders: Order[] = [];
-    products: _Product[] = [];
+    products: Product[] = [];
     allProducts: Product[] = [];
     selected: Order | null = null;
     cost = 0;
@@ -60,7 +56,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
         for (const item of this.allProducts) {
             const found = this.selected.products.find(x => item._id === x.id);
             if (found) {
-                const tmp: _Product = item;
+                const tmp: Product = item;
                 tmp.count = found.count;
                 this.products.push(tmp);
                 this.cost += tmp.count * tmp.cost;

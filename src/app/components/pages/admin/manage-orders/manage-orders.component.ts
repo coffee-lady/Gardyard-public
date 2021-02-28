@@ -2,14 +2,8 @@ import { trigger, transition, animate, keyframes, style } from '@angular/animati
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
 import { take, takeUntil } from 'rxjs/operators';
-import { LoaderService } from 'src/app/services';
-import { Product, User, Order, Contacts } from 'src/app/shared/interfaces';
-import { ContactsService, OrdersService, ProductsService, UserService } from 'src/app/shared/services';
-import { AlertService } from 'src/app/_alert';
-
-interface _Product extends Product {
-    count ? : number;
-}
+import { Product, User, Order, Contacts } from 'src/app/interfaces';
+import { AlertService, ContactsService, OrdersService, ProductsService, UserService } from 'src/app/services';
 
 @Component({
     selector: 'app-manage-orders',
@@ -45,7 +39,7 @@ export class ManageOrdersComponent implements OnInit, OnDestroy {
 
     user: User;
     orders: Order[] = [];
-    products: _Product[] = [];
+    products: Product[] = [];
     allProducts: Product[] = [];
     selected: Order | null = null;
     cost = 0;
@@ -104,7 +98,7 @@ export class ManageOrdersComponent implements OnInit, OnDestroy {
         for (const item of this.allProducts) {
             const found = this.selected.products.find(x => item._id === x.id);
             if (found) {
-                const tmp: _Product = item;
+                const tmp: Product = item;
                 tmp.count = found.count;
                 this.products.push(tmp);
                 this.cost += tmp.count * tmp.cost;

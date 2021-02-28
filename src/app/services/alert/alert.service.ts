@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject, Observable } from 'rxjs';
 
-import { Alert } from '../../components/common/alert/module/alert.model';
+import { Alert } from 'src/app/components/common/alert/module/alert.model';
 
 @Injectable({
     providedIn: 'root'

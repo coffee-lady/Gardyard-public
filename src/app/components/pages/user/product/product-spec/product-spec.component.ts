@@ -1,10 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
-import { Plant, User } from 'src/app/shared/interfaces';
-import { AuthService, CartService } from 'src/app/shared/services';
-import { AlertService } from 'src/app/_alert';
+import { Plant, User } from 'src/app/interfaces';
+import { AuthService, CartService } from 'src/app/services';
+import { AlertService } from 'src/app/services';
 import { productAnimation } from '../product-animaiton';
-import { ProductDataService } from '../product-data-service/-product-data.service';
+import { ProductDataService } from 'src/app/services';
 
 @Component({
     selector: 'app-product-spec',
