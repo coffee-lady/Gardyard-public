@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router, NavigationStart } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { AlertService } from '../../../../services/user/alert.service';
-import { Alert } from '../module/alert.model';
+import { AlertService } from 'src/app/services';
+import { Alert } from 'src/app/classes';
 import { trigger, transition, style, animate, keyframes } from '@angular/animations';
 
 @Component({

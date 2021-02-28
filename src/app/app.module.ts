@@ -20,8 +20,8 @@ import * as Modules from 'src/app/modules';
         FormsModule,
         ReactiveFormsModule,
         HttpClientModule,
-        Modules.AdminModule,
         Modules.AppCommonModule,
+        Modules.AdminModule,
         Modules.AuthModule,
         Modules.RootModule,
         Modules.UserModule

@@ -1,4 +1,4 @@
-import { DBType } from '../../interfaces';
+import { DBType } from 'src/app/interfaces';
 
 import { HttpResponse, HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';

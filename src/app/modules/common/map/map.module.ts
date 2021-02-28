@@ -9,6 +9,9 @@ import * as Components from 'src/app/components';
     ],
     imports: [
         CommonModule
-    ]
+    ],
+    exports: [
+        Components.MapComponent,
+    ],
 })
 export class MapModule {}

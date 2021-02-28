@@ -32,7 +32,7 @@ export class OrdersComponent implements OnInit, OnDestroy {
                 this.user = user;
                 return this.ordersService.getAllOfUser(user._id);
             }))
-            .subscribe((orders) => {
+            .subscribe((orders: Order[]) => {
                 this.orders = orders;
             }, () => {
                 this.alertService.fire('Error', 'Something went wrong.', false);
