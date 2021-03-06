@@ -15,7 +15,7 @@
              onselectstart="return false;"
              (click)="getFullInformation(item._id)">
             <div class="item__pic">
-                <img [src]="item.picture" draggable="false">
+                <img [app/frontend/src]="item.picture" draggable="false">
             </div>
             <div class="item__text">
                 <span>{{ item.title }}</span>
@@ -24,11 +24,11 @@
         </div>
     </section>
     <section #cart class="cart">
-        <img class="cart__img" src="/assets/images/plus.png">
-        <div class="cart__text">
-            pull the product
-            to put in the cart
-        </div>
-    </section>
+        <img class="cart__img" src="app/frontend/assets/images/plus.png">
+             <div class="cart__text">
+        pull the product
+        to put in the cart
 </div>
-<img class="g-page-picture" src="/assets/images/catalog-img.png">
+</section>
+</div>
+<img class="g-page-picture" src="app/frontend/assets/images/catalog-img.png">

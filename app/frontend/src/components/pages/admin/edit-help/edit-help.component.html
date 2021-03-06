@@ -5,31 +5,32 @@
         <app-not-found *ngIf="!questions.length" title="Create FAQ for users!"></app-not-found>
         <div class="question" *ngFor="let item of questions">
             <div class="question__header">
-                <img class="question__icon" src="/assets/images/triangle.png">
-                <div class="question__title">{{ item.question }}</div>
-                <button (click)="delete(item._id)" class="question__delete" type="button">
-                    <img src="/assets/images/delete.png">
-                </button>
-            </div>
-            <div class="question__answer">{{ item.answer }}</div>
+                <img class="question__icon" src="app/frontend/assets/images/triangle.png">
+                     <div class="question__title">{{ item.question }}</div>
+            <button (click)="delete(item._id)" class="question__delete" type="button">
+                <img src="app/frontend/assets/images/delete.png">
+                     </button>
+                     </div>
+                     <div class="question__answer">{{ item.answer }}
         </div>
     </div>
-
-    <form [formGroup]="form" class="box" novalidate>
-        <div class="box__title">
-            New Question
-        </div>
-        <div class="field">
-            <div class="field__label">Question</div>
-            <input formControlName="question" type="text" class="field__input">
-        </div>
-        <div class="field">
-            <div class="field__label">Answer</div>
-            <textarea formControlName="answer" type="text" class="field__input field__input_big"></textarea>
-        </div>
-
-        <button [disabled]="form.invalid" (click)="create()" class="box__button" type="submit">Add New Question</button>
-    </form>
-
-    <img class="g-page-picture" src="/assets/images/edit-help.png">
 </div>
+
+<form [formGroup]="form" class="box" novalidate>
+    <div class="box__title">
+        New Question
+    </div>
+    <div class="field">
+        <div class="field__label">Question</div>
+        <input formControlName="question" type="text" class="field__input">
+    </div>
+    <div class="field">
+        <div class="field__label">Answer</div>
+        <textarea formControlName="answer" type="text" class="field__input field__input_big"></textarea>
+    </div>
+
+    <button [disabled]="form.invalid" (click)="create()" class="box__button" type="submit">Add New Question</button>
+</form>
+
+<img class="g-page-picture" src="app/frontend/assets/images/edit-help.png">
+     </div>

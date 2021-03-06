@@ -15,30 +15,30 @@
                  onselectstart="return false;">
                 <div class="item__data">
                     <button class="item__close" (click)="removeProduct(item._id)" type="button">
-                        <img src="/assets/images/cart-close.png">
-                    </button>
-                    <div class="item__title">
+                        <img src="app/frontend/assets/images/cart-close.png">
+                             </button>
+                             <div class="item__title">
                         {{ item.title }}
-                    </div>
-
-                    <div class="item__cost">
-                        ${{ item.cost }}
-                    </div>
-                    <div class="item__count">
-                        <button type="button" (click)="increase(item)">
-                            <img src="/assets/images/cart__plus.png">
-                        </button>
-                        <input type="number" [(ngModel)]="item.count" (ngModelChange)="save(item)">
-                        <button type="button" (click)="decrease(item)">
-                            <img src="/assets/images/cart__minus.png">
-                        </button>
-                    </div>
                 </div>
 
-                <div class="item__pic">
-                    <img [src]="item.picture"
-                         draggable="false"
-                         (click)="getFullInformation(item._id)">
+                <div class="item__cost">
+                    ${{ item.cost }}
+                </div>
+                <div class="item__count">
+                    <button type="button" (click)="increase(item)">
+                        <img src="app/frontend/assets/images/cart__plus.png">
+                             </button>
+                             <input type="number" [(ngModel)]="item.count" (ngModelChange)="save(item)">
+                        <button type="button" (click)="decrease(item)">
+                            <img src="app/frontend/assets/images/cart__minus.png">
+                                 </button>
+                                 </div>
+                                 </div>
+
+                                 <div class="item__pic">
+                            <img [app/frontend/src]="item.picture"
+                                 draggable="false"
+                                 (click)="getFullInformation(item._id)">
                 </div>
             </div>
         </div>
@@ -52,49 +52,49 @@
                 (click)="moduleWindow.open()">
             Make an order
         </button>
-        <img class="summary__img" src="/assets/images/order-summary-img.png">
-    </section>
-</div>
-<img class="g-page-picture" src="/assets/images/cart-img.png">
+        <img class="summary__img" src="app/frontend/assets/images/order-summary-img.png">
+             </section>
+             </div>
+             <img class="g-page-picture" src="app/frontend/assets/images/cart-img.png">
 
-<app-module-window>
-    <div class="module">
-        <div class="module__title">Make an order</div>
-        <div class="module__table">
-            <div class="module__table__row" *ngFor="let item of products">
-                <div class="g-col">{{ item.title }}</div>
-                <div class="g-col">${{ item.cost }}</div>
-                <div class="g-col">{{ item.count }} plant{{ item.count > 1? 's' : '' }}</div>
-                <div class="g-col">${{ item.cost * item.count }}</div>
+             <app-module-window>
+        <div class="module">
+            <div class="module__title">Make an order</div>
+            <div class="module__table">
+                <div class="module__table__row" *ngFor="let item of products">
+                    <div class="g-col">{{ item.title }}</div>
+                    <div class="g-col">${{ item.cost }}</div>
+                    <div class="g-col">{{ item.count }} plant{{ item.count > 1? 's' : '' }}</div>
+                    <div class="g-col">${{ item.cost * item.count }}</div>
+                </div>
+                <div class="module__table__footer">Total price: ${{ sum }}</div>
             </div>
-            <div class="module__table__footer">Total price: ${{ sum }}</div>
+
+            <section class="module__location">
+                <div class="module__map g-box" *ngIf="contacts.length && selectedCity">
+                    <app-map width="301px" height="142px" [coords]="[selectedCity.longitude, selectedCity.latitude]"></app-map>
+                </div>
+                <div class="module__location__side" *ngIf="contacts.length">
+                    <div class="module__text">Choose your city</div>
+                    <app-dropdown [selected]="selectedCity ? selectedCity : null" (elemChoosed)="selectCity($event)" [dataToSelect]="contacts"></app-dropdown>
+                    <div class="module__checkbox">
+                        <app-checkbox (click)="saveCity = !saveCity"></app-checkbox>
+                        <span>Remember the city</span>
+                    </div>
+                </div>
+            </section>
+
+            <form [formGroup]="moduleForm" class="module__form" (ngSubmit)="makeOrder()">
+                <div class="module__confirm">
+                    <div class="module__text">To confirm your order by phone,<br>
+                        please enter your phone number:</div>
+                    <div class="module__note">
+                        <div class="module__note__line"></div>
+                        <span>Please note that<br>email must be verified</span>
+                    </div>
+                    <input formControlName="phone" class="module__input" placeholder="1 596 547 45 57">
+                </div>
+                <button [disabled]="moduleForm.invalid" class="module__submit" type="submit">Send</button>
+            </form>
         </div>
-
-        <section class="module__location">
-            <div class="module__map g-box" *ngIf="contacts.length && selectedCity">
-                <app-map width="301px" height="142px" [coords]="[selectedCity.longitude, selectedCity.latitude]"></app-map>
-            </div>
-            <div class="module__location__side" *ngIf="contacts.length">
-                <div class="module__text">Choose your city</div>
-                <app-dropdown [selected]="selectedCity ? selectedCity : null" (elemChoosed)="selectCity($event)" [dataToSelect]="contacts"></app-dropdown>
-                <div class="module__checkbox">
-                    <app-checkbox (click)="saveCity = !saveCity"></app-checkbox>
-                    <span>Remember the city</span>
-                </div>
-            </div>
-        </section>
-
-        <form [formGroup]="moduleForm" class="module__form" (ngSubmit)="makeOrder()">
-            <div class="module__confirm">
-                <div class="module__text">To confirm your order by phone,<br>
-                    please enter your phone number:</div>
-                <div class="module__note">
-                    <div class="module__note__line"></div>
-                    <span>Please note that<br>email must be verified</span>
-                </div>
-                <input formControlName="phone" class="module__input" placeholder="1 596 547 45 57">
-            </div>
-            <button [disabled]="moduleForm.invalid" class="module__submit" type="submit">Send</button>
-        </form>
-    </div>
-</app-module-window>
+        </app-module-window>

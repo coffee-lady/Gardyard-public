@@ -5,23 +5,23 @@
         <div class="picture__top">Plant picture</div>
         <div class="picture__main">
             <div class="picture__main_wrapper">
-                <img [src]="product.picture">
-            </div>
-        </div>
-    </section>
-    <section class="spec g-box" *ngIf="product">
-        <div class="spec__title">
-            <span>
-                {{ product.title }}
-            </span>
-        </div>
-        <div class="spec__nav">
-            <a class="spec__nav__link" [routerLink]="'/products/' + product._id + '/description'" routerLinkActive="link-active">Description</a>
-            <a class="spec__nav__link" [routerLink]="'/products/' + product._id + '/cultivation'" routerLinkActive="link-active">Cultivation</a>
-            <a class="spec__nav__link" [routerLink]="'/products/' + product._id + '/plant-care'" routerLinkActive="link-active">Plant care</a>
-            <a class="spec__nav__link spec__nav__link_right" [routerLink]="'/products/' + product._id + '/specifications'" routerLinkActive="link-active">Our product</a>
-        </div>
-        <router-outlet></router-outlet>
+                <img [app/frontend/src]="product.picture">
+                     </div>
+                     </div>
+                     </section>
+                     <section class="spec g-box" *ngIf="product">
+                <div class="spec__title">
+                    <span>
+                        {{ product.title }}
+                    </span>
+                </div>
+                <div class="spec__nav">
+                    <a class="spec__nav__link" [routerLink]="'/products/' + product._id + '/description'" routerLinkActive="link-active">Description</a>
+                    <a class="spec__nav__link" [routerLink]="'/products/' + product._id + '/cultivation'" routerLinkActive="link-active">Cultivation</a>
+                    <a class="spec__nav__link" [routerLink]="'/products/' + product._id + '/plant-care'" routerLinkActive="link-active">Plant care</a>
+                    <a class="spec__nav__link spec__nav__link_right" [routerLink]="'/products/' + product._id + '/specifications'" routerLinkActive="link-active">Our product</a>
+                </div>
+                <router-outlet></router-outlet>
     </section>
 </div>
-<img class="g-page-picture" src="/assets/images/product-img.png">
+<img class="g-page-picture" src="app/frontend/assets/images/product-img.png">

@@ -11,8 +11,8 @@
             <div class="catalog__item"
                  *ngFor="let user of users | filterUsers: filter"
                  (click)="select(user)">
-                <img class="item__triangle" src="/assets/images/manage-products__triangle.png">
-                <span class="item__text">{{ user.fullname }}</span>
+                <img class="item__triangle" src="app/frontend/assets/images/manage-products__triangle.png">
+                     <span class="item__text">{{ user.fullname }}</span>
                 <span class="item__text">{{ user.email }}</span>
                 <span class="item__circle item__circle_manager" *ngIf="user.role == 'manager'">M</span>
                 <span class="item__circle item__circle_admin" *ngIf="user.role == 'admin'">A</span>
@@ -25,10 +25,10 @@
     </section>
     <section class="user" @appear *ngIf="selected">
         <div class="user__name">
-            <img src="/assets/images/users__user-icon.png">
-            {{ selected.fullname }}
-        </div>
-        <div class="user__text">
+            <img src="app/frontend/assets/images/users__user-icon.png">
+                 {{ selected.fullname }}
+                 </div>
+                 <div class="user__text">
             email: {{ selected.email }}
         </div>
         <div class="user__text" *ngIf="selected.phone">
@@ -43,5 +43,5 @@
             </div>
         </div>
     </section>
-    <img class="g-page-picture" src="/assets/images/users.png">
-</div>
+    <img class="g-page-picture" src="app/frontend/assets/images/users.png">
+         </div>

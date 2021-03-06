@@ -17,7 +17,7 @@ module.exports = {
             }
         },
         headers: {
-            contentSecutityPolicy: "default -src 'self' data: blob: https: //*.googleapis.com https://*.gstatic.com https://*.tomtom.com 'unsafe-inline';"
+            contentSecutityPolicy: "default -app/frontend/src 'self' data: blob: https: //*.googleapis.com https://*.gstatic.com https://*.tomtom.com 'unsafe-inline';"
         }
     }
 }

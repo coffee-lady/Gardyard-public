@@ -4,10 +4,10 @@
             <span class="result"
                   unselectable="on"
                   onselectstart="return false;">{{ title ? title : selected.title }}</span>
-            <img src="/assets/images/dropdown-arrow.png">
-        </div>
-        <ul class="dropdown-menu">
+            <img src="app/frontend/assets/images/dropdown-arrow.png">
+                 </div>
+                 <ul class="dropdown-menu">
             <li *ngFor="let elem of dataToSelect" (click)="choose(elem)">{{ elem.title }}</li>
-        </ul>
+            </ul>
+        </div>
     </div>
-</div>

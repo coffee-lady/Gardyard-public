@@ -7,36 +7,36 @@
             <div class="catalog__item"
                  *ngFor="let item of orders"
                  (click)="select(item)">
-                <img class="item__triangle" src="/assets/images/manage-products__triangle.png">
-                <span class="item__text">Order №{{ item.No }}</span>
+                <img class="item__triangle" src="app/frontend/assets/images/manage-products__triangle.png">
+                     <span class="item__text">Order №{{ item.No }}</span>
                 <span class="item__text"> {{ item.date | date:'dd/MM/yyyy HH:mm' }}</span>
                 <ng-container [ngSwitch]="item.state" class="item__text">
-                    <img *ngSwitchCase="0" src="/assets/images/state-new.png">
-                    <img *ngSwitchCase="1" src="/assets/images/state-sent.png">
-                    <img *ngSwitchCase="2" src="/assets/images/state-arrived.png">
-                </ng-container>
-            </div>
-        </div>
-    </section>
-    <section class="selected_empty" *ngIf="!selected && orders.length">
-        Select an order<br>
-        to see more inormation
+                    <img *ngSwitchCase="0" src="app/frontend/assets/images/state-new.png">
+                         <img *ngSwitchCase="1" src="app/frontend/assets/images/state-sent.png">
+                         <img *ngSwitchCase="2" src="app/frontend/assets/images/state-arrived.png">
+                         </ng-container>
+                         </div>
+                         </div>
+                         </section>
+                         <section class="selected_empty" *ngIf="!selected && orders.length">
+                    Select an order<br>
+                    to see more inormation
     </section>
     <section class="selected" *ngIf="selected">
         <div class="selected__header">
             <span class="selected__title">Order №{{ selected.No }}</span>
             <div [ngSwitch]="selected.state" class="selected__state">
                 <ng-container *ngSwitchCase="0">
-                    <img src="/assets/images/state-new.png">
-                    <span class="selected__state_new">New</span>
+                    <img src="app/frontend/assets/images/state-new.png">
+                         <span class="selected__state_new">New</span>
                 </ng-container>
                 <ng-container *ngSwitchCase="1">
-                    <img src="/assets/images/state-sent.png">
-                    <span class="selected__state_sent">Sent</span>
+                    <img src="app/frontend/assets/images/state-sent.png">
+                         <span class="selected__state_sent">Sent</span>
                 </ng-container>
                 <ng-container *ngSwitchCase="2">
-                    <img src="/assets/images/state-arrived.png">
-                    <span class="selected__state_arrived">Arrived</span>
+                    <img src="app/frontend/assets/images/state-arrived.png">
+                         <span class="selected__state_arrived">Arrived</span>
                 </ng-container>
                 <ng-container *ngSwitchCase="3">
                     <span>Closed</span>
@@ -65,5 +65,5 @@
             </div>
         </div>
     </section>
-    <img class="g-page-picture" src="/assets/images/my-orders.png">
-</div>
+    <img class="g-page-picture" src="app/frontend/assets/images/my-orders.png">
+         </div>

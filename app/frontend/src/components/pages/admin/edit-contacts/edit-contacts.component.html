@@ -2,9 +2,9 @@
     <div class="list" *ngIf="contacts.length">
         <div class="list__title">List of cities</div>
         <div class="list__item" *ngFor="let item of contacts" (click)="select(item); setActive($event)">
-            <img src="/assets/images/edit-contacts__polygon.png">
-            {{ item.title }} |
-            <a class="item__remove" (click)="remove(item._id)">remove</a>
+            <img src="app/frontend/assets/images/edit-contacts__polygon.png">
+                 {{ item.title }} |
+                 <a class="item__remove" (click)="remove(item._id)">remove</a>
         </div>
     </div>
     <div class="map g-box">
@@ -27,4 +27,4 @@
         <button [disabled]="form.invalid" class="form__button" type="submit">Set</button>
     </form>
 </div>
-<img class="g-page-picture" src="/assets/images/edit-contacts.png">
+<img class="g-page-picture" src="app/frontend/assets/images/edit-contacts.png">

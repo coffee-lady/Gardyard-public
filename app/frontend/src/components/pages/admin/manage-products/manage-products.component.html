@@ -47,16 +47,16 @@
             <div class="catalog__item"
                  *ngFor="let item of products | filterProducts: searchString"
                  (click)="chooseItem(item._id)">
-                <img class="item__triangle" src="/assets/images/manage-products__triangle.png">
-                <span class="item__text">{{ item.title }}</span>
+                <img class="item__triangle" src="app/frontend/assets/images/manage-products__triangle.png">
+                     <span class="item__text">{{ item.title }}</span>
                 <div class="item__pic g-box">
-                    <img [src]="item.picture">
+                    <img [app/frontend/src]="item.picture">
+                         </div>
+                         <span class="item__text">${{ item.cost }}</span>
+                    <span class="item__text">{{ item.inStock }} in stock</span>
+                    <span class="item__not-available" *ngIf="!item.inStock">• not available</span>
                 </div>
-                <span class="item__text">${{ item.cost }}</span>
-                <span class="item__text">{{ item.inStock }} in stock</span>
-                <span class="item__not-available" *ngIf="!item.inStock">• not available</span>
-            </div>
         </section>
     </section>
 </div>
-<img class="g-page-picture" src="/assets/images/products.png">
+<img class="g-page-picture" src="app/frontend/assets/images/products.png">

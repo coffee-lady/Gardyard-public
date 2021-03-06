@@ -6,20 +6,20 @@
 
         <div class="question" *ngFor="let item of questions">
             <div class="question__header">
-                <img class="question__icon" src="/assets/images/triangle.png">
-                <div class="question__title">{{ item.question }}</div>
-            </div>
-            <div class="question__answer">{{ item.answer }}</div>
+                <img class="question__icon" src="app/frontend/assets/images/triangle.png">
+                     <div class="question__title">{{ item.question }}</div>
         </div>
+        <div class="question__answer">{{ item.answer }}</div>
     </div>
+</div>
 
-    <div class="box">
-        <div class="box__title">
-            Have <span class="box__marked">another </span><br>question?
-        </div>
-        <textarea class="box__answer" type="text" placeholder="Your question..."></textarea>
-        <button class="box__button" type="submit">Ask our managers</button>
+<div class="box">
+    <div class="box__title">
+        Have <span class="box__marked">another </span><br>question?
     </div>
+    <textarea class="box__answer" type="text" placeholder="Your question..."></textarea>
+    <button class="box__button" type="submit">Ask our managers</button>
+</div>
 
-    <img class="g-page-picture" src="/assets/images/help-img.png" >
+<img class="g-page-picture" src="app/frontend/assets/images/help-img.png">
 </div>
