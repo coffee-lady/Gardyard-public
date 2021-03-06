@@ -1,82 +1,43 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'app/frontend/src/services';
-import { User } from 'app/frontend/src/interfaces';
-import { trigger, transition, animate, keyframes, style, state } from '@angular/animations';
-import { take } from 'rxjs/operators';
+
+import { Config } from 'app/frontend/src/config';
+const NavbarConfig = Config.components.navbar;
+
+import { NavbarController } from './controller';
+
+import * as NavbarAnimations from './animations';
 
 @Component({
     selector: 'app-navbar',
     templateUrl: './navbar.component.html',
-    styleUrls: ['./navbar.component.scss'],
-    animations: [
-        trigger('appearDisappear', [
-            state('active', style({
-                visibility: 'visible',
-                opacity: '1',
-            })),
-            state('inactive', style({
-                visibility: 'hidden',
-                opacity: '0',
-            })),
-            transition('inactive => active', [
-                animate('200ms ease-in', keyframes([
-                    style({
-                        visibility: 'hidden',
-                        opacity: '0',
-                        transform: 'translateX(100%)',
-                        offset: 0
-                    }),
-                    style({
-                        visibility: 'visible',
-                        opacity: '1',
-                        transform: 'translateX(0%)',
-                        offset: 1
-                    })
-                ]))
-            ]),
-
-            transition('active => inactive', [
-                animate('200ms ease-in', keyframes([
-                    style({
-                        visibility: 'visible',
-                        opacity: '1',
-                        transform: 'translateX(0%)',
-                        offset: 0
-                    }),
-                    style({
-                        visibility: 'hidden',
-                        opacity: '0',
-                        transform: 'translateX(-100%)',
-                        offset: 1
-                    })
-                ]))
-            ])
-        ]),
-    ]
+    styleUrls: ['./styles/navbar.component.scss'],
+    animations: [NavbarAnimations]
 })
 export class NavbarComponent implements OnInit {
-    user: User | null;
     dropdownMenuState = false;
     hamHidden = true;
+    controller: NavbarController;
 
-    constructor(private authService: AuthService) {}
+    constructor(authService: AuthService) {
+        this.controller = new NavbarController(authService);
+    }
 
     ngOnInit(): void {
-        this.authService
-            .getUser()
-            .pipe(take(1))
-            .subscribe((user: User | null) => {
-                this.user = user;
-            });
-        if (document.documentElement.clientWidth <= 1306) {
+        this.controller.init();
+
+        this.checkWidth();
+    }
+
+    checkWidth(): void {
+        if (document.documentElement.clientWidth <= NavbarConfig.checkWidth) {
             this.dropdownMenuState = true;
             this.hamHidden = false;
         }
     }
 
-    logout(): void {
-        this.authService.signOut();
-        this.user = null;
+    onLogout(): void {
+        this.controller.logout();
     }
 
     toggleMobileMenu(): void {
@@ -84,7 +45,7 @@ export class NavbarComponent implements OnInit {
     }
 
     toggleDropdownState(): void {
-        if (document.documentElement.clientWidth >= 1024) {
+        if (document.documentElement.clientWidth >= NavbarConfig.dropdown.toggleStateMinWidth) {
             this.dropdownMenuState = !this.dropdownMenuState;
         }
     }

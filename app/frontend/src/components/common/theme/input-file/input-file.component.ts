@@ -4,12 +4,12 @@ import { FormGroup } from '@angular/forms';
 @Component({
     selector: 'app-input-file',
     templateUrl: './input-file.component.html',
-    styleUrls: ['./input-file.component.scss']
+    styleUrls: ['./styles/input-file.component.scss']
 })
 export class InputFileComponent implements OnInit {
     @Input() form: FormGroup;
-
     @ViewChild('inputFile')
+
     uploadFileInput: ElementRef;
 
     fileName: string;
@@ -31,6 +31,7 @@ export class InputFileComponent implements OnInit {
         reader.onload = () => {
             this.form.patchValue({ picture: reader.result });
         };
+
         this.cd.markForCheck();
     }
 }

@@ -5,6 +5,8 @@ import * as Components from 'app/frontend/src/components';
 import { ProductModule } from './product/product.module';
 import { AppCommonModule } from 'app/frontend/src/modules/common/app-common.module';
 
+import { UserRoutingModule } from './user-routing.module';
+
 @NgModule({
     declarations: [
         Components.HelpComponent,
@@ -17,6 +19,7 @@ import { AppCommonModule } from 'app/frontend/src/modules/common/app-common.modu
         CommonModule,
         ProductModule,
         AppCommonModule,
+        UserRoutingModule
     ],
     exports: [
         Components.HelpComponent,

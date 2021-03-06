@@ -1,13 +1,18 @@
 import { AfterViewInit, Component, ElementRef, Input, OnChanges, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
-import tt from '@tomtom-international/web-sdk-maps';
-import { take } from 'rxjs/operators';
+import { tt } from '@tomtom-international/web-sdk-maps';
 import { Contacts } from 'app/frontend/src/interfaces';
 import { ContactsService } from 'app/frontend/src/services';
+
+import { MapController } from './controller';
+
+import { Config } from 'app/frontend/src/config';
+const MapConfig = Config.components.map;
+const MapMarkerConfig = Config.components.map.marker;
 
 @Component({
     selector: 'app-map',
     templateUrl: './map.component.html',
-    styleUrls: ['./map.component.scss'],
+    styleUrls: ['./styles/map.component.scss'],
     encapsulation: ViewEncapsulation.None,
 })
 export class MapComponent implements OnInit, OnChanges, AfterViewInit {
@@ -20,55 +25,68 @@ export class MapComponent implements OnInit, OnChanges, AfterViewInit {
 
     map: any;
     marker: any;
-    contacts: Contacts[] = [];
-    constructor(private contactsService: ContactsService) {}
+    controller: MapController;
+
+    constructor(contactsService: ContactsService) {
+        this.controller = new MapController(contactsService);
+    }
 
     ngOnInit(): void {
-        this.setMap();
-
-        this.contactsService.getAll()
-            .pipe(take(1))
-            .subscribe(contacts => {
-                this.contacts = contacts;
-                this.setPins();
-            });
-    }
-
-    setPins(): void {
-        for (const pos of this.contacts) {
-            const element = document.createElement('div');
-            element.id = 'marker';
-            this.marker = new tt.Marker({
-                    draggable: false,
-                    scale: 2,
-                    width: 20,
-                    height: 25,
-                    element
-                })
-                .setLngLat([pos.longitude, pos.latitude])
-                .addTo(this.map);
-        }
-    }
-
-    setMap(): void {
-        this.map = tt.map({
-            key: 'RhLL7hssA5Ku2uziA9KuddClqHQHWrGL',
-            container: 'gMap',
-            style: '/assets/map.json',
-            center: new tt.LngLat(this.coords[0], this.coords[1]),
-            zoom: 15
+        this.controller.onInit.subscribe({
+            next: contacts => this.setPins(contacts)
         });
+
+        this.controller.init();
+
+        this.createMap();
     }
 
     ngAfterViewInit(): void {
-        if (document.documentElement.clientWidth > 1265) {
+        this.checkWidth();
+    }
+
+    ngOnChanges(): void {
+        this.createMap();
+
+        const contacts = this.controller.getContacts();
+        this.setPins(contacts);
+    }
+
+    checkWidth(): void {
+        if (document.documentElement.clientWidth > MapConfig.scaleWidth) {
             this.MapElement.nativeElement.style.width = this.width;
         }
         this.MapElement.nativeElement.style.height = this.height;
     }
 
-    ngOnChanges(): void {
-        this.setMap();
-        this.setPins();
+    setPins(contacts: Contacts[]): void {
+        for (const contactsData of contacts) {
+            this.createPin(contactsData);
+        }
+    }
+
+    createPin(contactsData: Contacts): void {
+        const htmlElem = document.createElement('div');
+        htmlElem.id = 'marker';
+
+        this.marker = new tt.Marker({
+                draggable: MapMarkerConfig.draggable,
+                scale: MapMarkerConfig.scale,
+                width: MapMarkerConfig.width,
+                height: MapMarkerConfig.height,
+                element: htmlElem
+            })
+            .setLngLat([contactsData.longitude, contactsData.latitude])
+            .addTo(this.map);
+    }
+
+    createMap(): void {
+        this.map = tt.map({
+            key: MapConfig.apiKey,
+            container: 'gMap',
+            style: '/assets/map.json',
+            center: new tt.LngLat(this.coords[0], this.coords[1]),
+            zoom: MapConfig.zoom
+        });
     }
 }

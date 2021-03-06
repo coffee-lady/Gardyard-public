@@ -5,6 +5,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import * as Components from 'app/frontend/src/components';
 import { AppCommonModule } from 'app/frontend/src/modules/common/app-common.module';
 
+import { AdminRoutingModule } from './admin-routing.module';
+
 @NgModule({
     declarations: [
         Components.NewProductComponent,
@@ -20,6 +22,7 @@ import { AppCommonModule } from 'app/frontend/src/modules/common/app-common.modu
         ReactiveFormsModule,
         CommonModule,
         AppCommonModule,
+        AdminRoutingModule
     ],
     exports: [
         Components.NewProductComponent,

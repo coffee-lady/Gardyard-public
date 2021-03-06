@@ -12,7 +12,7 @@
             <app-nav-link href="admin/edit-contacts" text="CONTACTS (E.)"></app-nav-link>
             <app-nav-link href="admin/users" text="USERS (E.)"></app-nav-link>
             <app-nav-link class="user_tablet" href="orders" text="MY ORDERS"></app-nav-link>
-            <app-nav-link class="user_tablet" href="admin/edit-contacts" (click)="logout()" text="SIGN OUT"></app-nav-link>
+            <app-nav-link class="user_tablet" href="admin/edit-contacts" (click)="onLogout()" text="SIGN OUT"></app-nav-link>
         </div>
 
         <div class="link-to-auth" *ngIf="!user">
@@ -24,7 +24,7 @@
              (mouseleave)="toggleDropdownState()">
             <div class="user__header">
                 <img src="app/frontend/assets/images/avatar.png">
-                     <a class="user__name">{{ user.fullname | uppercase }}</a>
+                <a class="user__name">{{ user.fullname | uppercase }}</a>
             </div>
             <div class="g-block user__dropdown"
                  [@appearDisappear]="dropdownMenuState ? 'active' : 'inactive'">

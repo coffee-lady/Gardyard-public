@@ -5,6 +5,8 @@ import { CommonModule } from '@angular/common';
 import * as Components from 'app/frontend/src/components';
 import { AppCommonModule } from 'app/frontend/src/modules/common/app-common.module';
 
+import { AuthRoutingModule } from './auth-routing.module';
+
 @NgModule({
     declarations: [
         Components.LoginComponent,
@@ -15,6 +17,7 @@ import { AppCommonModule } from 'app/frontend/src/modules/common/app-common.modu
         ReactiveFormsModule,
         CommonModule,
         AppCommonModule,
+        AuthRoutingModule
     ],
     exports: [
         Components.LoginComponent,
