@@ -7,7 +7,10 @@ const bcrypt = require('bcryptjs');
 const jwtSecret = require('./config').jwtSecret;
 const User = require('../models/user.model');
 
-passport.use('local', new LocalStrategy({
+const Constants = require('../../constants');
+const PassportStrategies = Constants.passport.strategies
+
+passport.use(PassportStrategies.local, new LocalStrategy({
     usernameField: 'email',
 }, async (email, password, done) => {
     let user = await User.findOne({
@@ -23,7 +26,7 @@ passport.use('local', new LocalStrategy({
     return done(null, user);
 }));
 
-passport.use('jwt', new JwtStrategy({
+passport.use(PassportStrategies.jwt, new JwtStrategy({
     jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
     secretOrKey: jwtSecret
 }, async (payload, done) => {

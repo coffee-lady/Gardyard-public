@@ -11,11 +11,11 @@
         }
     },
     "files": [
-        "app/frontend/src/main.ts",
-        "app/frontend/src/polyfills.ts"
+        "app/frontend/main.ts",
+        "app/frontend/polyfills.ts"
     ],
     "include": [
-        "app/frontend/src/**/*.d.ts", "./app/frontend/src/**/*", "./app/frontend/src/**/*.json"
+        "app/frontend/**/*.d.ts", "./app/frontend/**/*", "./app/frontend/**/*.json"
     ],
     "types": ["node"]
 }

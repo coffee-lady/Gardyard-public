@@ -2,14 +2,17 @@ const express = require('express');
 const passport = require('passport');
 const asyncHandler = require('express-async-handler');
 
+const Constants = require('../../../../constants');
+const PassportStrategies = Constants.passport.strategies
+
 const Controllers = require('../../controllers');
 const authCtrl = Controllers.Auth;
 
 const router = express.Router();
 
 router.post('/register', asyncHandler(register), login);
-router.post('/login', passport.authenticate('local', { session: false }), login);
-router.get('/me', passport.authenticate('jwt', { session: false }), login);
+router.post('/login', passport.authenticate(PassportStrategies.local, { session: false }), login);
+router.get('/me', passport.authenticate(PassportStrategies.jwt, { session: false }), login);
 
 module.exports = router;
 
