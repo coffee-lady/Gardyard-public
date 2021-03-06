@@ -1,7 +1,7 @@
 {
     "extends": "./tsconfig.base.json",
     "compilerOptions": {
-        "composite": false,
+        "composite": true,
         "experimentalDecorators": true,
         "outDir": "./out-tsc/app",
         "types": ["node"],
